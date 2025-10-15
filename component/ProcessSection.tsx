@@ -1,12 +1,12 @@
 const ProcessSection: React.FC = () => {
   return (
     <section
-      className="process-section py-12 bg-cover bg-center"
+      className="process-section life_box"
       style={{
         backgroundImage: "url(https://amfics.io/images/background/2.jpg)",
       }}>
-      <div className="auto-container container mx-auto px-4">
-        <div className="life text-center">
+      <div className="auto-container">
+        <div className="life">
           <h3 className="text-3xl font-bold text-white">Life Cycle Method</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
