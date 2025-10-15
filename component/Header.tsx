@@ -1,10 +1,10 @@
 "use client";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fas } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { fas } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { IoLogoWhatsapp } from "react-icons/io";
+// import { IoLogoWhatsapp } from "react-icons/io";
 
 const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
@@ -191,7 +191,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 className="icon flaticon-whatsapp"
                 rel="noopener noreferrer">
-                <IoLogoWhatsapp />
+                {/* <IoLogoWhatsapp /> */}
               </Link>
               {/* <a
                 href="https://wa.me/+919980789911"
