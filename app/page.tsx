@@ -58,13 +58,13 @@ export default function Home() {
           content="tqhCCXxZy5GsKp2H0C7WA_XAq53QdeDJyVCgAOdvWr8"
         />
       </Head>
-      <Header />
+      {/* <Header /> */}
       <Slider />
       <FunFactSection />
       <CaseStudySection />
       <ProcessSection />
       <CallToAction />
-      <Footer />
+      {/* <Footer /> */}
       <div className="whatsapp fixed bottom-4 right-4">
         <a
           href="https://wa.me/9632012564"

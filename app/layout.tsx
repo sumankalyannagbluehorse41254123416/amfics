@@ -13,7 +13,9 @@ import "@/public/style/fontawesome-all.css";
 import "@/public/style/flaticon.css";
 import "@/public/style/bootstrap.css";
 import "@/public/style/animate.css";
-import Home from "./page";
+import Header from "@/component/Header";
+import Footer from "@/component/Footer";
+// import Home from "./page";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -50,9 +52,9 @@ export default function RootLayout({
         />
       </head>
       <body className={poppins.className}>
-        {/* {children} */}
-
-        <Home />
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
   );
