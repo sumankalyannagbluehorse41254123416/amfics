@@ -96,8 +96,9 @@ const Header: React.FC = () => {
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
                     >
-                      <a href="https://amfics.io/services">
+                      <a href="https://amfics.io/services" style={{display:"flex"}}>
                         <span>Services</span>
+                        <i className="fa-solid fa-chevron-down"></i>
                       </a>
                       <ul
                         style={{
