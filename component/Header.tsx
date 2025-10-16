@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { fas } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
@@ -81,10 +82,12 @@ const Header: React.FC = () => {
                 className="main-logo"
                 target="_blank"
                 rel="noopener noreferrer">
-                <img
+                <Image
                   src="https://amfics.io/images/Amfics Logo.png"
                   alt="Amfics Logo"
                   title="Amfics Logo"
+                  height={400}
+                  width={400}
                 />
               </a>
             </div>
@@ -95,7 +98,7 @@ const Header: React.FC = () => {
                   id="navbarSupportedContent">
                   <ul className="navigation clearfix">
                     <li>
-                      <a href="https://amfics.io">Home</a>
+                      <a href="/">Home</a>
                     </li>
                     <li>
                       <a href="/about-us">About Us</a>
@@ -104,7 +107,7 @@ const Header: React.FC = () => {
                       className="dropdown"
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}>
-                       <a href="https://amfics.io/services" style={{display:"flex", alignItems:"center", gap:"0px"}}>
+                      <a href="/services" style={{display:"flex", alignItems:"center", gap:"0px"}}>
                         <span>Services</span>
                         <i className="fa-solid fa-chevron-down" style={{fontSize:"9px"}}></i>
                       </a>
@@ -118,51 +121,45 @@ const Header: React.FC = () => {
                           marginBottom: "0px",
                         }}>
                         <li>
-                          <a href="https://amfics.io/services/soc">SOC</a>
+                          <a href="/services/soc">SOC</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/noc">NOC</a>
+                          <a href="/services/noc">NOC</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/vapt">VAPT</a>
+                          <a href="/services/vapt">VAPT</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/threat">
+                          <a href="/services/threat">
                             Threat Modelling & Risk Management
                           </a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/cloud">
-                            Cloud Security
-                          </a>
+                          <a href="/services/cloud">Cloud Security</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/simulate">
+                          <a href="/services/simulate">
                             Simulate Real-world Attack
                           </a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/ciso">
-                            CISO As A Service
-                          </a>
+                          <a href="/services/ciso">CISO As A Service</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/ot_sceurity">
-                            OT/IOT Security
-                          </a>
+                          <a href="/services/ot_sceurity">OT/IOT Security</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/privacy">
+                          <a href="/services/privacy">
                             Privacy, Regulation & Compliance
                           </a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/cyber_security">
+                          <a href="/services/cyber_security">
                             Cyber Security Readiness Program
                           </a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services/business_continuity">
+                          <a href="/services/business_continuity">
                             Business Continuity Plan
                           </a>
                         </li>
@@ -172,13 +169,13 @@ const Header: React.FC = () => {
                       </div>
                     </li>
                     <li>
-                      <a href="https://amfics.io/blog">Blog</a>
+                      <a href="/blog">Blog</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/patrons">Partners</a>
+                      <a href="/patrons">Partners</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/contact">Contact Us</a>
+                      <a href="/contact">Contact Us</a>
                     </li>
                   </ul>
                 </div>
@@ -211,14 +208,16 @@ const Header: React.FC = () => {
           <div className="menu-box">
             <div className="logo">
               <a
-                href="https://amfics.io"
+                href="/"
                 className="sticky-logo"
                 target="_blank"
                 rel="noopener noreferrer">
-                <img
+                <Image
                   src="https://amfics.io/images/Amfics Fav Icon.png"
                   alt="Amfics Fav Icon"
                   title="Amfics Fav Icon"
+                  height={400}
+                  width={400}
                 />
               </a>
             </div>
@@ -228,7 +227,7 @@ const Header: React.FC = () => {
                 id="navbarSupportedContent">
                 <ul className="navigation clearfix">
                   <li>
-                    <a href="https://amfics.io">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li>
                     <a href="/about-us">About Us</a>
@@ -237,7 +236,7 @@ const Header: React.FC = () => {
                     className="dropdown"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
-                    <a href="https://amfics.io/services">
+                    <a href="/services">
                       <span>Services</span>
                     </a>
                     <ul
@@ -250,51 +249,45 @@ const Header: React.FC = () => {
                         marginBottom: "0px",
                       }}>
                       <li>
-                        <a href="https://amfics.io/services/soc">SOC</a>
+                        <a href="/services/soc">SOC</a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/noc">NOC</a>
+                        <a href="/services/noc">NOC</a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/vapt">VAPT</a>
+                        <a href="/services/vapt">VAPT</a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/threat">
+                        <a href="/services/threat">
                           Threat Modelling & Risk Management
                         </a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/cloud">
-                          Cloud Security
-                        </a>
+                        <a href="/services/cloud">Cloud Security</a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/simulate">
+                        <a href="/services/simulate">
                           Simulate Real-world Attack
                         </a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/ciso">
-                          CISO As A Service
-                        </a>
+                        <a href="/services/ciso">CISO As A Service</a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/ot_sceurity">
-                          OT/IOT Security
-                        </a>
+                        <a href="/services/ot_sceurity">OT/IOT Security</a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/privacy">
+                        <a href="/services/privacy">
                           Privacy, Regulation & Compliance
                         </a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/cyber_security">
+                        <a href="/services/cyber_security">
                           Cyber Security Readiness Program
                         </a>
                       </li>
                       <li>
-                        <a href="https://amfics.io/services/business_continuity">
+                        <a href="/services/business_continuity">
                           Business Continuity Plan
                         </a>
                       </li>
@@ -304,13 +297,13 @@ const Header: React.FC = () => {
                     </div>
                   </li>
                   <li>
-                    <a href="https://amfics.io/blog">Blog</a>
+                    <a href="/blog">Blog</a>
                   </li>
                   <li>
-                    <a href="https://amfics.io/patrons">Partners</a>
+                    <a href="/patrons">Partners</a>
                   </li>
                   <li>
-                    <a href="https://amfics.io/contact">Contact Us</a>
+                    <a href="/contact">Contact Us</a>
                   </li>
                 </ul>
               </div>
@@ -320,25 +313,32 @@ const Header: React.FC = () => {
       </div>
       <div className="mobile-header">
         <div className="logo">
-          <a href="https://amfics.io">
-            <img src="https://amfics.io/images/Amfics Logo.png" />
+          <a href="/">
+            <Image
+              src="https://amfics.io/images/Amfics Logo.png"
+              alt=""
+              height={400}
+              width={400}
+            />
           </a>
         </div>
         {/*Nav Box*/}
         <div className="nav-outer clearfix">
           <div className="mobile-nav-toggler" onClick={toggleMobileMenu}>
             <span className="icon fa fa-bars" />
-            {/* <span className="icon flaticon-target" /> */}
-            {/* Icon Family Classic Select an Icon Style */}
-            {/* <FontAwesomeIcon icon={fas["bars"]} /> */}
           </div>
         </div>
       </div>
 
       <div className="mobile-sticky-header">
         <div className="logo">
-          <a href="https://amfics.io">
-            <img src="https://amfics.io/images/Amfics Logo.png" />
+          <a href="/">
+            <Image
+              src="https://amfics.io/images/Amfics Logo.png"
+              alt=""
+              height={400}
+              width={400}
+            />
           </a>
         </div>
         {/*Nav Box*/}
@@ -354,8 +354,13 @@ const Header: React.FC = () => {
         <div className="menu-outer">
           <nav className="menu-box">
             <div className="nav-logo">
-              <a href="https://amfics.io">
-                <img src="https://amfics.io/images/Amfics Logo.png" />
+              <a href="/">
+                <Image
+                  src="https://amfics.io/images/Amfics Logo.png"
+                  alt=""
+                  height={400}
+                  width={400}
+                />
               </a>
             </div>
             <div
@@ -363,75 +368,69 @@ const Header: React.FC = () => {
               id="navbarSupportedContent">
               <ul className="navigation clearfix">
                 <li>
-                  <a href="https://amfics.io">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li>
                   <a href="/about-us">About Us</a>
                 </li>
                 <li className="dropdown">
-                  <a href="https://amfics.io/services">
+                  <a href="/services">
                     <span>Services</span>
                   </a>
                   <ul>
                     <li>
-                      <a href="https://amfics.io/services/soc">SOC</a>
+                      <a href="/services/soc">SOC</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/noc">NOC</a>
+                      <a href="/services/noc">NOC</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/vapt">VAPT</a>
+                      <a href="/services/vapt">VAPT</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/threat">
+                      <a href="/services/threat">
                         Threat Modelling &amp; Risk Management
                       </a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/cloud">
-                        Cloud Security
-                      </a>
+                      <a href="/services/cloud">Cloud Security</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/simulate">
+                      <a href="/services/simulate">
                         Simulate Real-world Attack
                       </a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/ciso">
-                        CISO As A Service
-                      </a>
+                      <a href="/services/ciso">CISO As A Service</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/ot_sceurity">
-                        OT/IOT Security
-                      </a>
+                      <a href="/services/ot_sceurity">OT/IOT Security</a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/privacy">
+                      <a href="/services/privacy">
                         Privacy, Regulation &amp; Compliance
                       </a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/cyber_security">
+                      <a href="/services/cyber_security">
                         Cyber Security Readiness Program
                       </a>
                     </li>
                     <li>
-                      <a href="https://amfics.io/services/business_continuity">
+                      <a href="/services/business_continuity">
                         Business Continuity Plan
                       </a>
                     </li>
                   </ul>
                 </li>
                 <li>
-                  <a href="https://amfics.io/blog">Blog</a>
+                  <a href="/blog">Blog</a>
                 </li>
                 <li>
-                  <a href="https://amfics.io/patrons">Partners</a>
+                  <a href="/patrons">Partners</a>
                 </li>
                 <li>
-                  <a href="https://amfics.io/contact">Contact Us</a>
+                  <a href="/contact">Contact Us</a>
                 </li>
               </ul>
             </div>

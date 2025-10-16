@@ -10873,7 +10873,7 @@ hr {
 
 /*-----------------------contact-form------------*/
 
-/* .details_contact {
+.details_contact {
   width: 100%;
   background-image: linear-gradient(115deg, rgb(61 61 61 / 90%), rgb(206 203 208 / 80%)),
     url(../images/background/security-banner.jpg);
@@ -10883,7 +10883,7 @@ hr {
   background-size: cover;
   height: 200px;
   margin-bottom: 75px;
-} */
+}
 
 #name2 {
   display: inline-block;
