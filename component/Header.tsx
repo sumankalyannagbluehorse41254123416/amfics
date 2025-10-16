@@ -107,9 +107,9 @@ const Header: React.FC = () => {
                       className="dropdown"
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}>
-                      <a href="/services" style={{ display: "flex" }}>
+                      <a href="/services" style={{display:"flex", alignItems:"center", gap:"0px"}}>
                         <span>Services</span>
-                        <i className="fa-solid fa-chevron-down"></i>
+                        <i className="fa-solid fa-chevron-down" style={{fontSize:"9px"}}></i>
                       </a>
                       <ul
                         style={{
