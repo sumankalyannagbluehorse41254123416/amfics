@@ -107,9 +107,17 @@ const Header: React.FC = () => {
                       className="dropdown"
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}>
-                      <a href="/services" style={{display:"flex", alignItems:"center", gap:"0px"}}>
+                      <a
+                        href="/services"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0px",
+                        }}>
                         <span>Services</span>
-                        <i className="fa-solid fa-chevron-down" style={{fontSize:"9px"}}></i>
+                        <i
+                          className="fa-solid fa-chevron-down"
+                          style={{ fontSize: "9px" }}></i>
                       </a>
                       <ul
                         style={{
@@ -172,7 +180,7 @@ const Header: React.FC = () => {
                       <a href="/blog">Blog</a>
                     </li>
                     <li>
-                      <a href="/patrons">Partners</a>
+                      <a href="/partners">Partners</a>
                     </li>
                     <li>
                       <a href="/contact">Contact Us</a>
@@ -300,7 +308,7 @@ const Header: React.FC = () => {
                     <a href="/blog">Blog</a>
                   </li>
                   <li>
-                    <a href="/patrons">Partners</a>
+                    <a href="/partners">Partners</a>
                   </li>
                   <li>
                     <a href="/contact">Contact Us</a>
@@ -427,7 +435,7 @@ const Header: React.FC = () => {
                   <a href="/blog">Blog</a>
                 </li>
                 <li>
-                  <a href="/patrons">Partners</a>
+                  <a href="/partners">Partners</a>
                 </li>
                 <li>
                   <a href="/contact">Contact Us</a>
