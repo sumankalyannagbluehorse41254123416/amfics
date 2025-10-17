@@ -74,7 +74,7 @@ const BlogPage: React.FC = () => {
                   <div className="image-box">
                     <figure className="image">
                       <Link
-                        href={`https://amfics.io/blog/blog-details/${blog.id}`}
+                        href={`/blog/blog-details/${blog.id}`}
                         target="_blank">
                         <Image
                           src={blog.image}
@@ -85,7 +85,7 @@ const BlogPage: React.FC = () => {
                       </Link>
                     </figure>
                     <Link
-                      href={`https://amfics.io/blog/blog-details/${blog.id}`}
+                      href={`/blog/blog-details/${blog.id}`}
                       className="date"
                       target="_blank">
                       <i className="far fa-calendar"></i> {blog.date}
@@ -95,14 +95,14 @@ const BlogPage: React.FC = () => {
                   <div className="lower-content">
                     <h4>
                       <Link
-                        href={`https://amfics.io/blog/blog-details/${blog.id}`}
+                        href={`/blog/blog-details/${blog.id}`}
                         target="_blank">
                         {blog.title}
                       </Link>
                     </h4>
                     <div className="text">{blog.text}</div>
                     <Link
-                      href={`https://amfics.io/blog/blog-details/${blog.id}`}
+                      href={`/blog/blog-details/${blog.id}`}
                       className="theme-btn icon-btn-two read-more-btn"
                       target="_blank">
                       <span>Read More</span>
