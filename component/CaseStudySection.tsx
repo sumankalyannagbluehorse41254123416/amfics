@@ -64,6 +64,66 @@
 
 // export default CaseStudySection;
 
+// "use client";
+
+// import React from "react";
+// import parse from "html-react-parser";
+
+// interface Subsection {
+//   id: number;
+//   title: string;
+//   description: string;
+// }
+
+// interface PageItem {
+//   id: number;
+//   title: string;
+//   shortDescription: string;
+//   subsections: Subsection[];
+// }
+
+// interface Props {
+//   data: PageItem | null;
+// }
+
+// const CaseStudySectionClient: React.FC<Props> = ({ data }) => {
+//   if (!data)
+//     return (
+//       <section className="case-study-section text-center">
+//         <p>No data available</p>
+//       </section>
+//     );
+
+//   return (
+//     <section className="case-study-section">
+//       <div className="auto-container">
+//         <div className="sec-title text-center sec-title2">
+//           <h3>{data.title}</h3>
+//           {/* <div className="text">{parse(data.shortDescription || "")}</div> */}
+//           {/* <div className="text">{data.shortDescription}</div> */}
+//           <div
+//             className="text"
+//             dangerouslySetInnerHTML={{
+//               __html: data.shortDescription || "",
+//             }}
+//           />
+//           <div className="banner_text">
+//             {data.subsections?.map((sub) => (
+//               <div key={sub.id}>
+//                 {/* Optionally render sub.title if needed, e.g., as <h4> */}
+//                 {/* For now, only description is rendered as in your static HTML */}
+//                 {parse(sub.description || "")}
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default CaseStudySectionClient;
+
 "use client";
 
 import React from "react";
@@ -73,6 +133,7 @@ interface Subsection {
   id: number;
   title: string;
   description: string;
+  image?: string;
 }
 
 interface PageItem {
@@ -99,22 +160,20 @@ const CaseStudySectionClient: React.FC<Props> = ({ data }) => {
       <div className="auto-container">
         <div className="sec-title text-center sec-title2">
           <h3>{data.title}</h3>
-          {/* <div className="text">{parse(data.shortDescription || "")}</div> */}
-          {/* <div className="text">{data.shortDescription}</div> */}
+
           <div
             className="text"
             dangerouslySetInnerHTML={{
               __html: data.shortDescription || "",
             }}
           />
+
           <div className="banner_text">
-            {data.subsections?.map((sub) => (
-              <div key={sub.id}>
-                {/* Optionally render sub.title if needed, e.g., as <h4> */}
-                {/* For now, only description is rendered as in your static HTML */}
-                {parse(sub.description || "")}
-              </div>
-            ))}
+            {data.subsections
+              ?.filter((sub) => !sub.image)
+              .map((sub) => (
+                <div key={sub.id}>{parse(sub.description || "")}</div>
+              ))}
           </div>
         </div>
       </div>

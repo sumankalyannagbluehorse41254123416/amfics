@@ -34,6 +34,7 @@
 
 "use client";
 
+import Image from "next/image";
 import React from "react";
 
 interface Subsection {
@@ -74,19 +75,31 @@ const ProcessSectionClient: React.FC<ProcessSectionClientProps> = ({
       }}>
       <div className="auto-container">
         <div className="life">
-          <h3 className="text-3xl font-bold text-white">Life Cycle Method</h3>
+          <h3 className="text-3xl font-bold text-white">{}</h3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
           {imageUrl1 && (
             <div className="method_img">
-              <img src={imageUrl1} alt="Method 1" className="w-full" />
+              <Image
+                src={imageUrl1}
+                alt="Method 1"
+                className="w-full"
+                height={900}
+                width={1400}
+              />
             </div>
           )}
 
           {imageUrl2 && (
             <div className="method_img_2">
-              <img src={imageUrl2} alt="Method 2" className="w-full" />
+              <Image
+                src={imageUrl2}
+                alt="Method 2"
+                className="w-full"
+                height={900}
+                width={1400}
+              />
             </div>
           )}
         </div>
