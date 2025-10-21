@@ -1,11 +1,12 @@
 import Head from "next/head";
-import Header from "../component/Header";
+
 import Slider from "../component/Slider";
 import FunFactSection from "../component/FunFactSection";
-import CaseStudySection from "../component/CaseStudySection";
-import ProcessSection from "../component/ProcessSection";
+// import CaseStudySection from "../component/CaseStudySection";
+// import ProcessSection from "../component/ProcessSection";
 import CallToAction from "../component/CallToActions";
-import Footer from "../component/Footer";
+import CaseStudySectionServer from "@/component/serverComponent/CaseStudySectionServer";
+import ProcessSectionServer from "@/component/serverComponent/ProcessSectionServer";
 
 export default function Home() {
   return (
@@ -61,8 +62,10 @@ export default function Home() {
       {/* <Header /> */}
       <Slider />
       <FunFactSection />
-      <CaseStudySection />
-      <ProcessSection />
+      {/* <CaseStudySection /> */}
+      <CaseStudySectionServer />
+      {/* <ProcessSection /> */}
+      <ProcessSectionServer />
       <CallToAction />
       {/* <Footer /> */}
       <div className="whatsapp fixed bottom-4 right-4">
