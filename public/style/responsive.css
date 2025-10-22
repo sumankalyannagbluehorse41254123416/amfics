@@ -197,6 +197,7 @@
   .fact-counter .counter-column .inner-column {
     padding: 30px;
     text-align: center;
+    height: 230px;
   }
 
   .fact-counter .counter-column .icon {

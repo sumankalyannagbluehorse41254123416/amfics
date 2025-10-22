@@ -4264,6 +4264,17 @@ hr {
   box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.1);
 }
 
+@media (max-width:1199px){
+  .fact-counter .counter-column .inner-column{
+    padding: 33px 28px 35px 80px;
+  }
+}
+@media (max-width:991px){
+  .fact-counter .counter-column .inner-column{
+   height: auto !important;
+  }
+}
+
 .fact-counter .counter-column .icon {
   position: absolute;
   top: 0;
@@ -4286,6 +4297,12 @@ hr {
   margin-top: 5px;
 }
 
+@media (max-width:1199px){
+  .fact-counter .count-box{
+    font-size: 30px;
+  }
+}
+
 .fact-counter .count-box .count-text {
   position: relative;
   display: inline-block;
@@ -4296,12 +4313,23 @@ hr {
   margin-right: 3px;
   vertical-align: top;
 }
+@media (max-width:1199px){
+  .fact-counter .count-box .count-text{
+    font-size: 30px;
+  }
+}
 
 .fact-counter .text {
   color: #4c4c4d;
   font-size: 14px;
   margin-top: 10px;
   line-height: 1.7em;
+}
+
+@media (max-width:1199px){
+  .fact-counter .text{
+    font-size: 14px !important;
+  }
 }
 
 .fun-fact-section .quot-column {
