@@ -3,114 +3,190 @@
 import CallToAction from "@/component/CallToActions";
 import React from "react";
 
-const About: React.FC = () => {
+const Services: React.FC = () => {
   return (
     <>
       <section
         className="page-title about_box"
         style={{
           backgroundImage:
-            "url('https://amfics.io/images/background/about_us.jpg')",
+            "url(https://amfics.io/images/background/about_us.jpg)",
         }}>
         <div className="auto-container about_title">
-          <h1>About</h1>
+          <h1>Services</h1>
           <span className="title_divider"></span>
         </div>
       </section>
 
-      <section className="services-section style-two services-section2">
+      {/* globa-section */}
+      <section className="news-section global_section global_section2">
         <div className="auto-container">
+          <div className="sec-title text-center">
+            <span className="icon">
+              <img
+                src="https://amfics.io/images/background/services_icon.png"
+                alt=""
+              />
+            </span>
+            <h3>WHAT WE OFFER?</h3>
+            <div className="text">
+              The industry spanning platforms and services ranges from banking,
+              finance, insurance, consulting, telecommunications, research &
+              development to government. We have completed overall risk
+              management in recent years while consistently reducing costs. As a
+              global leader, we have the best talent in GIAC GSEC, CEH, CBCP,
+              PMP, ITIL, CoBIT, ISO 20000, ISO 27001 security standards, and
+              certifications.
+            </div>
+            <div className="global service_image">
+              <img
+                src="https://amfics.io/images/background/zeroiz_services.jpg"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Case Study Section */}
+      <section className="case-study-section zero_ser zero_ser2">
+        <div className="auto-container">
+          <div className="sec-title text-center sec-title3">
+            <h3>ZEROIZ SERVICES</h3>
+            <div className="text">
+              The industry spanning platforms and services ranges from banking,
+              finance, insurance, consulting, telecommunications, research &
+              development to government. We have completed overall risk
+              management in recent years while consistently reducing costs. As a
+              global leader, we have the best talent in GIAC GSEC, CEH, CBCP,
+              PMP, ITIL, CoBIT, ISO 20000, ISO 27001 security standards, and
+              certifications.
+            </div>
+          </div>
+
           <div className="row">
-            <div className="text-column col-lg-12 col-md-12 col-sm-12 order-2">
-              <div className="inner-column who about_text_item">
-                <div className="sec-title sec-title2 sec_title_section">
-                  <h3>WHO ARE WE?</h3>
+            {/* Case Block 1 */}
+            <div className="case-block col-lg-4 col-md-6 col-sm-12">
+              <div className="inner-box about_inner">
+                <div className="image-box">
+                  <figure className="image">
+                    <a href="#">
+                      <img
+                        src="https://amfics.io/images/resource/cloud_security.jpg"
+                        alt=""
+                      />
+                    </a>
+                  </figure>
+                  <span className="icon_img">
+                    <img
+                      src="https://amfics.io/images/icons/cloud_logo.png"
+                      alt=""
+                    />
+                  </span>
+                </div>
+                <div className="lower-content">
+                  <h4>
+                    <a href="#">Cloud Security</a>
+                  </h4>
                   <div className="text">
-                    <h4>
-                      Welcome to Amfics Pvt Ltd, your trusted partner for all
-                      your IT needs.
-                    </h4>
+                    Cloud security refers to the technologies, policies,
+                    controls, and services that protect cloud data,
+                    applications, and infrastructure from threats.
+                  </div>
+                  <div className="btn-box">
+                    <a
+                      href="https://zeroiz.tezcommerce.com/services/cloud"
+                      className="theme-btn icon-btn-one">
+                      <span>View Services</span>
+                    </a>
                   </div>
                 </div>
-                <p>
-                  Amfics Pvt Ltd is your go-to provider for all things IT,
-                  specializing in delivering high-quality solutions in
-                  cybersecurity, managed services, and IT.
-                  <br />
-                  <br />
-                  Our journey began in 2020, when a team of passionate
-                  consultants in Bengaluru started offering their expertise to
-                  businesses. Since then, we have grown exponentially, bringing
-                  over 50 years of combined experience in managed services,
-                  sales, strategy, and security domains, gained from top
-                  companies like Juniper Networks, Wipro, McAfee, CISCO and
-                  SentinelOne.
-                  <br />
-                  <br />
-                  Our delivery partner is a CERT-IN/ISO 27001 certified
-                  cybersecurity company and certified security consultant,
-                  enabling us to provide tailored advisory services to
-                  businesses of all sizes across India, the United States,
-                  Europe, the United Kingdom, the Middle East, and East Asia.
-                </p>
+              </div>
+            </div>
+
+            {/* Case Block 2 */}
+            <div className="case-block col-lg-4 col-md-6 col-sm-12">
+              <div className="inner-box about_inner">
+                <div className="image-box">
+                  <figure className="image">
+                    <a href="#">
+                      <img
+                        src="https://amfics.io/images/resource/simulate.jpg"
+                        alt=""
+                      />
+                    </a>
+                  </figure>
+                  <span className="icon_img">
+                    <img
+                      src="https://amfics.io/images/icons/simulate_icon.png"
+                      alt=""
+                    />
+                  </span>
+                </div>
+                <div className="lower-content">
+                  <h4>
+                    <a href="#">Simulate Real-world Attack</a>
+                  </h4>
+                  <div className="text">
+                    Attack your security posture using adversarial tactics from
+                    the MITRE ATT&CK framework. Simulate the latest attacks
+                    safely on your unique environment without exposing data.
+                  </div>
+                  <div className="btn-box">
+                    <a
+                      href="https://zeroiz.tezcommerce.com/services/simulate"
+                      className="theme-btn icon-btn-one">
+                      <span>View Services</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Case Block 3 */}
+            <div className="case-block col-lg-4 col-md-6 col-sm-12">
+              <div className="inner-box about_inner">
+                <div className="image-box">
+                  <figure className="image">
+                    <a href="#">
+                      <img
+                        src="https://amfics.io/images/resource/ot_security.jpg"
+                        alt=""
+                      />
+                    </a>
+                  </figure>
+                  <span className="icon_img">
+                    <img
+                      src="https://amfics.io/images/icons/ot_icon.png"
+                      alt=""
+                    />
+                  </span>
+                </div>
+                <div className="lower-content">
+                  <h4>
+                    <a href="#">OT/IOT Security</a>
+                  </h4>
+                  <div className="text">
+                    Siemens Cybersecurity for Industry solutions for plant
+                    automation - more information! Protecting productivity with
+                    Plant Security Services by Siemens for your security!
+                  </div>
+                  <div className="btn-box">
+                    <a
+                      href="https://zeroiz.tezcommerce.com/services/ot_sceurity"
+                      className="theme-btn icon-btn-one">
+                      <span>View Services</span>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <section className="news-section why_section">
-        <div className="auto-container">
-          <div className="services-area">
-            <div className="row">
-              <a
-                className="feature-block-three col-lg-12 col-md-6 col-sm-12"
-                href="#"
-                data-toggle="modal"
-                data-target="#largeModal">
-                <div className="inner-box">
-                  <div className="content">
-                    <span className="icon flaticon-clock-1"></span>
-                    <h4>Amfics Mission and Vision</h4>
-                    <p>
-                      Mission of Amfics is to protect computer systems,
-                      networks, and sensitive information from unauthorized
-                      access, use, theft, damage, or destruction. Amfics aims to
-                      prevent cyberattacks, detect, and respond to security
-                      incidents, and ensure the confidentiality, integrity, and
-                      availability of information.
-                      <br />
-                      <br />
-                      The vision for Amfics is to create a secure and resilient
-                      cyberspace that enables individuals, organizations, and
-                      societies to pursue their goals and aspirations without
-                      fear of cyber threats. This includes creating a culture of
-                      security that emphasizes the importance of cybersecurity
-                      at all levels, from individuals to organizations to
-                      governments.
-                      <br />
-                      <br />
-                      To achieve this vision, cybersecurity must be a
-                      collaborative effort that involves stakeholders from
-                      across sectors and geographies. This includes industry,
-                      government, academia, and civil society, all working
-                      together to promote cybersecurity best practices, develop
-                      innovative technologies and solutions, and foster a
-                      skilled cybersecurity workforce. Overall, the mission and
-                      vision for Amfics is to protect against cyber threats
-                      while enabling individuals, organizations, and societies
-                      to fully realize the benefits of the digital age.
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <CallToAction />
-      </section>
+      <CallToAction />
     </>
   );
 };
 
-export default About;
+export default Services;
