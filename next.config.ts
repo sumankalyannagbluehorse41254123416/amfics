@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "wip.tezcommerce.com",
       },
+      {
+        protocol: "https",
+        hostname: "ik.imagekit.io",
+      },
     ],
   },
 };
