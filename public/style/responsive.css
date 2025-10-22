@@ -428,6 +428,19 @@
     padding-left: 0;
     margin-bottom: 30px;
     text-align: center;
+    flex-direction: column;
+  }
+
+  .call-to-action .sec-title-two h3 {
+    padding-left: 0;
+  }
+
+  .call-to-action .sec-title-two img {
+    margin-bottom: 10px;
+  }
+
+  .call-to-action .theme-btn {
+    margin-left: 0;
   }
 
   .call-to-action .sec-title-two .icon {
