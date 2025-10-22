@@ -58,12 +58,10 @@ const ProcessSectionClient: React.FC<ProcessSectionClientProps> = ({
 }) => {
   if (!data || !data.subsections) return null;
 
-  // ✅ Filter only subsections with valid images
   const imageSubsections = data.subsections.filter(
     (sub) => sub.image && sub.image.trim() !== ""
   );
 
-  // ✅ Optional: show the title of the first image subsection
   const sectionTitle = imageSubsections[0]?.title || data.title;
 
   const imageUrl1 = imageSubsections[0]?.image?.trim();
