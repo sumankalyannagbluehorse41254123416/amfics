@@ -24,9 +24,9 @@ const Footer: React.FC = () => {
                 {/* Footer Column - Logo */}
                 <div className="footer-column col-lg-4 col-md-12 col-sm-12">
                   <div className="logo">
-                    <a href="https://amfics.io">
+                    <a href="/">
                       <img
-                        src="https://amfics.io/images/Amfics Logo.png"
+                        src="../images/logo/Amfics Logo.png"
                         alt="Amfics Logo"
                       />
                     </a>
@@ -40,16 +40,16 @@ const Footer: React.FC = () => {
                     <div className="widget-content">
                       <ul className="list">
                         <li>
-                          <a href="https://amfics.io/about-us">About Us</a>
+                          <a href="/about-us">About Us</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/services">Services</a>
+                          <a href="/services">Services</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/blog">Blog</a>
+                          <a href="/blog">Blog</a>
                         </li>
                         <li>
-                          <a href="https://amfics.io/contact">Contact Us</a>
+                          <a href="/contact">Contact Us</a>
                         </li>
                       </ul>
                     </div>
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
                               type="button"
                               onClick={subscribeNewsletters}
                               className="theme-btn">
-                             <i className="fa-solid fa-arrow-right"></i>
+                              <i className="fa-solid fa-arrow-right"></i>
                             </button>
                             <div
                               id="msg"
@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
       <div className="footer-bottom">
         <div className="auto-container">
           <div className="copyright-text">
-            Copyright © 2023 Powered By{" "}
+            Copyright © 2025 Powered By{" "}
             <a href="https://bluehorse.in/" target="_blank" rel="noreferrer">
               BlueHorse
             </a>{" "}
