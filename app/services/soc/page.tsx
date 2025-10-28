@@ -156,12 +156,20 @@
 //   );
 // };
 
-// export default SocServices;
+// export default SocServices;s
 
 import ServiceContactSection from "@/component/ServiceContact";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { fetchPageData } from "@/app/action/page";
+
+interface Subsection {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  [key: string]: any;
+}
 
 export default async function SocServices() {
   const uid = "48fe3910-4db5-43ea-949a-2ef385996d75";
@@ -180,7 +188,7 @@ export default async function SocServices() {
 
   const page = data.pagedata;
   const section = data.pageItemdataWithSubsection?.[0];
-  const subsections = section?.subsections || [];
+  const subsections: Subsection[] = section?.subsections || [];
 
   return (
     <>
@@ -193,11 +201,7 @@ export default async function SocServices() {
           })`,
         }}>
         <div className="auto-container about_title">
-          {page?.description ? (
-            <div>{parse(page.description)}</div>
-          ) : (
-            <h1>{page?.title || "Services"}</h1>
-          )}
+          <h1>{page?.title || ""}</h1>
           <span className="title_divider"></span>
         </div>
       </section>
@@ -227,7 +231,7 @@ export default async function SocServices() {
       )}
 
       <div className="container soc">
-        {subsections.map((sub: any, index: number) => (
+        {subsections.map((sub: Subsection, index: number) => (
           <div
             key={sub.id}
             className={`row mt-${index === 0 ? 0 : 5} ${
@@ -279,7 +283,6 @@ export default async function SocServices() {
           </div>
         ))}
       </div>
-
       <ServiceContactSection />
     </>
   );
