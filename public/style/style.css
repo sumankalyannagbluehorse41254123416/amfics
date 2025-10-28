@@ -1411,20 +1411,20 @@ hr.divider-one {
   padding-left: 0;
 }
 
-.icon-btn-one span:after {
+.icon-btn-one span i {
   opacity: 0;
   right: 6px;
-  content: "\f121";
-  font-family: "flaticon";
-  font-weight: 400;
+  /* content: "\f121"; */
+  /* font-family: "flaticon"; */
+  /* font-weight: 400; */
   font-size: 16px;
   position: absolute;
-  margin-top: 1px;
+  margin-top: 3.8px;
   -webkit-transition: right 0.3s ease, opacity 0.15s ease;
   transition: right 0.3s ease, opacity 0.15s ease;
 }
 
-.icon-btn-one:hover span:after {
+.icon-btn-one:hover span i {
   right: 0px;
   opacity: 1;
 }
@@ -5000,6 +5000,14 @@ hr {
 }
 
 .case-block .lower-content .text p {
+  position: relative;
+  padding-top: 14px;
+  margin-top: 13px;
+  /* color: rgba(0, 0, 0, 0.75); */
+  color: #fff;
+}
+
+.case-block .lower-content .text {
   position: relative;
   padding-top: 14px;
   margin-top: 13px;
@@ -10705,6 +10713,12 @@ hr {
   background-color: aliceblue;
 }
 
+@media (max-width:1024px) {
+  .zero_ser {
+    padding-top: 10px;
+  }
+}
+
 .zero_ser2 {
   height: unset;
 }
@@ -10809,6 +10823,12 @@ hr {
 
 .vapt_text {
   min-height: 145px;
+}
+
+@media (max-width:1011px) and (min-width:992px) {
+  .vapt_text {
+    min-height: 175px;
+  }
 }
 
 .vapt_box {
@@ -11075,9 +11095,9 @@ hr {
   padding: 0 25px;
 }
 
-@media (max-width:1099px){
+@media (max-width:1099px) {
   .footer-form form {
-  right: -40px;
+    right: -40px;
   }
 }
 
