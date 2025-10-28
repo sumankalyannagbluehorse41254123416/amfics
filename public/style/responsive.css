@@ -619,6 +619,10 @@
     margin-bottom: 20px;
   }
 
+  .case-study-section.zero_ser.soc_item .sec-title{
+    margin-bottom: 75px;
+  }
+
   .clients-section {
     padding-bottom: 0px;
     padding-top: 20px;
@@ -638,7 +642,7 @@
 
   .soc_section p {
     margin-bottom: 10px !important;
-    margin-top: -20px;
+    /* margin-top: -20px; */
   }
 
   .case-study-section {
@@ -688,13 +692,13 @@
     left: 0%;
   }
 
-  .submit_item {
+  /* .submit_item {
     margin-left: 130px;
-  }
+  } */
 
-  .from_text h4 {
+  /* .from_text h4 {
     padding-left: 135px;
-  }
+  } */
 
   .threat_box {
     width: unset;
