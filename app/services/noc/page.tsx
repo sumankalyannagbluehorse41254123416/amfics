@@ -48,7 +48,11 @@
 //       {/* End Case Study Section */}
 
 //       {/* SOC Section */}
+<<<<<<< HEAD
 //       <div className="container soc">
+=======
+//       <div className="auto-container soc">
+>>>>>>> 0d30222e6a0d49acf8f75d97fb0b4f03e17e7c03
 //         <div className="row">
 //           <div className="col-md-8" data-aos="fade-right">
 //             <div className="soc_section">
@@ -129,6 +133,12 @@
 // };
 
 // export default ServicesPage;
+<<<<<<< HEAD
+=======
+
+
+"use client";
+>>>>>>> 0d30222e6a0d49acf8f75d97fb0b4f03e17e7c03
 
 import ServiceContactSection from "@/component/ServiceContact";
 import Image from "next/image";
@@ -162,6 +172,48 @@ export default async function NocServices() {
   const section = data.pageItemdataWithSubsection?.[0];
   const subsections: Subsection[] = section?.subsections || [];
 
+<<<<<<< HEAD
+=======
+const ServicesPage: React.FC = () => {
+  React.useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: "0px"
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement;
+        
+        if (entry.isIntersecting) {
+          // Element is in view - add animation class
+          target.classList.add("animate-in");
+          target.classList.remove("animate-out");
+        } else {
+          // Element is out of view - add reverse animation class
+          target.classList.add("animate-out");
+          target.classList.remove("animate-in");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    // Observe all soc_section and soc_img elements
+    const socSections = document.querySelectorAll(".soc_section");
+    const socImages = document.querySelectorAll(".soc_img");
+
+    socSections.forEach((section) => observer.observe(section));
+    socImages.forEach((img) => observer.observe(img));
+
+    // Cleanup
+    return () => {
+      socSections.forEach((section) => observer.unobserve(section));
+      socImages.forEach((img) => observer.unobserve(img));
+    };
+  }, []);
+
+>>>>>>> 0d30222e6a0d49acf8f75d97fb0b4f03e17e7c03
   return (
     <>
       <section
@@ -202,6 +254,7 @@ export default async function NocServices() {
         </section>
       )}
 
+<<<<<<< HEAD
       <div className="container soc">
         {subsections.map((sub: Subsection, index: number) => (
           <div
@@ -252,10 +305,68 @@ export default async function NocServices() {
                 </div>
               </>
             )}
+=======
+      {/* SOC Section */}
+      <div className="auto-container soc" style={{overflowX:"hidden"}}>
+        <div className="row">
+          <div className="col-md-8" data-aos="fade-right">
+            <div className="soc_section">
+              <p>
+                Typically, a NOC is staffed with a team of network engineers,
+                administrators, and other IT professionals who use a variety of
+                tools and technologies to monitor the organization's network
+                infrastructure. This may include monitoring network traffic,
+                reviewing logs, and performing network tests and diagnostics.
+              </p>
+            </div>
+>>>>>>> 0d30222e6a0d49acf8f75d97fb0b4f03e17e7c03
           </div>
         ))}
       </div>
       <ServiceContactSection />
+
+      <style jsx>{`
+        /* Initial state - elements are off-screen */
+        .soc_section {
+          opacity: 0;
+          transform: translateX(-100px);
+          transition: all 0.8s ease-in-out;
+        }
+
+        .soc_img {
+          opacity: 0;
+          transform: translateX(100px);
+          transition: all 0.8s ease-in-out;
+        }
+
+        /* Animated in state */
+        .soc_section.animate-in {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .soc_img.animate-in {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        /* Animated out state */
+        .soc_section.animate-out {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+
+        .soc_img.animate-out {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+      `}</style>
     </>
   );
+<<<<<<< HEAD
 }
+=======
+};
+
+export default ServicesPage;
+>>>>>>> 0d30222e6a0d49acf8f75d97fb0b4f03e17e7c03

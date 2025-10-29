@@ -80,7 +80,7 @@
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page"; // ✅ adjust if path differs
+import { fetchPageData } from "@/app/action/page";
 
 export default async function CisoAsAService() {
   // 🔹 UUID from your API
@@ -141,7 +141,6 @@ export default async function CisoAsAService() {
         </section>
       </main>
 
-      {/* ✅ Contact Section */}
       <ServiceContactSection />
     </>
   );
