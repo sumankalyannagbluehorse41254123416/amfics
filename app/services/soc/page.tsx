@@ -157,13 +157,6 @@
 // };
 
 // export default SocServices;
-
-
-
-
-
-
-
 import ServiceContactSection from "@/component/ServiceContact";
 import Image from "next/image";
 import parse from "html-react-parser";
@@ -193,10 +186,7 @@ export default async function SocServices() {
       <section
         className="page-title about_box"
         style={{
-          backgroundImage: `url(${
-            page?.cover_image_url ||
-            "https://amfics.io/images/background/about_us.jpg"
-          })`,
+          backgroundImage: `url(${page?.cover_image_url || ""})`,
         }}>
         <div className="auto-container about_title">
           {page?.description ? (
@@ -232,7 +222,7 @@ export default async function SocServices() {
         </section>
       )}
 
-      <div className="auto-container soc" style={{overflowX:"hidden"}}>
+      <div className="auto-container soc" style={{ overflowX: "hidden" }}>
         {subsections.map((sub: any, index: number) => (
           <div
             key={sub.id}
@@ -288,8 +278,9 @@ export default async function SocServices() {
 
       <ServiceContactSection />
 
-      <script dangerouslySetInnerHTML={{
-        __html: `
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
           (function() {
             function initScrollAnimations() {
               const textElements = document.querySelectorAll('.soc_fade_text');
@@ -356,8 +347,9 @@ export default async function SocServices() {
               initScrollAnimations();
             }
           })();
-        `
-      }} />
+        `,
+        }}
+      />
     </>
   );
 }
