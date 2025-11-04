@@ -301,13 +301,13 @@ const PartnersPage: React.FC = () => {
       {partners.length > 0 && (
         <section className="clients-section style-two">
           <div className="auto-container">
-            <div className="sec-title text-center client_text">
+            <div className="sec-title text-center client_text white-heading">
               {<h3>{partnersSection?.title}</h3>}
             </div>
 
             <div className="row client">
               {partners.map((partner) => (
-                <div className="col-md-3" key={partner.id}>
+                <div className="col-sm-3 col-md-3" key={partner.id}>
                   <div className="client_img">
                     {partner.image && (
                       <Image
