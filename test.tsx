@@ -1,301 +1,237 @@
 "use client";
 
-import ServiceContactSection from "@/component/ServiceContact";
-import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import Image from "next/image";
+import { FC, use, useEffect, useState } from "react";
+import { fetchBlogData } from "@/app/action/fetchBlogData";
+import { fetchBlogs, BlogPost } from "@/lib/blog";
 
-const PrivacyRegulations: React.FC = () => {
+// Types
+interface EditReview {
+  id: number;
+  website_id: number;
+  page_id: number;
+  author_name: string;
+  rating: string;
+  comment: string;
+  date: string;
+  created_by: string | null;
+  updated_by: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+interface Subsection {
+  id: number;
+  title: string;
+  shortDescription: string;
+  longDescription: string;
+  image: string | null;
+}
+
+interface ApiBlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  uuid: string;
+  description: string;
+  cover_image_url: string;
+  created_at: string;
+  author_id: string | null;
+  editReviedata?: EditReview[];
+  pageItemdataWithSubsection?: Subsection[];
+}
+
+const BlogDetailPage: FC<{ params: Promise<{ slug: string }> }> = ({
+  params,
+}) => {
+  const [blogData, setBlogData] = useState<ApiBlogPost | null>(null);
+  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { slug: blogSlug } = use(params);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetchBlogData(blogSlug);
+
+        if (response?.status && response?.pagedata) {
+          setBlogData({
+            ...response.pagedata,
+            editReviedata: response.editReviedata || [],
+            pageItemdataWithSubsection:
+              response.pageItemdataWithSubsection || [],
+          });
+        } else {
+          setError("Failed to load blog data");
+        }
+      } catch (err) {
+        console.error(err);
+        setError("An error occurred while fetching the blog data");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [blogSlug]);
+  useEffect(() => {
+    const loadRecentPosts = async () => {
+      try {
+        const posts = await fetchBlogs();
+        const filtered = posts.filter((p) => p.id !== blogData?.id);
+        setRecentPosts(filtered.slice(0, 5));
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (blogData) loadRecentPosts();
+  }, [blogData]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error || !blogData) return <div>{error || "Blog post not found"}</div>;
+
+  const authorName =
+    blogData.editReviedata?.[0]?.author_name || "Unknown Author";
+
+  const formattedDate =
+    blogData.editReviedata?.[0]?.date ||
+    new Date(blogData.created_at).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+
   return (
     <>
-      {/* Page Title Section */}
-      <section
-        className="page-title about_box"
-        style={{
-          backgroundImage:
-            "url(https://amfics.io/images/background/about_us.jpg)",
-        }}>
-        <div className="auto-container about_title">
-          <h1>Privacy Regulations and Compliance</h1>
-          <span className="title_divider"></span>
+      {/* Blog Header */}
+      <div className="cs-main-post">
+        <figure>
+          <Image
+            className="blgs_img"
+            src={blogData.cover_image_url || "/default-blog.jpg"}
+            alt={blogData.title}
+            width={1200}
+            height={600}
+            style={{ width: "100%" }}
+            priority
+          />
+        </figure>
+      </div>
+
+      <div className="container">
+        <div className="cs-blog-detail">
+          <div className="blog-details_heading text-center mt-4 mb-4">
+            <h2>{blogData.title}</h2>
+          </div>
         </div>
-      </section>
-      {/* Case Study Section */}
-      <section className="case-study-section zero_ser privacy_box">
-        <div className="auto-container">
-          <div className="sec-title text-center privacy_box_text">
-            <h3>Privacy Regulations and Compliance</h3>
-            <div className="text">
-              Privacy regulations are laws and policies that aim to protect the
-              privacy of individuals and their personal information. These
-              regulations establish rules and requirements that organizations
-              must follow in order to collect, use, store, and share personal
-              information. Compliance with privacy regulations is essential for
-              organizations that handle personal information to avoid legal
-              consequences, reputation damage, and loss of consumer trust.
-            </div>
-          </div>
+      </div>
 
-          {/* Row 1 */}
-          <div className="row">
-            {/* Block 1 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <Link href="#">
-                      <Image
-                        src="https://amfics.io/images/resource/privacy_image.jpg"
-                        alt="Privacy Awareness"
-                        width={500}
-                        height={300}
-                      />
-                    </Link>
-                  </figure>
-                  <span className="icon_img">
-                    <Image
-                      src="https://amfics.io/images/icons/privacy_icon.png"
-                      alt="Privacy Icon"
-                      width={60}
-                      height={60}
-                    />
+      {/* Blog Content */}
+      <section className="blogWrapper">
+        <div className="container">
+          <div className="blog_inner">
+            <article className="mainBlog">
+              <div className="cs-post-title">
+                <div className="post-option">
+                  <span className="post-date ani">
+                    <p>{formattedDate}</p>
                   </span>
                 </div>
-                <div className="lower-content">
-                  <h4>
-                    <Link href="#">AWARENESS & COMMUNICATION</Link>
-                  </h4>
-                  <div className="text privacy_text">
-                    Amfics can develop an Information Security Policy so that
-                    all employees understand privacy regulations as well as the
-                    proper communication channels to ensure proper data
-                    handling.
-                  </div>
-                  <div className="btn-box">
-                    <Link href="#" className="theme-btn icon-btn-one">
-                      <span>View Privacy</span>
-                    </Link>
+                <div className="cs-author">
+                  <div className="cs-text ani">
+                    <p>{authorName}</p>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Block 2 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <Link href="#">
-                      <Image
-                        src="https://amfics.io/images/resource/privacy_image2.jpg"
-                        alt="Audit and Analysis"
-                        width={500}
-                        height={300}
-                      />
-                    </Link>
-                  </figure>
-                  <span className="icon_img">
-                    <Image
-                      src="https://amfics.io/images/icons/privacy_icon2.png"
-                      alt="Privacy Icon 2"
-                      width={60}
-                      height={60}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <Link href="#">AUDIT & ANALYSIS OF PERSONAL DATA</Link>
-                  </h4>
-                  <div className="text privacy_text">
-                    Amfics can help you analyse and track sensitive data through
-                    storage and processing, as well as determine data ownership
-                    roles.
-                  </div>
-                  <div className="btn-box">
-                    <Link href="#" className="theme-btn icon-btn-one">
-                      <span>View Privacy</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <div dangerouslySetInnerHTML={{ __html: blogData.description }} />
+            </article>
 
-            {/* Block 3 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <Link href="#">
-                      <Image
-                        src="https://amfics.io/images/resource/privacy_image3.jpg"
-                        alt="Protect Private Data"
-                        width={500}
-                        height={300}
-                      />
-                    </Link>
-                  </figure>
-                  <span className="icon_img">
-                    <Image
-                      src="https://amfics.io/images/icons/privacy_icon3.png"
-                      alt="Privacy Icon 3"
-                      width={60}
-                      height={60}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <Link href="#">PROTECT PRIVATE DATA</Link>
-                  </h4>
-                  <div className="text privacy_text privacy_text2">
-                    We can help develop an IT strategy to implement data
-                    protections, backups and a rescue plan to guarantee business
-                    continuity in case of a data breach.
-                  </div>
-                  <div className="btn-box">
-                    <Link href="#" className="theme-btn icon-btn-one">
-                      <span>View Privacy</span>
-                    </Link>
-                  </div>
-                </div>
+            {/* Sidebar */}
+            <aside className="sidebar-widget latest-news">
+              <div className="sidebar-title">
+                <h3>Recent Posts</h3>
               </div>
-            </div>
-          </div>
-
-          {/* Row 2 */}
-          <div className="row privacy_item">
-            {/* Block 4 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <Link href="#">
-                      <Image
-                        src="https://amfics.io/images/resource/privacy_image4.jpg"
-                        alt="Access Rights"
-                        width={500}
-                        height={300}
-                      />
-                    </Link>
-                  </figure>
-                  <span className="icon_img">
-                    <Image
-                      src="https://amfics.io/images/icons/privacy_icon4.png"
-                      alt="Privacy Icon 4"
-                      width={60}
-                      height={60}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <Link href="#">ACCESS RIGHTS & CUSTOMER CONSENT</Link>
-                  </h4>
-                  <div className="text privacy_text">
-                    Guidance in obtaining proper and legally valid consent from
-                    your customers. Our legal partners help guarantee that data
-                    is gathered correctly and is fully compliant with privacy
-                    guidelines.
-                  </div>
-                  <div className="btn-box">
-                    <Link href="#" className="theme-btn icon-btn-one">
-                      <span>View Privacy</span>
-                    </Link>
-                  </div>
-                </div>
+              <div className="widget-content">
+                {recentPosts.map((post, index) => (
+                  <Link
+                    key={`${post.id || index}-${post.slug || "no-slug"}`}
+                    href={`/blog/${post.slug}`}
+                    className="block mb-4">
+                    <article className="post flex items-center gap-3">
+                      <figure className="thumb">
+                        <Image
+                          src={post.featured_image_url || "/default-blog.jpg"}
+                          alt={post.title}
+                          width={80}
+                          height={80}
+                          className="object-cover rounded"
+                        />
+                      </figure>
+                      <div>
+                        <h5>{post.title}</h5>
+                        <div className="post-info text-sm text-gray-500">
+                          {new Date(post.tag).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </div>
+                      </div>
+                    </article>
+                  </Link>
+                ))}
               </div>
-            </div>
-
-            {/* Block 5 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <Link href="#">
-                      <Image
-                        src="https://amfics.io/images/resource/privacy_image5.jpg"
-                        alt="Data Protection Officer"
-                        width={500}
-                        height={300}
-                      />
-                    </Link>
-                  </figure>
-                  <span className="icon_img">
-                    <Image
-                      src="https://amfics.io/images/icons/privacy_officer_icon.png"
-                      alt="Privacy Officer Icon"
-                      width={60}
-                      height={60}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <Link href="#">APPOINT A DATA PROTECTION OFFICER</Link>
-                  </h4>
-                  <div className="text privacy_text">
-                    Many firms experience difficulty with creating this new
-                    mandated role. Amfics can help select the best internal
-                    resources to act as DPO as well as assist in building a
-                    supporting team.
-                  </div>
-                  <div className="btn-box">
-                    <Link href="#" className="theme-btn icon-btn-one">
-                      <span>View Privacy</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Block 6 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <Link href="#">
-                      <Image
-                        src="https://amfics.io/images/resource/privacy_image6.jpg"
-                        alt="Impact Assessment"
-                        width={500}
-                        height={300}
-                      />
-                    </Link>
-                  </figure>
-                  <span className="icon_img">
-                    <Image
-                      src="https://amfics.io/images/icons/privacy_impact_icon.png"
-                      alt="Privacy Impact Icon"
-                      width={60}
-                      height={60}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <Link href="#">IMPACT ASSESSMENTS</Link>
-                  </h4>
-                  <div className="text privacy_text privacy_text2">
-                    We can carry out a data protection impact assessment, and
-                    help you with threat modeling and risk aversion. We can also
-                    assist in making this assessment part of an overall business
-                    continuity program.
-                  </div>
-                  <div className="btn-box">
-                    <Link href="#" className="theme-btn icon-btn-one">
-                      <span>View Privacy</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <Link href="/blog" className="view_blog">
+                View More
+              </Link>
+            </aside>
           </div>
         </div>
       </section>
-      <ServiceContactSection />;
+
+      {/* Subsections */}
+      {(blogData.pageItemdataWithSubsection || []).map((cta, index) => (
+        <section
+          className="new_c"
+          key={`${cta.id || index}-${cta.title || "subsection"}`}>
+          <div className="container">
+            <div className="row mb-5">
+              <div className="col-lg-6">
+                <div
+                  className="wpb_wrapper_1"
+                  dangerouslySetInnerHTML={{ __html: cta.shortDescription }}
+                />
+                <div className="contact_pay">
+                  <a href="#contact-us"> CONTACT US</a>
+                </div>
+              </div>
+
+              {cta.image && (
+                <div className="col-lg-6">
+                  <div className="contact_right">
+                    <Image
+                      src={cta.image}
+                      alt={cta.title}
+                      width={600}
+                      height={400}
+                      className="img-fluid rounded"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      ))}
     </>
   );
 };
 
-export default PrivacyRegulations;
+export default BlogDetailPage;

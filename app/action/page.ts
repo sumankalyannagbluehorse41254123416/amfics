@@ -64,6 +64,7 @@ interface PageData {
       id: number;
       title: string;
       description: string;
+      shortDescription: string;
       image: string;
       [key: string]: any;
     }>;

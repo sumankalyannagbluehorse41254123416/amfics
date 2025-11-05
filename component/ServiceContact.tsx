@@ -197,7 +197,9 @@
 "use client";
 
 import { submitFormData } from "@/lib/contact";
+import { log } from "console";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const ServiceContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -222,15 +224,26 @@ const ServiceContactSection: React.FC = () => {
 
     if (name === "phone") {
       const numericValue = value.replace(/[^0-9]/g, "");
-      setFormData({ ...formData, [name]: numericValue });
+
+      if (numericValue.length !== 10) {
+        setErrors((prev) => ({
+          ...prev,
+          [name]: "Enter a valid 10-digit number",
+        }));
+      } else {
+        setErrors((prev) => ({ ...prev, [name]: "" }));
+      }
+
+      setFormData((prev) => ({ ...prev, [name]: numericValue }));
     } else {
-      setFormData({ ...formData, [name]: value });
+      setFormData((prev) => ({ ...prev, [name]: value }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
 
-    setErrors({ ...errors, [name]: "" });
     setSuccessMsg("");
   };
 
+  console.log("errors", errors);
   const miniContact = async () => {
     let valid = true;
     const newErrors = { name: "", phone: "", message: "" };
@@ -244,7 +257,8 @@ const ServiceContactSection: React.FC = () => {
       newErrors.phone = "Phone number is required";
       valid = false;
     } else if (formData.phone.length < 10) {
-      newErrors.phone = "Enter a valid 10-digit number";
+      // newErrors.phone = "Enter a valid 10-digit number";
+      toast.error("Enter a valid 10-digit number");
       valid = false;
     }
 
@@ -255,35 +269,29 @@ const ServiceContactSection: React.FC = () => {
 
     if (!valid) {
       setErrors(newErrors);
-      setSuccessMsg("");
       return;
     }
-
     try {
       const response = await submitFormData(
         {},
         "e6f70313-5bc8-4774-969a-abf667491c9e",
         {
-          Name: formData.name,
-          Phone: formData.phone,
-          Message: formData.message,
+          name: formData.name,
+          phone: formData.phone,
+          message: formData.message,
         }
       );
 
       if (response?.success) {
-        setSuccessMsg("Your message has been sent successfully!");
+        // setSuccessMsg("Your message has been sent successfully!");
+        toast.success("Your message has been sent successfully!");
         setFormData({ name: "", phone: "", message: "" });
-      } else {
-        setSuccessMsg("Failed to send message. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSuccessMsg("Something went wrong. Please try again later.");
+      // setSuccessMsg("Something went wrong. Please try again later.");
+      toast.error("Your message could not be sent. Please try again.");
     }
-
-    setTimeout(() => {
-      setSuccessMsg("");
-    }, 3000);
   };
 
   return (

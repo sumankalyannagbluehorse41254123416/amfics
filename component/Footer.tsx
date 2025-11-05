@@ -301,6 +301,7 @@
 
 import { submitFormData } from "@/lib/contact";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Footer: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -339,39 +340,15 @@ const Footer: React.FC = () => {
 
       if (response?.status === 200 || response?.success) {
         setIsError(false);
-        setMessage("Thank you for subscribing!");
+        // setMessage("Thank you for subscribing!");
+        toast.success("Your email has been sent successfully!");
         // setStatusCode(200);
         setEmail("");
-      } else if (response?.status === 400) {
-        setIsError(true);
-        setMessage("Invalid request. Please check your email.");
-        // setStatusCode(400);
-      } else if (response?.status === 404) {
-        setIsError(true);
-        setMessage("Form not found. Please contact support.");
-        // setStatusCode(404);
-      } else {
-        setIsError(true);
-        setMessage("Subscription failed. Please try again later.");
-        setStatusCode(response?.status || 500);
       }
     } catch (error: any) {
       console.error("Newsletter submission error:", error);
+      toast.error("Your email could not be sent. Please try again.");
       setIsError(true);
-
-      if (error.response?.status === 400) {
-        setMessage("Bad request. Please check your email.");
-        // setStatusCode(400);
-      } else if (error.response?.status === 404) {
-        setMessage("Form not found.");
-        // setStatusCode(404);
-      } else if (error.response?.status === 500) {
-        setMessage("Server error. Please try again later.");
-        // setStatusCode(500);
-      } else {
-        setMessage("Something went wrong. Please try again later.");
-        setStatusCode(null);
-      }
     }
   };
   setTimeout(() => {
@@ -392,7 +369,7 @@ const Footer: React.FC = () => {
                   <div className="logo">
                     <a href="/">
                       <img
-                        src="../images/logo/Amfics Logo.png"
+                        src="/images/logo/Amfics Logo.png"
                         alt="Amfics Logo"
                       />
                     </a>
