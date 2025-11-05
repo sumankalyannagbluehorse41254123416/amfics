@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Poppins } from "@next/font/google";
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from "next/document";
 // import "./globals.css";
 
 import "@/public/style/style.css";
@@ -15,6 +15,7 @@ import "@/public/style/bootstrap.css";
 import "@/public/style/animate.css";
 import Header from "@/component/Header";
 import Footer from "@/component/Footer";
+import { ToastContainer, toast } from "react-toastify";
 // import Home from "./page";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +56,11 @@ export default function RootLayout({
         />
       </head>
       <body className={poppins.className}>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={4000}
+          style={{ zIndex: "9999" }}
+        />
         <Header />
         {children}
         <Footer />

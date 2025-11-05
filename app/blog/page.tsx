@@ -299,10 +299,15 @@ const BlogPage: React.FC = () => {
                         </Link>
                       </h4>
                       <div className="text">{parse(blog.excerpt || "")}</div>
-                      <Link
+                      {/* <Link
                         href={`/${blog.cta}`}
                         className="theme-btn icon-btn-two read-more-btn"
                         target="_blank">
+                        <span>Read More</span>
+                      </Link> */}
+                      <Link
+                        href={`/${blog.cta}`}
+                        className="theme-btn icon-btn-two read-more-btn">
                         <span>Read More</span>
                       </Link>
 
