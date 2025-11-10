@@ -464,6 +464,8 @@ import React, { useEffect, useRef, useState } from "react";
 import ServiceContactSection from "@/component/ServiceContact";
 import parse from "html-react-parser";
 import { fetchBannerData } from "@/app/action/banner";
+import { fetchPageData } from "@/app/action/page";
+import Image from "next/image";
 interface BannerData {
   id: number;
   title: string;
@@ -471,35 +473,40 @@ interface BannerData {
   desktopImage: string;
 }
 
+interface PageData {
+  id: number;
+  title: string;
+  description: string;
+  cover_image_url: string;
+}
 const VaptSection: React.FC = () => {
   const [banner, setBanner] = useState<BannerData | null>(null);
+  // const [pageData, setPageData] = useState<PageData | null>(null);
+  const [pageData, setPageData] = useState<any>(null);
   const leftTextRef = useRef<HTMLDivElement>(null);
   const rightImgRef = useRef<HTMLDivElement>(null);
 
-  // ✅ Fetch Banner using UID
   useEffect(() => {
-    const getBanner = async () => {
-      try {
-        const res = await fetchBannerData(
-          "cf4d3dee-9bc9-47ca-9df2-fcf8fd6ab709"
-        );
-        const singleBanner = (res as any)?.singlebannerData?.[0];
-        if (singleBanner) {
-          setBanner({
-            id: singleBanner.id,
-            title: singleBanner.title,
-            description: singleBanner.description,
-            desktopImage: singleBanner.desktopImage,
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching banner:", error);
-      }
+    const getBannerData = async () => {
+      const uid = "cf4d3dee-9bc9-47ca-9df2-fcf8fd6ab709";
+      const res = await fetchBannerData(uid);
+      console.log("Banner Data*******************: ", res);
+      if (res?.status) setBanner(res);
     };
-    getBanner();
+    getBannerData();
   }, []);
-
-  // ✅ Scroll Animation
+  useEffect(() => {
+    const getData = async () => {
+      const uid = "83ff6bcd-c84d-4d69-affd-bcd03528cc30";
+      const res = await fetchPageData(uid);
+      console.log("Page Data:********************* ", res);
+      if (res?.status) setPageData(res);
+    };
+    getData();
+  }, []);
+  const pagedata = pageData?.pagedata;
+  // const sectionsdata = pageData.pageItemdataWithSubsection || [];
+  // const subsectionsdata = pageData.pageItemdataWithSubsection?.subsections;
   useEffect(() => {
     const handleScroll = () => {
       const leftText = leftTextRef.current;
@@ -530,7 +537,6 @@ const VaptSection: React.FC = () => {
 
   return (
     <>
-      {/* ✅ Dynamic Banner Section */}
       <section
         className="page-title about_box"
         style={{
@@ -542,154 +548,70 @@ const VaptSection: React.FC = () => {
         </div>
       </section>
 
-      {/* ✅ Case Study Section */}
       <section
         className="case-study-section zero_ser soc_item vapt_box"
         style={{ overflowX: "hidden" }}>
         <div className="auto-container">
           <div className="sec-title text-center">
-            <h3>
-              {banner?.title ||
-                "Vulnerability Assessment and Penetration Testing"}
-            </h3>
+            <h3>{banner?.title || ""}</h3>
             <div className="text soc_text">
-              {banner?.description
-                ? parse(banner.description)
-                : `amfics's Vulnerability Assessment and Penetration testing services cover a range of assessments, including internal, external, and web application testing. This comprehensive approach helps to identify vulnerabilities and potential attack vectors that malicious actors could exploit to gain unauthorized access to a company's network and applications.`}
+              {banner?.description ? parse(banner.description) : ``}
             </div>
           </div>
 
-          {/* ✅ Case Blocks (same static structure) */}
           <div className="row">
-            {/* Case Block 1 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <a href="#">
-                      <img
-                        src="https://amfics.io/images/resource/vapt_banner.jpg"
-                        alt="vapt banner"
-                        width={400}
-                        height={250}
-                      />
-                    </a>
-                  </figure>
-                  <span className="icon_img">
-                    <img
-                      src="https://amfics.io/images/icons/vapt_icon.png"
-                      alt="icon"
-                      width={50}
-                      height={50}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <a href="#">SECURITY TESTING</a>
-                  </h4>
-                  <div className="text vapt_text">
-                    Perform all remote and on-site tests, including social
-                    engineering and any additional security services.
-                  </div>
-                  <div className="btn-box">
-                    <a href="#" className="theme-btn icon-btn-one">
-                      <span>
-                        View More <i className="fa-solid fa-arrow-right"></i>
+            {pageData?.pageItemdataWithSubsection?.map((item: any) => {
+              const subsectionImage = item.subsections?.[0]?.image;
+              return (
+                <div
+                  key={item.id}
+                  className="case-block col-lg-4 col-md-6 col-sm-12">
+                  <div className="inner-box about_inner">
+                    <div className="image-box">
+                      <figure className="image">
+                        <a href="#">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            width={400}
+                            height={250}
+                          />
+                        </a>
+                      </figure>
+                      <span className="icon_img">
+                        <img
+                          src={subsectionImage}
+                          alt="icon"
+                          width={50}
+                          height={50}
+                        />
                       </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    </div>
 
-            {/* Case Block 2 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <a href="#">
-                      <img
-                        src="https://amfics.io/images/resource/vapt_banner2.jpg"
-                        alt="vapt banner 2"
-                        width={400}
-                        height={250}
-                      />
-                    </a>
-                  </figure>
-                  <span className="icon_img">
-                    <img
-                      src="https://amfics.io/images/icons/vapt_icon2.png"
-                      alt="icon"
-                      width={50}
-                      height={50}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <a href="#">REPORT & REMEDIATION</a>
-                  </h4>
-                  <div className="text vapt_text">
-                    Provide detailed reports at the end of each test with
-                    technical tips to remediate the issues.
-                  </div>
-                  <div className="btn-box">
-                    <a href="#" className="theme-btn icon-btn-one">
-                      <span>
-                        View More <i className="fa-solid fa-arrow-right"></i>
-                      </span>
-                    </a>
+                    <div className="lower-content">
+                      <h4>
+                        <a href="#">{item.title}</a>
+                      </h4>
+                      <div className="text vapt_text">
+                        {item.shortDescription
+                          ? parse(item.shortDescription)
+                          : "No"}
+                      </div>
+                      <div className="btn-box">
+                        <a href="#" className="theme-btn icon-btn-one">
+                          <span>
+                            View More{" "}
+                            <i className="fa-solid fa-arrow-right"></i>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Case Block 3 */}
-            <div className="case-block col-lg-4 col-md-6 col-sm-12">
-              <div className="inner-box about_inner">
-                <div className="image-box">
-                  <figure className="image">
-                    <a href="#">
-                      <img
-                        src="https://amfics.io/images/resource/vapt_banner3.jpg"
-                        alt="vapt banner 3"
-                        width={400}
-                        height={250}
-                      />
-                    </a>
-                  </figure>
-                  <span className="icon_img">
-                    <img
-                      src="https://amfics.io/images/icons/vapt_icon3.png"
-                      alt="icon"
-                      width={50}
-                      height={50}
-                    />
-                  </span>
-                </div>
-                <div className="lower-content">
-                  <h4>
-                    <a href="#">RE-TEST</a>
-                  </h4>
-                  <div className="text vapt_text">
-                    Re-test to confirm remediation is correctly implemented or
-                    risk has been accepted. With Auriesg re-tests are always
-                    included free of charge.
-                  </div>
-                  <div className="btn-box">
-                    <a href="#" className="theme-btn icon-btn-one">
-                      <span>
-                        View More <i className="fa-solid fa-arrow-right"></i>
-                      </span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
 
-          {/* ✅ Bottom Section with Scroll Animation */}
           <div className="row mt-md-5">
             <div className="col-md-8" data-aos="fade-right">
               <div
@@ -700,16 +622,7 @@ const VaptSection: React.FC = () => {
                   transform: "translateX(-100px)",
                   transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
                 }}>
-                <p>
-                  The objectives of the testing, which include assessing the
-                  effectiveness of the threat and vulnerability management
-                  program, are aligned with industry best practices for
-                  cybersecurity risk management. By identifying vulnerabilities
-                  and providing recommendations to mitigate risks, the testing
-                  helps to improve the organization's overall information
-                  security posture and reduce the likelihood of a successful
-                  cyber-attack.
-                </p>
+                {parse(pagedata?.description || "No")}
               </div>
             </div>
             <div className="col-md-4" data-aos="fade-left">
@@ -721,8 +634,8 @@ const VaptSection: React.FC = () => {
                   transform: "translateX(100px)",
                   transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
                 }}>
-                <img
-                  src="https://amfics.io/images/background/vapt_b.jpg"
+                <Image
+                  src={pagedata?.cover_image_url}
                   alt="vapt background"
                   width={400}
                   height={400}
