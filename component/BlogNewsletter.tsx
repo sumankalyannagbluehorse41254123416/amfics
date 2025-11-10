@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { submitFormData } from "@/lib/contact";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 interface NewsletterProps {
   title?: string;
@@ -15,25 +17,53 @@ const Newsletter: React.FC<NewsletterProps> = ({
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
+  const validateEmail = (email: string) => {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  };
+
   const handleSubscribe = async () => {
-    if (!email) {
-      setError("Please enter your email address.");
-      setMessage("");
+    setMessage("");
+    setError("");
+
+    if (!email.trim()) {
+      setError("Please email field is required.");
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
       return;
     }
 
     try {
-      setError("");
-      setMessage("Subscribing...");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const newsletterData = { Email: email };
+      const response = await submitFormData(
+        {},
+        "ed6683b6-181f-4e1d-8e59-988380cfb8d9",
+        newsletterData
+      );
 
-      setMessage("Thank you for subscribing!");
-      setEmail("");
-    } catch {
-      setError("Something went wrong. Please try again.");
-      setMessage("");
+      if (response?.success) {
+        toast.success("Your email has been sent successfully!");
+        // setMessage("Thank you for subscribing!");
+      }
+    } catch (error: any) {
+      console.error("Error submitting form:", error);
+      setError("Your email could not be sent. Please try again.");
+      // toast.error("Your email could not be sent. Please try again.");
     }
   };
+
+  useEffect(() => {
+    if (message || error) {
+      const timer = setTimeout(() => {
+        setMessage("");
+        setError("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [message, error]);
 
   return (
     <div className="sidebar-widget newsletter">
@@ -57,14 +87,11 @@ const Newsletter: React.FC<NewsletterProps> = ({
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <button
-            type="button"
-            className="theme-btn"
-            onClick={handleSubscribe}
-            disabled={!email}>
+          <button type="button" className="theme-btn" onClick={handleSubscribe}>
             <span className="btn-title">Subscribe</span>
           </button>
 
+          {/* Inline Messages */}
           {message && (
             <div className="msgblog text-success text-center contact-gap">
               {message}

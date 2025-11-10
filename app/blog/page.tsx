@@ -193,7 +193,6 @@ const BlogPage: React.FC = () => {
   const [page, setPage] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [pageLoading, setPageLoading] = useState(true);
-
   useEffect(() => {
     const loadPageData = async () => {
       try {
@@ -204,6 +203,7 @@ const BlogPage: React.FC = () => {
         } else {
           setPage(null);
         }
+        console.log("Page Data&&&&&&&&&&&&&&&&&&&&&&: ", data);
       } catch (err) {
         console.error("Error loading page data:", err);
         setPage(null);
@@ -222,6 +222,7 @@ const BlogPage: React.FC = () => {
           (b: BlogPost) => b.status === "active"
         );
         setBlogs(activeBlogs);
+        console.log("res&&&&&&&&&&&&&&&&&&&&&&&&&: ", res);
       } catch (err) {
         console.error("Error loading blogs:", err);
       } finally {
@@ -231,6 +232,7 @@ const BlogPage: React.FC = () => {
 
     loadBlogs();
   }, []);
+
   if (pageLoading) {
     return (
       <div className="auto-container text-center py-10">
@@ -275,7 +277,9 @@ const BlogPage: React.FC = () => {
                   <div className="inner-box">
                     <div className="image-box">
                       <figure className="image">
-                        <Link href={`/${blog.cta}`} target="_blank">
+                        <Link
+                          href={`/blog/blog-details/${blog.slug}`}
+                          target="_blank">
                           <Image
                             src={blog.featured_image_url}
                             alt={blog.title}
@@ -285,7 +289,7 @@ const BlogPage: React.FC = () => {
                         </Link>
                       </figure>
                       <Link
-                        href={`/${blog.cta}`}
+                        href={`/blog/blog-details/${blog.slug}`}
                         className="date"
                         target="_blank">
                         <i className="far fa-calendar"></i> {blog.tag}
@@ -294,7 +298,9 @@ const BlogPage: React.FC = () => {
 
                     <div className="lower-content">
                       <h4>
-                        <Link href={`/${blog.cta}`} target="_blank">
+                        <Link
+                          href={`/blog/blog-details/${blog.slug}`}
+                          target="_blank">
                           {blog.title}
                         </Link>
                       </h4>
@@ -306,7 +312,7 @@ const BlogPage: React.FC = () => {
                         <span>Read More</span>
                       </Link> */}
                       <Link
-                        href={`/${blog.cta}`}
+                        href={`/blog/blog-details/${blog.slug}`}
                         className="theme-btn icon-btn-two read-more-btn">
                         <span>Read More</span>
                       </Link>
@@ -326,21 +332,21 @@ const BlogPage: React.FC = () => {
                           <ul className="social-share">
                             <li>
                               <Link
-                                href={`https://www.facebook.com/sharer.php?u=https://amfics.io/${blog.cta}`}
+                                href={`https://www.facebook.com/sharer.php?u=https://amfics.io/${blog.slug}`}
                                 target="_blank">
                                 <i className="fab fa-facebook-f"></i>
                               </Link>
                             </li>
                             <li>
                               <Link
-                                href={`https://www.linkedin.com/shareArticle?url=https://amfics.io/${blog.cta}`}
+                                href={`https://www.linkedin.com/shareArticle?url=https://amfics.io/${blog.slug}`}
                                 target="_blank">
                                 <i className="fab fa-linkedin-in"></i>
                               </Link>
                             </li>
                             <li>
                               <Link
-                                href={`https://twitter.com/share?url=https://amfics.io/${blog.cta}`}
+                                href={`https://twitter.com/share?url=https://amfics.io/${blog.slug}`}
                                 target="_blank">
                                 <i className="fab fa-twitter"></i>
                               </Link>

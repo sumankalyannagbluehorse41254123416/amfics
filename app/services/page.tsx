@@ -197,127 +197,140 @@ import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import CallToAction from "@/component/CallToActions";
 import { fetchPageData } from "../action/page";
+import { fetchBannerData } from "../action/banner";
 import Image from "next/image";
 
 const Services: React.FC = () => {
   const [data, setData] = useState<any>(null);
+  const [bannerData, setBannerData] = useState<any>(null);
+
+  useEffect(() => {
+    const getBannerData = async () => {
+      const uid = "6ab20de5-df9c-49fb-bb61-b387d7472cea";
+      const res = await fetchBannerData(uid);
+      console.log("Banner Data: ", res);
+      if (res?.status) setBannerData(res);
+    };
+    getBannerData();
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
       const uid = "2b3e4bf2-4c22-4860-b5a4-69ef1400dec6";
       const res = await fetchPageData(uid);
+      console.log("Page Data: ", res);
       if (res?.status) setData(res);
     };
     getData();
   }, []);
 
-  if (!data)
+  if (!data || !bannerData)
     return (
       <div className="text-center py-20">
         <h3>Loading...</h3>
       </div>
     );
 
+  // const banner = bannerData;
+  // const page = data.pagedata;
+  // console.log("aaaaaaaaaaaaaaaaaaaaaaaa", banner);
   const page = data.pagedata;
   const sections = data.pageItemdataWithSubsection || [];
-
-  const whatWeOffer = sections.find(
-    (sec: any) => sec.title === "WHAT WE OFFER?"
-  );
-  const zeroizServices = sections.find(
-    (sec: any) => sec.title === "ZEROIZ SERVICES"
-  );
-
+  const subSection = data.pageItemdataWithSubsection?.subsections;
+  console.log("Subsection Data: ", subSection);
+  // const whatWeOffer = sections.find((sec: any) => sec.title === "");
+  // const zeroizServices = sections.find((sec: any) => sec.title === "");
+  // console.log("Banner Data: ", banner);
+  // console.log("Page Data: ", page);
   return (
     <>
       <section
         className="page-title about_box"
         style={{
-          backgroundImage: `url(${page.cover_image_url})`,
+          backgroundImage: `url(${bannerData.desktopImage})`,
         }}>
         <div className="auto-container about_title">
-          <h1>{page.title}</h1>
+          <h1>{bannerData.title}</h1>
           <span className="title_divider"></span>
         </div>
       </section>
 
-      {whatWeOffer && (
-        <section className="news-section global_section global_section2">
-          <div className="auto-container">
-            <div className="sec-title text-center">
-              <span className="icon">
-                <img
-                  src="https://amfics.io/images/background/services_icon.png"
-                  alt=""
-                />
-              </span>
+      <section className="news-section global_section global_section2">
+        <div className="auto-container">
+          <div className="sec-title text-center">
+            <span className="icon">
+              <img src="../../images/services/services_icon.png" alt="" />
+            </span>
 
-              <h3>{whatWeOffer.title}</h3>
-              <div className="text">
-                {parse(whatWeOffer.shortDescription || "")}
-              </div>
-              <div className="global service_image">
-                <img src={whatWeOffer.image} alt={whatWeOffer.title} />
-              </div>
+            <h3>{page.title}</h3>
+            <div className="text">{parse(page.description || "")}</div>
+            <div className="global service_image">
+              <img src={page.cover_image_url} alt={""} />
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {zeroizServices && (
-        <section className="case-study-section zero_ser zero_ser2">
-          <div className="auto-container">
-            <div className="sec-title text-center sec-title3">
-              <h3>{zeroizServices.title}</h3>
-              <div className="text">
-                {parse(zeroizServices.shortDescription || "")}
-              </div>
-            </div>
-
-            <div className="row">
-              {zeroizServices.subsections?.map((sub: any, index: number) => (
-                <div
-                  className="case-block col-lg-4 col-md-6 col-sm-12"
-                  key={index}>
-                  <div className="inner-box about_inner">
-                    <div className="image-box">
-                      <figure className="image">
-                        <a href="#">
-                          <Image
-                            src={sub.image}
-                            alt={""}
-                            height={400}
-                            width={400}
-                          />
-                        </a>
-                      </figure>
-                      {/* <span className="icon_img">
+      <section className="case-study-section zero_ser zero_ser2">
+        <div className="auto-container">
+          <div className="sec-title text-center sec-title3">
+            <h3>{sections[0]?.subsections?.[0]?.title || ""}</h3>
+            <div className="text">{parse(page.description || "")}</div>
+          </div>
+          <div className="row">
+            {sections.map((section: any, index: number) => (
+              <div
+                className="case-block col-lg-4 col-md-6 col-sm-12"
+                key={section.id || index}>
+                <div className="inner-box about_inner">
+                  <div className="image-box">
+                    <figure className="image">
+                      <a href="#">
                         <Image
-                          src="https://amfics.io/images/icons/cloud_logo.png" //! change this part
-                          alt={""}
-                          width={400}
+                          src={section.image}
+                          alt={section.title}
                           height={400}
+                          width={400}
                         />
-                      </span> */}
-                    </div>
-                    <div className="lower-content">
-                      <h4>
-                        <a href="#">{sub.title}</a>
-                      </h4>
-                      <div className="text">{parse(sub.description || "")}</div>{" "}
-                      <div className="btn-box">
-                        <a href="#" className="theme-btn icon-btn-one">
-                          <span>View Services</span>
-                        </a>
+                      </a>
+                    </figure>
+                    {section.subsections?.length > 0 && (
+                      <div className="subsection-list mt-3">
+                        {section.subsections.map(
+                          (sub: any, subIndex: number) => (
+                            <div key={sub.id || subIndex} className="icon_img">
+                              <Image
+                                src={sub.image}
+                                alt={sub.title}
+                                height={100}
+                                width={100}
+                              />
+                            </div>
+                          )
+                        )}
                       </div>
+                    )}
+                  </div>
+                  <div className="lower-content">
+                    <h4>
+                      <a href="#">{section.title}</a>
+                    </h4>
+                    <div className="text">
+                      {parse(section.shortDescription || "")}
+                    </div>
+
+                    <div className="btn-box mt-3">
+                      <a href="#" className="theme-btn icon-btn-one">
+                        <span>View Services</span>
+                      </a>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       <CallToAction />
     </>

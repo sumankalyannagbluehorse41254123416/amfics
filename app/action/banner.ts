@@ -143,5 +143,5 @@ export async function fetchBannerData(uid: string): Promise<BannerItem> {
     throw new Error("Invalid API response structure");
   }
 
-  return response.data.singlebannerData[0]; // ✅ return single banner object
+  return response.data.singlebannerData[0];
 }
