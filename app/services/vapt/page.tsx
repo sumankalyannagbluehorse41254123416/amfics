@@ -490,7 +490,7 @@ const VaptSection: React.FC = () => {
     const getBannerData = async () => {
       const uid = "cf4d3dee-9bc9-47ca-9df2-fcf8fd6ab709";
       const res = await fetchBannerData(uid);
-      console.log("Banner Data*******************: ", res);
+      // console.log("Banner Data*******************: ", res);
       if (res?.status) setBanner(res);
     };
     getBannerData();
@@ -499,7 +499,7 @@ const VaptSection: React.FC = () => {
     const getData = async () => {
       const uid = "83ff6bcd-c84d-4d69-affd-bcd03528cc30";
       const res = await fetchPageData(uid);
-      console.log("Page Data:********************* ", res);
+      // console.log("Page Data:********************* ", res);
       if (res?.status) setPageData(res);
     };
     getData();
@@ -555,7 +555,9 @@ const VaptSection: React.FC = () => {
           <div className="sec-title text-center">
             <h3>{banner?.title || ""}</h3>
             <div className="text soc_text">
-              {banner?.description ? parse(banner.description) : ``}
+              {banner?.description
+                ? parse(banner.description)
+                : "No description"}
             </div>
           </div>
 
@@ -570,7 +572,7 @@ const VaptSection: React.FC = () => {
                     <div className="image-box">
                       <figure className="image">
                         <a href="#">
-                          <img
+                          <Image
                             src={item.image}
                             alt={item.title}
                             width={400}
@@ -579,7 +581,7 @@ const VaptSection: React.FC = () => {
                         </a>
                       </figure>
                       <span className="icon_img">
-                        <img
+                        <Image
                           src={subsectionImage}
                           alt="icon"
                           width={50}
@@ -634,12 +636,14 @@ const VaptSection: React.FC = () => {
                   transform: "translateX(100px)",
                   transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
                 }}>
-                <Image
+                {/* <Image
                   src={pagedata?.cover_image_url}
                   alt="vapt background"
                   width={400}
                   height={400}
-                />
+                /> */}
+
+                <img src={pagedata?.cover_image_url} alt="vapt background" />
               </div>
             </div>
           </div>

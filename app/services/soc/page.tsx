@@ -166,7 +166,7 @@ export default async function SocServices() {
   const uid = "48fe3910-4db5-43ea-949a-2ef385996d75";
 
   const data = await fetchPageData(uid);
-
+  // console.log("Page Data:############### ", data);
   if (!data?.status) {
     return (
       <section className="page-title about_box">
@@ -189,11 +189,8 @@ export default async function SocServices() {
           backgroundImage: `url(${page?.cover_image_url || ""})`,
         }}>
         <div className="auto-container about_title">
-          {page?.description ? (
-            <div>{parse(page.description)}</div>
-          ) : (
-            <h1>{page?.title || "Services"}</h1>
-          )}
+          <h1>{page?.title || "Services"}</h1>
+
           <span className="title_divider"></span>
         </div>
       </section>

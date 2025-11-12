@@ -65,16 +65,14 @@
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page"; // ✅ uses your server fetch function
+import { fetchPageData } from "@/app/action/page";
 
 // Optional: Revalidate (ISR)
 export const revalidate = 60; // Regenerate page every 60s if data changes
 
 const OtIotSecurity = async () => {
-  // ✅ UUID from your API data
   const uid = "5253a1e8-8a65-4eb6-800f-0d34c1929e52";
 
-  // ✅ Fetch page data from your backend
   let data;
   try {
     data = await fetchPageData(uid);
@@ -87,11 +85,9 @@ const OtIotSecurity = async () => {
     );
   }
 
-  // ✅ Extract data safely
   const page = data?.pagedata;
   const section = data?.pageItemdataWithSubsection?.[0];
 
-  // ✅ If no data, show message
   if (!page || !section) {
     return (
       <div className="text-center py-20 text-xl font-semibold">
@@ -102,7 +98,6 @@ const OtIotSecurity = async () => {
 
   return (
     <>
-      {/* ===== Page Banner Section ===== */}
       <section
         className="page-title about_box"
         style={{
@@ -114,7 +109,6 @@ const OtIotSecurity = async () => {
         </div>
       </section>
 
-      {/* ===== Content Section ===== */}
       <section className="case-study-section zero_ser soc_item ot_box">
         <div className="auto-container">
           {/* Section Title */}
@@ -122,12 +116,10 @@ const OtIotSecurity = async () => {
             <h3>{section.title}</h3>
           </div>
 
-          {/* Description */}
           <div className="text soc_text cloud">
             {section.shortDescription ? parse(section.shortDescription) : ""}
           </div>
 
-          {/* Section Image */}
           {section.image && (
             <div className="ciso_banner">
               <Image
@@ -142,7 +134,6 @@ const OtIotSecurity = async () => {
         </div>
       </section>
 
-      {/* ===== Contact Section ===== */}
       <ServiceContactSection />
     </>
   );

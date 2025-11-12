@@ -243,7 +243,7 @@ const ServiceContactSection: React.FC = () => {
     setSuccessMsg("");
   };
 
-  console.log("errors", errors);
+  // console.log("errors", errors);
   const miniContact = async () => {
     let valid = true;
     const newErrors = { name: "", phone: "", message: "" };
