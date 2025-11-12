@@ -126,7 +126,7 @@ const FunFactSection: React.FC = () => {
     const getData = async () => {
       try {
         const response = await fetchPageData(uid);
-        console.log("ResponceData&&&&&&&", response);
+        // console.log("ResponceData&&&&&&&", response);
         setData(response);
       } catch (err) {
         console.error("Error fetching data:", err);
