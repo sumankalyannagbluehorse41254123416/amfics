@@ -5,6 +5,7 @@ import Image from "next/image";
 // import { fas } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { IoLogoWhatsapp } from "react-icons/io";
 // import { IoLogoWhatsapp } from "react-icons/io";
 
 const Header: React.FC = () => {
@@ -78,12 +79,12 @@ const Header: React.FC = () => {
           <div className="menu-box">
             <div className="logo">
               <a
-                href="https://amfics.io"
+                href="/"
                 className="main-logo"
                 target="_blank"
                 rel="noopener noreferrer">
                 <Image
-                  src="https://amfics.io/images/Amfics Logo.png"
+                  src="/images/logo/Amfics Logo.png"
                   alt="Amfics Logo"
                   title="Amfics Logo"
                   height={400}
@@ -197,6 +198,7 @@ const Header: React.FC = () => {
                 className="icon flaticon-whatsapp"
                 rel="noopener noreferrer">
                 {/* <IoLogoWhatsapp /> */}
+                <IoLogoWhatsapp />
               </Link>
               {/* <a
                 href="https://wa.me/+919980789911"

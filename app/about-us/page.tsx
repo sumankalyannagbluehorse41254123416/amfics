@@ -114,9 +114,10 @@
 // };
 
 // export default About;
-"use client";
+// "use client";
 
 import CallToAction from "@/component/CallToActions";
+import Image from "next/image"; // ✅ Import Image
 import React from "react";
 import { fetchPageData } from "../action/page";
 
@@ -151,14 +152,31 @@ const About: React.FC = async () => {
   const data: PageData = await fetchPageData(
     "b94b200d-15ed-44ba-baa4-582416eed6e0"
   );
+
+  if (
+    !data ||
+    !data.pagedata ||
+    !Array.isArray(data.pageItemdataWithSubsection) ||
+    data.pageItemdataWithSubsection.length === 0
+  ) {
+    return <div>Loading...</div>;
+  }
+
   const { pagedata, pageItemdataWithSubsection } = data;
+  const firstItem = pageItemdataWithSubsection[0];
+  const subsections = Array.isArray(firstItem.subsections)
+    ? firstItem.subsections
+    : [];
 
   return (
     <>
+      {/* Hero Section */}
       <section
         className="page-title about_box"
         style={{
-          backgroundImage: `url('${pagedata.cover_image_url}')`,
+          backgroundImage: pagedata.cover_image_url
+            ? `url(${JSON.stringify(pagedata.cover_image_url)})`
+            : "none",
         }}>
         <div className="auto-container about_title">
           <h1>{pagedata.title}</h1>
@@ -166,6 +184,7 @@ const About: React.FC = async () => {
         </div>
       </section>
 
+      {/* Main Content */}
       <section className="services-section style-two services-section2">
         <div className="auto-container">
           <div className="row">
@@ -176,14 +195,18 @@ const About: React.FC = async () => {
                 <div className="inner-column who about_text_item">
                   <div className="sec-title sec-title2 sec_title_section">
                     <h3
-                      dangerouslySetInnerHTML={{ __html: pagedata.description }}
+                      dangerouslySetInnerHTML={{
+                        __html: pagedata.description || "",
+                      }}
                     />
                     <div className="text">
                       <h4>{item.title}</h4>
                     </div>
                   </div>
                   <div
-                    dangerouslySetInnerHTML={{ __html: item.shortDescription }}
+                    dangerouslySetInnerHTML={{
+                      __html: item.shortDescription || "",
+                    }}
                   />
                 </div>
               </div>
@@ -192,11 +215,12 @@ const About: React.FC = async () => {
         </div>
       </section>
 
+      {/* Subsections with Icons */}
       <section className="news-section why_section">
         <div className="auto-container">
           <div className="services-area">
             <div className="row">
-              {pageItemdataWithSubsection[0]?.subsections.map((subsection) => (
+              {subsections.map((subsection) => (
                 <a
                   key={subsection.id}
                   className="feature-block-three col-lg-12 col-md-6 col-sm-12"
@@ -205,14 +229,22 @@ const About: React.FC = async () => {
                   data-target="#largeModal">
                   <div className="inner-box">
                     <div className="content">
-                      {/* <span className="icon flaticon-clock-1"></span> */}
-                      {/* <span className="icon flaticon-clock-1">
-                        {subsection.image}
-                      </span> */}
+                      {subsection.image ? (
+                        <div className="icon-wrapper">
+                          <Image
+                            src={subsection.image}
+                            alt={""}
+                            width={40}
+                            height={40}
+                            className="icon flaticon-clock-1"
+                          />
+                        </div>
+                      ) : null}
+
                       <h4>{subsection.title}</h4>
                       <div
                         dangerouslySetInnerHTML={{
-                          __html: subsection.description,
+                          __html: subsection.description || "",
                         }}
                       />
                     </div>
@@ -223,6 +255,7 @@ const About: React.FC = async () => {
           </div>
         </div>
       </section>
+
       <CallToAction />
     </>
   );
