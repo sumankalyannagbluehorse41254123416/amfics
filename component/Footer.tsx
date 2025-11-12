@@ -300,6 +300,7 @@
 "use client";
 
 import { submitFormData } from "@/lib/contact";
+import Image from "next/image";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -368,9 +369,11 @@ const Footer: React.FC = () => {
                 <div className="footer-column col-lg-4 col-md-12 col-sm-12">
                   <div className="logo">
                     <a href="/">
-                      <img
+                      <Image
                         src="/images/logo/Amfics Logo.png"
                         alt="Amfics Logo"
+                        width={400}
+                        height={400}
                       />
                     </a>
                   </div>

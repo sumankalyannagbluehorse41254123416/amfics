@@ -203,7 +203,7 @@ const BlogPage: React.FC = () => {
         } else {
           setPage(null);
         }
-        console.log("Page Data&&&&&&&&&&&&&&&&&&&&&&: ", data);
+        // console.log("Page Data&&&&&&&&&&&&&&&&&&&&&&: ", data);
       } catch (err) {
         console.error("Error loading page data:", err);
         setPage(null);
@@ -222,7 +222,7 @@ const BlogPage: React.FC = () => {
           (b: BlogPost) => b.status === "active"
         );
         setBlogs(activeBlogs);
-        console.log("res&&&&&&&&&&&&&&&&&&&&&&&&&: ", res);
+        // console.log("res&&&&&&&&&&&&&&&&&&&&&&&&&: ", res);
       } catch (err) {
         console.error("Error loading blogs:", err);
       } finally {
@@ -311,11 +311,14 @@ const BlogPage: React.FC = () => {
                         target="_blank">
                         <span>Read More</span>
                       </Link> */}
-                      <Link
-                        href={`/blog/blog-details/${blog.slug}`}
-                        className="theme-btn icon-btn-two read-more-btn">
-                        <span>Read More</span>
-                      </Link>
+                      <div className="btn-box">
+                        <Link
+                          href={`/blog/blog-details/${blog.slug}`}
+                          className="theme-btn icon-btn-two read-more-btn">
+                          <span>Read More</span>
+                          <i className="fa-solid fa-arrow-right"></i>
+                        </Link>
+                      </div>
 
                       <div className="post-info">
                         <div className="post-author">
