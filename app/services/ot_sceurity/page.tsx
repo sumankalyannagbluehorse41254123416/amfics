@@ -114,25 +114,27 @@ const OtIotSecurity = async () => {
           {/* Section Title */}
           <div className="sec-title text-center">
             <h3>{section.title}</h3>
-          </div>
 
-          <div className="text soc_text cloud">
-            {section.shortDescription ? parse(section.shortDescription) : ""}
-          </div>
 
-          {section.image && (
-            <div className="ciso_banner">
-              <Image
-                src={section.image}
-                alt={section.title || "OT/IOT Security Image"}
-                width={1200}
-                height={600}
-                priority
-              />
+            <div className="text soc_text cloud">
+              {section.shortDescription ? parse(section.shortDescription) : ""}
             </div>
-          )}
+
+            {section.image && (
+              <div className="ciso_banner">
+                <Image
+                  src={section.image}
+                  alt={section.title || "OT/IOT Security Image"}
+                  width={1200}
+                  height={600}
+                  priority
+                />
+              </div>
+            )}
+          </div>
         </div>
       </section>
+
 
       <ServiceContactSection />
     </>

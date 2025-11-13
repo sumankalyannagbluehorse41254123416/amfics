@@ -125,18 +125,19 @@ export default async function CisoAsAService() {
                   <p>No description available.</p>
                 )}
               </div>
-            </div>
 
-            {item?.image && (
-              <div className="ciso_banner">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={1200}
-                  height={600}
-                />
-              </div>
-            )}
+
+              {item?.image && (
+                <div className="ciso_banner">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={1200}
+                    height={600}
+                  />
+                </div>
+              )}
+            </div>
           </div>
         </section>
       </main>

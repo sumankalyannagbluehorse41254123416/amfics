@@ -178,7 +178,7 @@ export default async function CloudSecurity() {
   const subsections = item?.subsections || [];
 
   return (
-    <>
+    <div style={{overflowX:"hidden"}}>
       <section
         className="page-title about_box"
         style={{ backgroundImage: `url(${page.cover_image_url})` }}>
@@ -243,6 +243,6 @@ export default async function CloudSecurity() {
       </section>
 
       <ServiceContactSection />
-    </>
+    </div>
   );
 }
