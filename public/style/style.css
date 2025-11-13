@@ -1413,6 +1413,21 @@ hr.divider-one {
   padding-left: 0;
 }
 
+.icon-btn-one:hover span i {
+  right: 0px;
+  opacity: 1;
+}
+
+.icon-btn-one span i {
+  opacity: 0;
+  right: 6px;
+  font-size: 16px;
+  position: absolute;
+  margin-top: 1px;
+  -webkit-transition: right 0.3s ease, opacity 0.15s ease;
+  transition: right 0.3s ease, opacity 0.15s ease;
+}
+
 .icon-btn-one span i {
   opacity: 0;
   right: 6px;
@@ -3744,6 +3759,16 @@ hr {
   color: #4c4c4d;
   padding-top: 140px;
   text-transform: uppercase;
+}
+
+.sec-title.sec-title2.sec_title_section h3 {
+  padding-top: 75px;
+}
+
+@media (max-width:767px) {
+  .sec-title.sec-title2.sec_title_section h3 {
+    padding-top: 0;
+  }
 }
 
 .sec-title3 h3 {

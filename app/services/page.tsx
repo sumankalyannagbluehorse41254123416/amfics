@@ -321,7 +321,9 @@ const Services: React.FC = () => {
 
                     <div className="btn-box mt-3">
                       <a href="#" className="theme-btn icon-btn-one">
-                        <span>View Services</span>
+                        <span>View Services
+                        <i className="fa-solid fa-arrow-right"></i>
+                        </span>
                       </a>
                     </div>
                   </div>
