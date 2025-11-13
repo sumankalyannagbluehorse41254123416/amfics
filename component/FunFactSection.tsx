@@ -101,6 +101,11 @@
 // };
 
 // export default FunFactSection;
+
+
+
+
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -160,6 +165,7 @@ const FunFactSection: React.FC = () => {
                   <span className="count-text" data-speed={3000} data-stop={53}>
                     {section[0].title}
                   </span>
+                  <span>%</span>
                 </div>
                 <div className="text">
                   {parse(section[0].shortDescription || "")}{" "}
@@ -241,3 +247,7 @@ const FunFactSection: React.FC = () => {
 };
 
 export default FunFactSection;
+
+
+
+
