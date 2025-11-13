@@ -167,10 +167,9 @@ export default async function NocServices() {
       <section
         className="page-title about_box"
         style={{
-          backgroundImage: `url(${
-            page?.cover_image_url ||
+          backgroundImage: `url(${page?.cover_image_url ||
             "https://amfics.io/images/background/about_us.jpg"
-          })`,
+            })`,
         }}>
         <div className="auto-container about_title">
           <h1>{page?.title || ""}</h1>
@@ -206,18 +205,17 @@ export default async function NocServices() {
         {subsections.map((sub: Subsection, index: number) => (
           <div
             key={sub.id}
-            className={`row mt-${index === 0 ? 0 : 5} ${
-              index === 1 ? "soc_page_box" : ""
-            }`}>
+            className={`row mt-${index === 0 ? 0 : 5} ${index === 1 ? "soc_page_box" : ""
+              }`}>
             {index % 2 === 0 ? (
               <>
-                <div className="col-md-8" data-aos="fade-right">
-                  <div className="soc_section">
+                <div className="col-md-8" data-aos="fade-right b">
+                  <div className="soc_section soc_fade_text">
                     {parse(sub.description || "")}
                   </div>
                 </div>
                 <div className="col-md-4" data-aos="fade-left">
-                  <div className="soc_img">
+                  <div className="soc_img soc_fade_img">
                     {sub.image && (
                       <Image
                         src={sub.image}
@@ -233,7 +231,7 @@ export default async function NocServices() {
             ) : (
               <>
                 <div className="col-md-4" data-aos="fade-left">
-                  <div className="soc_img">
+                  <div className="soc_img soc_fade_text">
                     {sub.image && (
                       <Image
                         src={sub.image}
@@ -246,7 +244,7 @@ export default async function NocServices() {
                   </div>
                 </div>
                 <div className="col-md-8" data-aos="fade-right">
-                  <div className="soc_section">
+                  <div className="soc_section soc_fade_img">
                     {parse(sub.description || "")}
                   </div>
                 </div>
@@ -256,6 +254,79 @@ export default async function NocServices() {
         ))}
       </div>
       <ServiceContactSection />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function() {
+            function initScrollAnimations() {
+              const textElements = document.querySelectorAll('.soc_fade_text');
+              const imgElements = document.querySelectorAll('.soc_fade_img');
+              
+              function checkVisibility() {
+                const windowHeight = window.innerHeight;
+                const scrollY = window.scrollY;
+                
+                textElements.forEach(function(el) {
+                  const rect = el.getBoundingClientRect();
+                  const elementTop = rect.top + scrollY;
+                  const elementBottom = elementTop + rect.height;
+                  const viewportTop = scrollY;
+                  const viewportBottom = scrollY + windowHeight;
+                  
+                  if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateX(0)';
+                  } else {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(-100px)';
+                  }
+                });
+                
+                imgElements.forEach(function(el) {
+                  const rect = el.getBoundingClientRect();
+                  const elementTop = rect.top + scrollY;
+                  const elementBottom = elementTop + rect.height;
+                  const viewportTop = scrollY;
+                  const viewportBottom = scrollY + windowHeight;
+                  
+                  if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateX(0)';
+                  } else {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(100px)';
+                  }
+                });
+              }
+              
+              textElements.forEach(function(el) {
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                el.style.opacity = '0';
+                el.style.transform = 'translateX(-100px)';
+              });
+              
+              imgElements.forEach(function(el) {
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                el.style.opacity = '0';
+                el.style.transform = 'translateX(100px)';
+              });
+              
+              checkVisibility();
+              
+              window.addEventListener('scroll', checkVisibility);
+              window.addEventListener('resize', checkVisibility);
+            }
+            
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initScrollAnimations);
+            } else {
+              initScrollAnimations();
+            }
+          })();
+        `,
+        }}
+      />
+
     </>
   );
 }

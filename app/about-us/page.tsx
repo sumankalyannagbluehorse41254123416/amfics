@@ -223,7 +223,7 @@ const About: React.FC = async () => {
               {subsections.map((subsection) => (
                 <a
                   key={subsection.id}
-                  className="feature-block-three col-lg-12 col-md-6 col-sm-12"
+                  className="feature-block-three col-lg-12 col-md-12 col-sm-12"
                   href="#"
                   data-toggle="modal"
                   data-target="#largeModal">
