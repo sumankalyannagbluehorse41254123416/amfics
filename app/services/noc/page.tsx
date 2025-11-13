@@ -140,7 +140,7 @@ interface Subsection {
   title: string;
   description: string;
   image: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export default async function NocServices() {
@@ -167,9 +167,10 @@ export default async function NocServices() {
       <section
         className="page-title about_box"
         style={{
-          backgroundImage: `url(${page?.cover_image_url ||
+          backgroundImage: `url(${
+            page?.cover_image_url ||
             "https://amfics.io/images/background/about_us.jpg"
-            })`,
+          })`,
         }}>
         <div className="auto-container about_title">
           <h1>{page?.title || ""}</h1>
@@ -185,7 +186,7 @@ export default async function NocServices() {
               <div className="text soc_text">
                 {parse(section.shortDescription || "")}
               </div>
-              {section.image && (
+              {typeof section.image === "string" && section.image && (
                 <div className="soc_blog_bottom">
                   <Image
                     src={section.image}
@@ -205,8 +206,9 @@ export default async function NocServices() {
         {subsections.map((sub: Subsection, index: number) => (
           <div
             key={sub.id}
-            className={`row mt-${index === 0 ? 0 : 5} ${index === 1 ? "soc_page_box" : ""
-              }`}>
+            className={`row mt-${index === 0 ? 0 : 5} ${
+              index === 1 ? "soc_page_box" : ""
+            }`}>
             {index % 2 === 0 ? (
               <>
                 <div className="col-md-8" data-aos="fade-right b">
@@ -326,7 +328,6 @@ export default async function NocServices() {
         `,
         }}
       />
-
     </>
   );
 }

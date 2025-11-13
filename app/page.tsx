@@ -7,6 +7,7 @@ import FunFactSection from "../component/FunFactSection";
 import CallToAction from "../component/CallToActions";
 import CaseStudySectionServer from "@/component/serverComponent/CaseStudySectionServer";
 import ProcessSectionServer from "@/component/serverComponent/ProcessSectionServer";
+import Script from "next/script";
 
 export default function Home() {
   return (
@@ -41,9 +42,10 @@ export default function Home() {
           href="https://amfics.io/favicon.ico"
           type="image/x-icon"
         />
-        <script
+        <Script
           async
-          src="https://www.googletagmanager.com/gtag/js?id=G-1YFM90GDJJ"></script>
+          src="https://www.googletagmanager.com/gtag/js?id=G-1YFM90GDJJ"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -66,8 +66,6 @@
 
 // export default BusinessContinuityPlan;
 
-"use client";
-
 import Image from "next/image";
 import parse from "html-react-parser";
 
@@ -88,7 +86,7 @@ export default async function BusinessContinuityPlan() {
 
   const page = data.pagedata;
   const item = data.pageItemdataWithSubsection?.[0];
-  const subsections = item?.subsections || [];
+  // const subsections = item?.subsections || [];
 
   return (
     <>
@@ -116,7 +114,12 @@ export default async function BusinessContinuityPlan() {
             <div className="col-md-12">
               <div className="business_box">
                 <Image
-                  src={item?.image || ""}
+                  // src={item?.image || ""}
+                  src={
+                    typeof item?.image === "string" && item.image
+                      ? item.image
+                      : "/placeholder.jpg"
+                  }
                   alt="Business Continuity"
                   width={900}
                   height={500}

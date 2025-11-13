@@ -131,7 +131,7 @@ interface PageData {
     description: string;
     cover_image_url: string;
     status: string;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   pageItemdataWithSubsection: Array<{
     id: number;
@@ -142,9 +142,9 @@ interface PageData {
       title: string;
       description: string;
       image: string;
-      [key: string]: any;
+      [key: string]: unknown;
     }>;
-    [key: string]: any;
+    [key: string]: unknown;
   }>;
 }
 

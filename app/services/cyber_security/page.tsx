@@ -123,7 +123,7 @@ interface Subsection {
   title: string;
   description: string;
   image?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface PageItem {
@@ -132,7 +132,7 @@ interface PageItem {
   shortDescription: string;
   image?: string;
   subsections?: Subsection[];
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface PageData {
@@ -140,7 +140,7 @@ interface PageData {
   title: string;
   cover_image_url: string;
   description: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const CyberSecurityReadiness: React.FC = () => {

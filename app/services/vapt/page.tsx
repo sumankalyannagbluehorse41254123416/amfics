@@ -473,12 +473,12 @@ interface BannerData {
   desktopImage: string;
 }
 
-interface PageData {
-  id: number;
-  title: string;
-  description: string;
-  cover_image_url: string;
-}
+// interface PageData {
+//   id: number;
+//   title: string;
+//   description: string;
+//   cover_image_url: string;
+// }
 const VaptSection: React.FC = () => {
   const [banner, setBanner] = useState<BannerData | null>(null);
   // const [pageData, setPageData] = useState<PageData | null>(null);
@@ -643,7 +643,12 @@ const VaptSection: React.FC = () => {
                   height={400}
                 /> */}
 
-                <img src={pagedata?.cover_image_url} alt="vapt background" />
+                <Image
+                  src={pagedata?.cover_image_url}
+                  alt="vapt background"
+                  width={400}
+                  height={400}
+                />
               </div>
             </div>
           </div>
