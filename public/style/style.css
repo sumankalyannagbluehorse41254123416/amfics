@@ -3705,6 +3705,10 @@ hr {
   padding-top: 40px;
 }
 
+.cloud_box .sec-title h3 {
+  padding-top: 0;
+}
+
 /* .sec-title h3::before {
     position: absolute;
     width: 30px;
@@ -5556,7 +5560,24 @@ hr {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   font-size: 24px;
+
 }
+
+.process-block .icon-box .threat_divider.roadmap-divider:after {
+  display: none;
+}
+
+.process-block .icon-box .threat_divider.roadmap-divider i {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  color: #3b7eff;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 24px;
+}
+
 
 .process-block .icon-box .roadmap-divider {
   font-size: 20px;
@@ -10589,6 +10610,10 @@ hr {
   width: 60%;
 }
 
+.icon.threat_page img {
+  width: 80%;
+}
+
 .icon_item img {
   width: unset;
 }
@@ -10882,7 +10907,8 @@ hr {
   width: calc(100% - 120px) !important;
 }
 
-.threat_text {
+.threat_text,
+.threat_text p {
   color: #999;
 }
 
@@ -10955,6 +10981,8 @@ hr {
   margin-top: 40px;
   border-radius: 10px;
 }
+
+
 
 .ciso_box {
   padding-bottom: 80px;

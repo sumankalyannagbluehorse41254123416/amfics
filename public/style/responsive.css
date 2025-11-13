@@ -623,6 +623,10 @@
     margin-bottom: 75px;
   }
 
+  .case-study-section.threat_soc .sec-title{
+    margin-bottom: 20px !important;
+  }
+
   .clients-section {
     padding-bottom: 0px;
     padding-top: 20px;

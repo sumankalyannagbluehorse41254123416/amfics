@@ -171,7 +171,7 @@ export default async function ThreatModeling() {
   const subsections = section1?.subsections || [];
 
   return (
-    <>
+    <div style={{overflowX:"hidden"}}>
       <section
         className="page-title about_box"
         style={{
@@ -183,7 +183,7 @@ export default async function ThreatModeling() {
         </div>
       </section>
 
-      <section className="case-study-section zero_ser soc_item">
+      <section className="case-study-section zero_ser soc_item threat_soc">
         <div className="auto-container">
           <div className="sec-title text-center">
             <h3>{section1?.title}</h3>
@@ -207,7 +207,7 @@ export default async function ThreatModeling() {
                 className="process-block process-block2 threat_box col-lg-2 col-md-6 col-sm-12">
                 <div className="inner-box active">
                   <div className="icon-box">
-                    <span className="icon">
+                    <span className="icon threat_page">
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -215,7 +215,7 @@ export default async function ThreatModeling() {
                         height={400}
                       />
                     </span>
-                    <span className="roadmap-divider"></span>
+                    <span className="roadmap-divider threat_divider"><i className="fa-solid fa-arrow-right"></i></span>
                   </div>
                   <h4>{item.title}</h4>
                   <div className="threat_text">
@@ -232,12 +232,12 @@ export default async function ThreatModeling() {
         <div className="container mt-2 mb-5">
           <div className="row mt-5 threat_item">
             <div className="col-md-8" data-aos="fade-right">
-              <div className="soc_section">
+              <div className="soc_section soc_fade_text">
                 {parse(section2?.shortDescription || "")}
               </div>
             </div>
             <div className="col-md-4" data-aos="fade-left">
-              <div className="soc_img">
+              <div className="soc_img soc_fade_img">
                 <Image
                   src={section2.image}
                   alt={section2.title}
@@ -251,6 +251,79 @@ export default async function ThreatModeling() {
       )}
 
       <ServiceContactSection />
-    </>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+          (function() {
+            function initScrollAnimations() {
+              const textElements = document.querySelectorAll('.soc_fade_text');
+              const imgElements = document.querySelectorAll('.soc_fade_img');
+              
+              function checkVisibility() {
+                const windowHeight = window.innerHeight;
+                const scrollY = window.scrollY;
+                
+                textElements.forEach(function(el) {
+                  const rect = el.getBoundingClientRect();
+                  const elementTop = rect.top + scrollY;
+                  const elementBottom = elementTop + rect.height;
+                  const viewportTop = scrollY;
+                  const viewportBottom = scrollY + windowHeight;
+                  
+                  if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateX(0)';
+                  } else {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(-100px)';
+                  }
+                });
+                
+                imgElements.forEach(function(el) {
+                  const rect = el.getBoundingClientRect();
+                  const elementTop = rect.top + scrollY;
+                  const elementBottom = elementTop + rect.height;
+                  const viewportTop = scrollY;
+                  const viewportBottom = scrollY + windowHeight;
+                  
+                  if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateX(0)';
+                  } else {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(100px)';
+                  }
+                });
+              }
+              
+              textElements.forEach(function(el) {
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                el.style.opacity = '0';
+                el.style.transform = 'translateX(-100px)';
+              });
+              
+              imgElements.forEach(function(el) {
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                el.style.opacity = '0';
+                el.style.transform = 'translateX(100px)';
+              });
+              
+              checkVisibility();
+              
+              window.addEventListener('scroll', checkVisibility);
+              window.addEventListener('resize', checkVisibility);
+            }
+            
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initScrollAnimations);
+            } else {
+              initScrollAnimations();
+            }
+          })();
+        `,
+        }}
+      />
+
+    </div>
   );
 }
