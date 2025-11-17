@@ -197,7 +197,7 @@
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 interface Subsection {
   id: number;
   title: string;
@@ -241,7 +241,7 @@ const PartnersPage: React.FC = () => {
         const data = await fetchPageData(uid);
 
         if (data?.status) {
-          setPage(data.pagedata);
+          setPage(data.pagedata as PageData);
           const partnersSectionData = data.pageItemdataWithSubsection.find(
             (sec: PageSection) => sec.title.toLowerCase().includes("partner")
           );

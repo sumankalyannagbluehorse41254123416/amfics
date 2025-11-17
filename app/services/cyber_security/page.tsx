@@ -116,14 +116,14 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 interface Subsection {
   id: number;
   title: string;
   description: string;
   image?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface PageItem {
@@ -132,7 +132,7 @@ interface PageItem {
   shortDescription: string;
   image?: string;
   subsections?: Subsection[];
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface PageData {
@@ -140,7 +140,7 @@ interface PageData {
   title: string;
   cover_image_url: string;
   description: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const CyberSecurityReadiness: React.FC = () => {
@@ -155,7 +155,7 @@ const CyberSecurityReadiness: React.FC = () => {
         const res = await fetchPageData(uid);
 
         if (res?.status && res?.pagedata) {
-          setPageData(res.pagedata);
+          setPageData(res.pagedata as PageData);
           setPageItems(res.pageItemdataWithSubsection || []);
         }
       } catch (error) {

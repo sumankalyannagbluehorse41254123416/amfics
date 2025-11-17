@@ -145,14 +145,148 @@
 
 // export default SimulateRealWorldAttack;
 
+// import Image from "next/image";
+// import parse from "html-react-parser";
+// import ServiceContactSection from "@/component/ServiceContact";
+// import { fetchPageData } from "@/app/action/fetchPageData";
+// interface PageData {
+//   title?: string;
+//   cover_image_url?: string;
+//   description?: string;
+// }
+
+// interface PageSection {
+//   title?: string;
+//   image?: string;
+//   shortDescription?: string;
+// }
+
+// interface FetchPageResponse {
+//   status: boolean;
+//   pagedata: PageData;
+//   pageItemdataWithSubsection?: PageSection[];
+// }
+// export default async function SimulateRealWorldAttack() {
+//   const uid = "366d7531-fa37-4f7a-9b90-8c90fbc60ecd";
+//   const data = await fetchPageData(uid);
+//   if (!data?.status) {
+//     return (
+//       <section className="py-20 text-center">
+//         <h2>Simulate Real World Attack data not found.</h2>
+//       </section>
+//     );
+//   }
+
+//   // Extract relevant data
+//   const page = data.pagedata;
+//   const item = data.pageItemdataWithSubsection?.[0];
+//   const subsections = item?.subsections || [];
+
+//   return (
+//     <>
+//       {/* Page Title */}
+//       <section
+//         className="page-title about_box"
+//         style={{ backgroundImage: `url(${page.cover_image_url})` }}>
+//         <div className="auto-container about_title">
+//           <h1>{page.title}</h1>
+//           <span className="title_divider"></span>
+//         </div>
+//       </section>
+
+//       {/* Content Section */}
+//       <section className="case-study-section zero_ser soc_item simulate_box">
+//         <div className="auto-container">
+//           <div className="sec-title text-center">
+//             <h3>{item?.title}</h3>
+
+//             {/* Main Text from CMS */}
+//             <div className="text soc_text cloud">
+//               {item?.shortDescription && parse(item.shortDescription)}
+//             </div>
+//           </div>
+
+//           <div className="row mb-5 align-items-center">
+//             <div className="col-md-3 col-sm-3">
+//               {subsections.slice(0, 3).map((sub) => (
+//                 <div className="sim_item" key={sub.id}>
+//                   <h5>{sub.title}</h5>
+//                   {parse(sub.description || "")}
+//                 </div>
+//               ))}
+//             </div>
+
+//             <div className="col-md-6 col-sm-6 text-center">
+//               {item?.image && (
+//                 <Image
+//                   src={item.image}
+//                   alt={item.title}
+//                   width={600}
+//                   height={600}
+//                 />
+//               )}
+//             </div>
+
+//             <div className="col-md-3 col-sm-3">
+//               {subsections.slice(0, 3).map((sub, index) => (
+//                 <div className="sim_item" key={`right-${sub.id}-${index}`}>
+//                   <h5>{sub.title}</h5>
+//                   {parse(sub.description || "")}
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       <ServiceContactSection />
+//     </>
+//   );
+// }
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
+
+// ----------------------
+// Type Definitions
+// ----------------------
+
+interface PageData {
+  title?: string;
+  cover_image_url?: string;
+  description?: string;
+}
+
+interface Subsection {
+  id: number;
+  title: string;
+  description: string;
+}
+
+interface PageSection {
+  id?: number;
+  title?: string;
+  image?: string;
+  shortDescription?: string;
+  subsections?: Subsection[];
+}
+
+interface FetchPageResponse {
+  status: boolean;
+  pagedata: PageData;
+  pageItemdataWithSubsection?: PageSection[];
+}
+
+// ----------------------
+// Component
+// ----------------------
 
 export default async function SimulateRealWorldAttack() {
   const uid = "366d7531-fa37-4f7a-9b90-8c90fbc60ecd";
-  const data = await fetchPageData(uid);
+
+  const data: FetchPageResponse = await fetchPageData(uid);
+
   if (!data?.status) {
     return (
       <section className="py-20 text-center">
@@ -161,14 +295,15 @@ export default async function SimulateRealWorldAttack() {
     );
   }
 
-  // Extract relevant data
   const page = data.pagedata;
   const item = data.pageItemdataWithSubsection?.[0];
-  const subsections = item?.subsections || [];
+
+  // Safe fallback
+  const subsections: Subsection[] = item?.subsections ?? [];
 
   return (
     <>
-      {/* Page Title */}
+      {/* Page Title Section */}
       <section
         className="page-title about_box"
         style={{ backgroundImage: `url(${page.cover_image_url})` }}>
@@ -178,44 +313,46 @@ export default async function SimulateRealWorldAttack() {
         </div>
       </section>
 
-      {/* Content Section */}
+      {/* Main Content Section */}
       <section className="case-study-section zero_ser soc_item simulate_box">
         <div className="auto-container">
           <div className="sec-title text-center">
             <h3>{item?.title}</h3>
 
-            {/* Main Text from CMS */}
             <div className="text soc_text cloud">
               {item?.shortDescription && parse(item.shortDescription)}
             </div>
           </div>
 
           <div className="row mb-5 align-items-center">
+            {/* Left 3 Items */}
             <div className="col-md-3 col-sm-3">
               {subsections.slice(0, 3).map((sub) => (
                 <div className="sim_item" key={sub.id}>
                   <h5>{sub.title}</h5>
-                  {parse(sub.description || "")}
+                  {parse(sub.description)}
                 </div>
               ))}
             </div>
 
+            {/* Center Image */}
             <div className="col-md-6 col-sm-6 text-center">
               {item?.image && (
                 <Image
                   src={item.image}
-                  alt={item.title}
+                  alt={item.title || "Simulate Real World Attack"}
                   width={600}
                   height={600}
                 />
               )}
             </div>
 
+            {/* Right 3 Items */}
             <div className="col-md-3 col-sm-3">
-              {subsections.slice(0, 3).map((sub, index) => (
-                <div className="sim_item" key={`right-${sub.id}-${index}`}>
+              {subsections.slice(3, 6).map((sub) => (
+                <div className="sim_item" key={sub.id}>
                   <h5>{sub.title}</h5>
-                  {parse(sub.description || "")}
+                  {parse(sub.description)}
                 </div>
               ))}
             </div>

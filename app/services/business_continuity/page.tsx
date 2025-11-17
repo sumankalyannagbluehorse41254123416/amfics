@@ -66,13 +66,11 @@
 
 // export default BusinessContinuityPlan;
 
-"use client";
-
 import Image from "next/image";
 import parse from "html-react-parser";
 
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 export default async function BusinessContinuityPlan() {
   const uid = "efd1a4bf-2962-423e-902e-9f6c632255ad";
@@ -88,7 +86,7 @@ export default async function BusinessContinuityPlan() {
 
   const page = data.pagedata;
   const item = data.pageItemdataWithSubsection?.[0];
-  const subsections = item?.subsections || [];
+  // const subsections = item?.subsections || [];
 
   return (
     <>
@@ -99,7 +97,7 @@ export default async function BusinessContinuityPlan() {
           backgroundImage: `url(${page.cover_image_url})`,
         }}>
         <div className="auto-container about_title">
-          <h1>{page.title || ""}</h1>
+          <h1>{page.title || "No"}</h1>
           <span className="title_divider"></span>
         </div>
       </section>
@@ -116,7 +114,12 @@ export default async function BusinessContinuityPlan() {
             <div className="col-md-12">
               <div className="business_box">
                 <Image
-                  src={item?.image || ""}
+                  // src={item?.image || ""}
+                  src={
+                    typeof item?.image === "string" && item.image
+                      ? item.image
+                      : "No"
+                  }
                   alt="Business Continuity"
                   width={900}
                   height={500}

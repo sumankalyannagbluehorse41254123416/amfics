@@ -80,8 +80,21 @@
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
+export interface Section {
+  id: number;
+
+  title: string;
+
+  shortDescription: string;
+
+  image?: string;
+
+  // subsections: Subsection[];
+
+  [key: string]: unknown;
+}
 export default async function CisoAsAService() {
   // 🔹 UUID from your API
   const uid = "72c1e332-fc82-457d-84bb-9e6458c5ae2d";
@@ -97,8 +110,7 @@ export default async function CisoAsAService() {
   }
 
   const page = data.pagedata;
-  const item = data.pageItemdataWithSubsection?.[0];
-
+  const item = data.pageItemdataWithSubsection?.[0] as Section | undefined;
   return (
     <>
       <header
@@ -125,7 +137,6 @@ export default async function CisoAsAService() {
                   <p>No description available.</p>
                 )}
               </div>
-
 
               {item?.image && (
                 <div className="ciso_banner">

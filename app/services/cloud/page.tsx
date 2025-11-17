@@ -158,12 +158,39 @@
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
+// ---------- Types ----------
+interface Subsection {
+  id: number;
+  title: string;
+  description?: string;
+}
+
+interface PageItem {
+  title?: string;
+  image?: string;
+  shortDescription?: string;
+  subsections?: Subsection[];
+}
+
+interface PageData {
+  title?: string;
+  cover_image_url?: string;
+  description?: string;
+}
+
+interface FetchPageResponse {
+  status: boolean;
+  pagedata: PageData;
+  pageItemdataWithSubsection?: PageItem[];
+}
+
+// ---------- Component ----------
 export default async function CloudSecurity() {
   const uid = "2c06e558-f4b2-4da3-bda2-e1c53557ae4e";
 
-  const data = await fetchPageData(uid);
+  const data: FetchPageResponse = await fetchPageData(uid);
 
   if (!data?.status) {
     return (
@@ -178,7 +205,7 @@ export default async function CloudSecurity() {
   const subsections = item?.subsections || [];
 
   return (
-    <div style={{overflowX:"hidden"}}>
+    <div style={{ overflowX: "hidden" }}>
       <section
         className="page-title about_box"
         style={{ backgroundImage: `url(${page.cover_image_url})` }}>
@@ -203,6 +230,7 @@ export default async function CloudSecurity() {
 
             <div className="text soc_text cloud">
               {page?.description && parse(page.description)}
+
               <ul className="cloud_text">
                 {item?.shortDescription && parse(item.shortDescription)}
               </ul>
@@ -223,7 +251,7 @@ export default async function CloudSecurity() {
               {item?.image && (
                 <Image
                   src={item.image}
-                  alt={item.title}
+                  alt={item.title || "Service Image"}
                   width={600}
                   height={600}
                 />

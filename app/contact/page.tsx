@@ -103,7 +103,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import ContactFormSection from "@/component/ContactUs";
-import { fetchPageData } from "../action/page";
+import { fetchPageData } from "../action/fetchPageData";
 
 interface PageData {
   status: boolean;
@@ -117,7 +117,7 @@ interface PageData {
     title: string;
     shortDescription: string;
     image: string;
-    subsections: any[];
+    subsections: unknown[];
   }>;
 }
 
@@ -131,7 +131,7 @@ const ContactPage: React.FC = () => {
         const uid = "6b3b4b52-c7f2-465f-94b9-480b7a3a595b";
         const data = await fetchPageData(uid);
         if (data && data.status) {
-          setPageData(data as any);
+          setPageData(data as unknown as PageData);
         } else {
           setPageData(null);
         }

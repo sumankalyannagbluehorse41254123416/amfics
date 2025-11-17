@@ -287,7 +287,6 @@
 
 "use client";
 
-import { fetchPageData } from "@/app/action/page";
 import Newsletter from "@/component/BlogNewsletter";
 import Image from "next/image";
 import Link from "next/link";
@@ -295,6 +294,7 @@ import parse from "html-react-parser";
 import React, { useEffect, useState } from "react";
 import { use } from "react";
 import { fetchBlogData } from "@/app/action/blog";
+import { fetchBlogPageData } from "@/app/action/blogSlug";
 
 interface Subsection {
   id: number;
@@ -356,8 +356,8 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ params }) => {
     const getData = async () => {
       try {
         setLoading(true);
-        const res = await fetchPageData(blogSlug);
-        if (res?.status) setData(res as any);
+        const res = await fetchBlogPageData(blogSlug);
+        if (res?.status) setData(res as unknown as BlogApiResponse);
       } catch (err) {
         console.error("Error loading blog:", err);
       } finally {

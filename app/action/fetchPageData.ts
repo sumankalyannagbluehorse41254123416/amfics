@@ -1,3 +1,46 @@
+"use server";
+// import axios from "axios";
+// import crypto from "crypto";
+
+// interface ApiResponse {
+//   success?: boolean;
+//   data?: any;
+//   [key: string]: any;
+// }
+
+// export async function fetchPageData(uid: string): Promise<ApiResponse> {
+//   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+//   const timeStamp = Date.now();
+
+//   // const key = process.env.API_KEY;
+//   // const secret = process.env.API_SECRET;
+//   const key = process.env.NEXT_PUBLIC_API_KEY;
+//   const secret = process.env.NEXT_PUBLIC_API_SECRET;
+//   if (!key || !secret) {
+//     throw new Error("Missing API_KEY or API_SECRET");
+//   }
+
+//   const body = { timestamp: timeStamp };
+//   const payload = Buffer.from(JSON.stringify(body)).toString();
+//   const signature = crypto
+//     .createHmac("sha256", secret)
+//     .update(payload)
+//     .digest("hex");
+
+//   const headers = {
+//     "X-AUTH-APIKEY": key,
+//     "X-AUTH-SIGNATURE": signature,
+//     "X-AUTH-TIMESTAMP": timeStamp.toString(),
+//     "Content-Type": "application/json",
+//     "x-host": "localhost:3000",
+//   };
+
+//   const response = await axios.get(`${baseUrl}/page/fetch-single-page/${uid}`, {
+//     headers,
+//   });
+//   return response.data;
+// }
+// "use server";
 // import axios from "axios";
 // import crypto from "crypto";
 
@@ -11,7 +54,7 @@
 //     description: string;
 //     cover_image_url: string;
 //     status: string;
-//     [key: string]: unknown;
+//     [key: string]: any;
 //   };
 //   pageItemdataWithSubsection: Array<{
 //     id: number;
@@ -23,9 +66,24 @@
 //       description: string;
 //       shortDescription: string;
 //       image: string;
-//       [key: string]: unknown;
+//       [key: string]: any;
 //     }>;
-//     [key: string]: unknown;
+//     [key: string]: any;
+//   }>;
+//   editReviedata: Array<{
+//     id: number;
+//     title: string;
+//     shortDescription: string;
+//     date: string;
+//     subsections: Array<{
+//       id: number;
+//       title: string;
+//       description: string;
+//       shortDescription: string;
+//       image: string;
+//       [key: string]: any;
+//     }>;
+//     [key: string]: any;
 //   }>;
 // }
 
@@ -41,7 +99,7 @@
 //   );
 // };
 
-// export async function fetchBlogPageData(uid: string): Promise<PageData> {
+// export async function fetchPageData(uid: string): Promise<PageData> {
 //   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 //   const timeStamp = Date.now();
 
@@ -77,55 +135,32 @@
 //   return response.data;
 // }
 
+import { PageDataType } from "@/types/service.type";
 import axios from "axios";
 import crypto from "crypto";
 
-interface PageData {
-  status: boolean;
-  pagedata: {
-    id: number;
-    title: string;
-    slug: string;
-    uuid: string;
-    description: string;
-    cover_image_url: string;
-    status: string;
-    [key: string]: unknown;
-  };
-  pageItemdataWithSubsection: Array<{
-    id: number;
-    title: string;
-    shortDescription: string;
-    subsections: Array<{
-      id: number;
-      title: string;
-      description: string;
-      shortDescription: string;
-      image: string;
-      [key: string]: unknown;
-    }>;
-    [key: string]: unknown;
-  }>;
-}
-
-const isPageData = (data: unknown): data is PageData => {
-  return (
+const isPageData = (data: unknown): data is PageDataType => {
+  if (
     typeof data === "object" &&
     data !== null &&
     "status" in data &&
-    typeof (data as Record<string, unknown>).status === "boolean" &&
     "pagedata" in data &&
-    typeof (data as Record<string, unknown>).pagedata === "object" &&
-    typeof (data as { pagedata: { title?: unknown } }).pagedata?.title ===
-      "string" &&
-    typeof (data as { pagedata: { cover_image_url?: unknown } }).pagedata
-      ?.cover_image_url === "string" &&
-    "pageItemdataWithSubsection" in data &&
-    Array.isArray((data as Record<string, unknown>).pageItemdataWithSubsection)
-  );
+    "pageItemdataWithSubsection" in data
+  ) {
+    const d = data as Record<string, unknown>;
+    const pagedata = d.pagedata as Record<string, unknown> | undefined;
+    return (
+      typeof d.status === "boolean" &&
+      pagedata !== undefined &&
+      typeof pagedata.title === "string" &&
+      typeof pagedata.cover_image_url === "string" &&
+      Array.isArray(d.pageItemdataWithSubsection)
+    );
+  }
+  return false;
 };
 
-export async function fetchBlogPageData(uid: string): Promise<PageData> {
+export async function fetchPageData(uid: string): Promise<PageDataType> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const timeStamp = Date.now();
 
@@ -150,7 +185,7 @@ export async function fetchBlogPageData(uid: string): Promise<PageData> {
     "x-host": "localhost:3000",
   };
 
-  const response = await axios.get<PageData>(
+  const response = await axios.get<PageDataType>(
     `${baseUrl}/page/fetch-single-page/${uid}`,
     { headers }
   );

@@ -254,7 +254,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import parse from "html-react-parser";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 interface SubSection {
   title: string;

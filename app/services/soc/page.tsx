@@ -160,13 +160,37 @@
 import ServiceContactSection from "@/component/ServiceContact";
 import Image from "next/image";
 import parse from "html-react-parser";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
+
+interface Subsection {
+  id: number;
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+interface Section {
+  title: string;
+  shortDescription?: string;
+  image?: string;
+  subsections?: Subsection[];
+}
+
+interface Page {
+  title: string;
+  cover_image_url?: string;
+}
+
+interface PageData {
+  status: boolean;
+  pagedata: Page;
+  pageItemdataWithSubsection: Section[];
+}
 
 export default async function SocServices() {
   const uid = "48fe3910-4db5-43ea-949a-2ef385996d75";
+  const data: PageData = await fetchPageData(uid);
 
-  const data = await fetchPageData(uid);
-  // console.log("Page Data:############### ", data);
   if (!data?.status) {
     return (
       <section className="page-title about_box">
@@ -185,12 +209,9 @@ export default async function SocServices() {
     <>
       <section
         className="page-title about_box"
-        style={{
-          backgroundImage: `url(${page?.cover_image_url || ""})`,
-        }}>
+        style={{ backgroundImage: `url(${page?.cover_image_url || ""})` }}>
         <div className="auto-container about_title">
           <h1>{page?.title || "Services"}</h1>
-
           <span className="title_divider"></span>
         </div>
       </section>
@@ -220,7 +241,7 @@ export default async function SocServices() {
       )}
 
       <div className="auto-container soc" style={{ overflowX: "hidden" }}>
-        {subsections.map((sub: any, index: number) => (
+        {subsections.map((sub: Subsection, index: number) => (
           <div
             key={sub.id}
             className={`row mt-${index === 0 ? 0 : 5} ${

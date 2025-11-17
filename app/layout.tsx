@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import { Poppins } from "@next/font/google";
-import { Html, Head, Main, NextScript } from "next/document";
 // import "./globals.css";
 
 import "@/public/style/style.css";
@@ -15,12 +14,12 @@ import "@/public/style/bootstrap.css";
 import "@/public/style/animate.css";
 import Header from "@/component/Header";
 import Footer from "@/component/Footer";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 // import Home from "./page";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
