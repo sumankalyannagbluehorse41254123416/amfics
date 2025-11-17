@@ -11000,6 +11000,10 @@ hr {
   min-height: 190px;
 }
 
+.text.privacy_text.privacy_text2{
+ min-height: 190px;
+}
+
 .privacy_text2 {
   min-height: 220px;
 }
