@@ -431,7 +431,7 @@ const PrivacyRegulations: React.FC = () => {
                     </div>
                     <div className="btn-box">
                       <Link href="#" className="theme-btn icon-btn-one">
-                        <span>View Privacy</span>
+                        <span>View Privacy <i className="fa-solid fa-arrow-right"></i></span>
                       </Link>
                     </div>
                   </div>
