@@ -1,13 +1,13 @@
-import Head from "next/head";
-
 import Slider from "../component/Slider";
 import FunFactSection from "../component/FunFactSection";
 // import CaseStudySection from "../component/CaseStudySection";
 // import ProcessSection from "../component/ProcessSection";
 import CallToAction from "../component/CallToActions";
-import CaseStudySectionServer from "@/component/serverComponent/CaseStudySectionServer";
+// import CaseStudySectionServer from "@/component/serverComponent/CaseStudySectionServer";
 import ProcessSectionServer from "@/component/serverComponent/ProcessSectionServer";
 import Script from "next/script";
+import Head from "next/head";
+import CaseStudySection from "@/component/CaseStudySection";
 
 export default function Home() {
   return (
@@ -42,30 +42,34 @@ export default function Home() {
           href="https://amfics.io/favicon.ico"
           type="image/x-icon"
         />
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-1YFM90GDJJ"
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-1YFM90GDJJ');
-            `,
-          }}
-        />
+
         <meta
           name="google-site-verification"
           content="tqhCCXxZy5GsKp2H0C7WA_XAq53QdeDJyVCgAOdvWr8"
         />
       </Head>
+      <Script
+        id=""
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-1YFM90GDJJ"
+      />
+      <Script
+        id=""
+        dangerouslySetInnerHTML={{
+          __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-1YFM90GDJJ');
+            `,
+        }}
+      />
       {/* <Header /> */}
       <Slider />
       <FunFactSection />
       {/* <CaseStudySection /> */}
-      <CaseStudySectionServer />
+      {/* <CaseStudySectionServer /> */}
+      <CaseStudySection />
       {/* <ProcessSection /> */}
       <ProcessSectionServer />
       <CallToAction />

@@ -70,7 +70,7 @@ import Image from "next/image";
 import parse from "html-react-parser";
 
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 export default async function BusinessContinuityPlan() {
   const uid = "efd1a4bf-2962-423e-902e-9f6c632255ad";
@@ -97,7 +97,7 @@ export default async function BusinessContinuityPlan() {
           backgroundImage: `url(${page.cover_image_url})`,
         }}>
         <div className="auto-container about_title">
-          <h1>{page.title || ""}</h1>
+          <h1>{page.title || "No"}</h1>
           <span className="title_divider"></span>
         </div>
       </section>
@@ -118,7 +118,7 @@ export default async function BusinessContinuityPlan() {
                   src={
                     typeof item?.image === "string" && item.image
                       ? item.image
-                      : "/placeholder.jpg"
+                      : "No"
                   }
                   alt="Business Continuity"
                   width={900}

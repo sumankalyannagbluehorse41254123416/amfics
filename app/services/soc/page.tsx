@@ -160,7 +160,7 @@
 import ServiceContactSection from "@/component/ServiceContact";
 import Image from "next/image";
 import parse from "html-react-parser";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 interface Subsection {
   id: number;

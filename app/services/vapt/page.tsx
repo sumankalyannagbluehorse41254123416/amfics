@@ -464,8 +464,11 @@ import React, { useEffect, useRef, useState } from "react";
 import ServiceContactSection from "@/component/ServiceContact";
 import parse from "html-react-parser";
 import { fetchBannerData } from "@/app/action/banner";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 import Image from "next/image";
+import { PageDataType } from "@/types/service.type";
+import Link from "next/link";
+
 interface BannerData {
   id: number;
   title: string;
@@ -473,16 +476,32 @@ interface BannerData {
   desktopImage: string;
 }
 
-// interface PageData {
-//   id: number;
-//   title: string;
-//   description: string;
-//   cover_image_url: string;
-// }
+interface Subsection {
+  id: string;
+  title: string;
+  image: string;
+}
+
+interface SectionItem {
+  id: string;
+  title: string;
+  image: string;
+  shortDescription: string;
+  subsections?: Subsection[];
+}
+
+interface PageData {
+  id: string | number;
+  title: string;
+  description: string;
+  cover_image_url: string;
+  image: string;
+}
+
 const VaptSection: React.FC = () => {
   const [banner, setBanner] = useState<BannerData | null>(null);
-  // const [pageData, setPageData] = useState<PageData | null>(null);
-  const [pageData, setPageData] = useState<any>(null);
+  const [pageData, setPageData] = useState<PageDataType | null>(null);
+
   const leftTextRef = useRef<HTMLDivElement>(null);
   const rightImgRef = useRef<HTMLDivElement>(null);
 
@@ -490,23 +509,22 @@ const VaptSection: React.FC = () => {
     const getBannerData = async () => {
       const uid = "cf4d3dee-9bc9-47ca-9df2-fcf8fd6ab709";
       const res = await fetchBannerData(uid);
-      // console.log("Banner Data*******************: ", res);
-      if (res?.status) setBanner(res);
+      if (res?.status) setBanner(res as BannerData);
     };
     getBannerData();
   }, []);
+
   useEffect(() => {
     const getData = async () => {
       const uid = "83ff6bcd-c84d-4d69-affd-bcd03528cc30";
       const res = await fetchPageData(uid);
-      // console.log("Page Data:********************* ", res);
-      if (res?.status) setPageData(res);
+      setPageData(res);
     };
     getData();
   }, []);
+
   const pagedata = pageData?.pagedata;
-  // const sectionsdata = pageData.pageItemdataWithSubsection || [];
-  // const subsectionsdata = pageData.pageItemdataWithSubsection?.subsections;
+
   useEffect(() => {
     const handleScroll = () => {
       const leftText = leftTextRef.current;
@@ -563,7 +581,9 @@ const VaptSection: React.FC = () => {
 
           <div className="row">
             {pageData?.pageItemdataWithSubsection?.map((item: any) => {
-              const subsectionImage = item.subsections?.[0]?.image;
+              const subsectionImage =
+                item.subsections?.[0]?.image || "/placeholder.png";
+
               return (
                 <div
                   key={item.id}
@@ -571,14 +591,14 @@ const VaptSection: React.FC = () => {
                   <div className="inner-box about_inner">
                     <div className="image-box">
                       <figure className="image">
-                        <a href="#">
+                        <Link href="#">
                           <Image
                             src={item.image}
                             alt={item.title}
                             width={400}
                             height={250}
                           />
-                        </a>
+                        </Link>
                       </figure>
                       <span className="icon_img">
                         <Image
@@ -592,7 +612,7 @@ const VaptSection: React.FC = () => {
 
                     <div className="lower-content">
                       <h4>
-                        <a href="#">{item.title}</a>
+                        <Link href="#">{item.title}</Link>
                       </h4>
                       <div className="text vapt_text">
                         {item.shortDescription
@@ -600,12 +620,12 @@ const VaptSection: React.FC = () => {
                           : "No"}
                       </div>
                       <div className="btn-box">
-                        <a href="#" className="theme-btn icon-btn-one">
+                        <Link href="#" className="theme-btn icon-btn-one">
                           <span>
                             View More{" "}
                             <i className="fa-solid fa-arrow-right"></i>
                           </span>
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -615,7 +635,7 @@ const VaptSection: React.FC = () => {
           </div>
 
           <div className="row mt-md-5">
-            <div className="col-md-8" data-aos="fade-right">
+            <div className="col-md-8">
               <div
                 ref={leftTextRef}
                 className="soc_section left-text-soc"
@@ -627,7 +647,8 @@ const VaptSection: React.FC = () => {
                 {parse(pagedata?.description || "No")}
               </div>
             </div>
-            <div className="col-md-4" data-aos="fade-left">
+
+            <div className="col-md-4">
               <div
                 ref={rightImgRef}
                 className="soc_img right-img-soc"
@@ -636,15 +657,8 @@ const VaptSection: React.FC = () => {
                   transform: "translateX(100px)",
                   transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
                 }}>
-                {/* <Image
-                  src={pagedata?.cover_image_url}
-                  alt="vapt background"
-                  width={400}
-                  height={400}
-                /> */}
-
                 <Image
-                  src={pagedata?.cover_image_url}
+                  src={pagedata?.cover_image_url ?? "No"}
                   alt="vapt background"
                   width={400}
                   height={400}

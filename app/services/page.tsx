@@ -196,20 +196,49 @@
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 import CallToAction from "@/component/CallToActions";
-import { fetchPageData } from "../action/page";
+import { fetchPageData } from "../action/fetchPageData";
 import { fetchBannerData } from "../action/banner";
 import Image from "next/image";
-
+import Link from "next/link";
+interface BannerData {
+  status: boolean;
+  id: string;
+  title: string;
+  description: string;
+  desktopImage: string;
+}
+interface Subsection {
+  id: string;
+  title: string;
+  image: string;
+}
+interface Section {
+  id: string;
+  title: string;
+  image: string;
+  shortDescription?: string;
+  subsections?: Subsection[];
+}
+interface PageData {
+  status: boolean;
+  pagedata: {
+    id: string;
+    title: string;
+    description?: string;
+    cover_image_url?: string;
+  };
+  pageItemdataWithSubsection: Section[];
+}
 const Services: React.FC = () => {
-  const [data, setData] = useState<any>(null);
-  const [bannerData, setBannerData] = useState<any>(null);
+  const [data, setData] = useState<PageData | null>(null);
+  const [bannerData, setBannerData] = useState<BannerData | null>(null);
 
   useEffect(() => {
     const getBannerData = async () => {
       const uid = "6ab20de5-df9c-49fb-bb61-b387d7472cea";
       const res = await fetchBannerData(uid);
       console.log("Banner Data: ", res);
-      if (res?.status) setBannerData(res);
+      if (res?.status) setBannerData(res as unknown as BannerData);
     };
     getBannerData();
   }, []);
@@ -219,7 +248,7 @@ const Services: React.FC = () => {
       const uid = "2b3e4bf2-4c22-4860-b5a4-69ef1400dec6";
       const res = await fetchPageData(uid);
       console.log("Page Data: ", res);
-      if (res?.status) setData(res);
+      if (res?.status) setData(res as unknown as PageData);
     };
     getData();
   }, []);
@@ -236,8 +265,8 @@ const Services: React.FC = () => {
   // console.log("aaaaaaaaaaaaaaaaaaaaaaaa", banner);
   const page = data.pagedata;
   const sections = data.pageItemdataWithSubsection || [];
-  const subSection = data.pageItemdataWithSubsection?.subsections;
-  console.log("Subsection Data: ", subSection);
+  // const subSection = data.pageItemdataWithSubsection?.subsections;
+  // console.log("Subsection Data: ", subSection);
   // const whatWeOffer = sections.find((sec: any) => sec.title === "");
   // const zeroizServices = sections.find((sec: any) => sec.title === "");
   // console.log("Banner Data: ", banner);
@@ -259,13 +288,23 @@ const Services: React.FC = () => {
         <div className="auto-container">
           <div className="sec-title text-center">
             <span className="icon">
-              <img src="../../images/services/services_icon.png" alt="" />
+              <Image
+                src="../../images/services/services_icon.png"
+                alt=""
+                height={400}
+                width={400}
+              />
             </span>
 
             <h3>{page.title}</h3>
             <div className="text">{parse(page.description || "")}</div>
             <div className="global service_image">
-              <img src={page.cover_image_url} alt={""} />
+              <Image
+                src={page.cover_image_url || ""}
+                alt={""}
+                height={400}
+                width={400}
+              />
             </div>
           </div>
         </div>
@@ -278,7 +317,7 @@ const Services: React.FC = () => {
             <div className="text">{parse(page.description || "")}</div>
           </div>
           <div className="row">
-            {sections.map((section: any, index: number) => (
+            {sections.map((section, index: number) => (
               <div
                 className="case-block col-lg-4 col-md-6 col-sm-12"
                 key={section.id || index}>
@@ -294,10 +333,10 @@ const Services: React.FC = () => {
                         />
                       </a>
                     </figure>
-                    {section.subsections?.length > 0 && (
+                    {section.subsections && section.subsections.length > 0 && (
                       <div className="subsection-list mt-3">
                         {section.subsections.map(
-                          (sub: any, subIndex: number) => (
+                          (sub: Subsection, subIndex: number) => (
                             <div key={sub.id || subIndex} className="icon_img">
                               <Image
                                 src={sub.image}
@@ -313,18 +352,19 @@ const Services: React.FC = () => {
                   </div>
                   <div className="lower-content">
                     <h4>
-                      <a href="#">{section.title}</a>
+                      <Link href="#">{section.title}</Link>
                     </h4>
                     <div className="text">
                       {parse(section.shortDescription || "")}
                     </div>
 
                     <div className="btn-box mt-3">
-                      <a href="#" className="theme-btn icon-btn-one">
-                        <span>View Services
-                        <i className="fa-solid fa-arrow-right"></i>
+                      <Link href="#" className="theme-btn icon-btn-one">
+                        <span>
+                          View Services
+                          <i className="fa-solid fa-arrow-right"></i>
                         </span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

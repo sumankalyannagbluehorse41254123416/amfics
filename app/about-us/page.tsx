@@ -117,14 +117,14 @@
 // "use client";
 
 import CallToAction from "@/component/CallToActions";
-import Image from "next/image"; // ✅ Import Image
+import Image from "next/image";
 import React from "react";
-import { fetchPageData } from "../action/page";
+import { fetchPageData } from "../action/fetchPageData";
 
 interface PageData {
   status: boolean;
   pagedata: {
-    id: number;
+    id: number | string;
     title: string;
     slug: string;
     uuid: string;

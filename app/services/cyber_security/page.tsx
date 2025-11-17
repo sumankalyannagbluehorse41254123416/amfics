@@ -116,7 +116,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 interface Subsection {
   id: number;
@@ -155,7 +155,7 @@ const CyberSecurityReadiness: React.FC = () => {
         const res = await fetchPageData(uid);
 
         if (res?.status && res?.pagedata) {
-          setPageData(res.pagedata);
+          setPageData(res.pagedata as PageData);
           setPageItems(res.pageItemdataWithSubsection || []);
         }
       } catch (error) {

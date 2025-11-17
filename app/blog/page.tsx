@@ -167,7 +167,7 @@ import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { fetchBlogData } from "@/app/action/blog";
-import { fetchPageData } from "../action/page";
+import { fetchPageData } from "../action/fetchPageData";
 
 interface BlogPost {
   title: string;

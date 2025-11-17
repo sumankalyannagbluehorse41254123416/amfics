@@ -1,4 +1,4 @@
-// "use server";
+"use server";
 // import axios from "axios";
 // import crypto from "crypto";
 
@@ -135,52 +135,11 @@
 //   return response.data;
 // }
 
+import { PageDataType } from "@/types/service.type";
 import axios from "axios";
 import crypto from "crypto";
 
-interface Subsection {
-  id: number;
-  title: string;
-  description: string;
-  shortDescription: string;
-  image: string;
-  [key: string]: unknown;
-}
-
-interface Section {
-  id: number;
-  title: string;
-  shortDescription: string;
-  subsections: Subsection[];
-  [key: string]: unknown;
-}
-
-interface EditReview {
-  id: number;
-  title: string;
-  shortDescription: string;
-  date: string;
-  subsections: Subsection[];
-  [key: string]: unknown;
-}
-
-interface PageData {
-  status: boolean;
-  pagedata: {
-    id: number;
-    title: string;
-    slug: string;
-    uuid: string;
-    description: string;
-    cover_image_url: string;
-    status: string;
-    [key: string]: unknown;
-  };
-  pageItemdataWithSubsection: Section[];
-  editReviedata: EditReview[];
-}
-
-const isPageData = (data: unknown): data is PageData => {
+const isPageData = (data: unknown): data is PageDataType => {
   if (
     typeof data === "object" &&
     data !== null &&
@@ -201,7 +160,7 @@ const isPageData = (data: unknown): data is PageData => {
   return false;
 };
 
-export async function fetchPageData(uid: string): Promise<PageData> {
+export async function fetchPageData(uid: string): Promise<PageDataType> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const timeStamp = Date.now();
 
@@ -226,7 +185,7 @@ export async function fetchPageData(uid: string): Promise<PageData> {
     "x-host": "localhost:3000",
   };
 
-  const response = await axios.get<PageData>(
+  const response = await axios.get<PageDataType>(
     `${baseUrl}/page/fetch-single-page/${uid}`,
     { headers }
   );

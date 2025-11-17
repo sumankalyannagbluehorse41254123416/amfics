@@ -338,6 +338,7 @@ const Footer: React.FC = () => {
         "027feae6-fad4-44fe-be71-7724e9593d8d",
         formData
       );
+      console.log("response: ", response);
 
       if (response?.status === 200 || response?.success) {
         setIsError(false);
@@ -348,7 +349,7 @@ const Footer: React.FC = () => {
       }
     } catch (error: any) {
       console.error("Newsletter submission error:", error);
-      toast.error("Your email could not be sent. Please try again.");
+      // toast.error("Your email could not be sent. Please try again.");
       setIsError(true);
     }
   };

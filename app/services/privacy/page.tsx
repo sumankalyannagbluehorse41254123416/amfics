@@ -306,7 +306,7 @@ import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 interface Subsection {
   id: number;

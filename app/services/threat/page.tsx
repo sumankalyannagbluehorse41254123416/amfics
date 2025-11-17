@@ -152,26 +152,242 @@
 
 // export default ThreatModeling;
 
+// import Image from "next/image";
+// import parse from "html-react-parser";
+// import ServiceContactSection from "@/component/ServiceContact";
+// import { fetchPageData } from "@/app/action/fetchPageData";
+
+// export default async function ThreatModeling() {
+//   const uid = "a2996208-f96d-4554-9581-2b2415a11ce9";
+//   const data = await fetchPageData(uid);
+
+//   if (!data?.status) {
+//     return <div className="text-center py-5">Failed to load page data</div>;
+//   }
+
+//   const { pagedata, pageItemdataWithSubsection } = data;
+//   const section1 = pageItemdataWithSubsection[0];
+//   const section2 = pageItemdataWithSubsection[1];
+//   const subsections = section1?.subsections || [];
+
+//   return (
+//     <div style={{ overflowX: "hidden" }}>
+//       <section
+//         className="page-title about_box"
+//         style={{
+//           backgroundImage: `url(${pagedata.cover_image_url})`,
+//         }}>
+//         <div className="auto-container about_title">
+//           <h1>{pagedata.title}</h1>
+//           <span className="title_divider"></span>
+//         </div>
+//       </section>
+
+//       <section className="case-study-section zero_ser soc_item threat_soc">
+//         <div className="auto-container">
+//           <div className="sec-title text-center">
+//             <h3>{section1?.title}</h3>
+//             <div className="text soc_text">
+//               {parse(section1?.shortDescription || "")}
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       <section
+//         className="process-section"
+//         style={{
+//           backgroundImage: "url(/images/background/2.jpg)",
+//         }}>
+//         <div className="auto-container">
+//           <div className="row">
+//             {subsections.map((item) => (
+//               <div
+//                 key={item.id}
+//                 className="process-block process-block2 threat_box col-lg-2 col-md-6 col-sm-12">
+//                 <div className="inner-box active">
+//                   <div className="icon-box">
+//                     <span className="icon threat_page">
+//                       <Image
+//                         src={item.image}
+//                         alt={item.title}
+//                         width={400}
+//                         height={400}
+//                       />
+//                     </span>
+//                     <span className="roadmap-divider threat_divider">
+//                       <i className="fa-solid fa-arrow-right"></i>
+//                     </span>
+//                   </div>
+//                   <h4>{item.title}</h4>
+//                   <div className="threat_text">
+//                     {parse(item.description || "")}
+//                   </div>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </section>
+
+//       {section2 && (
+//         <div className="container mt-2 mb-5">
+//           <div className="row mt-5 threat_item">
+//             <div className="col-md-8" data-aos="fade-right">
+//               <div className="soc_section soc_fade_text">
+//                 {parse(section2?.shortDescription || "")}
+//               </div>
+//             </div>
+//             <div className="col-md-4" data-aos="fade-left">
+//               <div className="soc_img soc_fade_img">
+//                 <Image
+//                   src={section2.image}
+//                   alt={section2.title}
+//                   width={400}
+//                   height={400}
+//                 />
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       )}
+
+//       <ServiceContactSection />
+//       <script
+//         dangerouslySetInnerHTML={{
+//           __html: `
+//           (function() {
+//             function initScrollAnimations() {
+//               const textElements = document.querySelectorAll('.soc_fade_text');
+//               const imgElements = document.querySelectorAll('.soc_fade_img');
+
+//               function checkVisibility() {
+//                 const windowHeight = window.innerHeight;
+//                 const scrollY = window.scrollY;
+
+//                 textElements.forEach(function(el) {
+//                   const rect = el.getBoundingClientRect();
+//                   const elementTop = rect.top + scrollY;
+//                   const elementBottom = elementTop + rect.height;
+//                   const viewportTop = scrollY;
+//                   const viewportBottom = scrollY + windowHeight;
+
+//                   if (elementBottom > viewportTop && elementTop < viewportBottom) {
+//                     el.style.opacity = '1';
+//                     el.style.transform = 'translateX(0)';
+//                   } else {
+//                     el.style.opacity = '0';
+//                     el.style.transform = 'translateX(-100px)';
+//                   }
+//                 });
+
+//                 imgElements.forEach(function(el) {
+//                   const rect = el.getBoundingClientRect();
+//                   const elementTop = rect.top + scrollY;
+//                   const elementBottom = elementTop + rect.height;
+//                   const viewportTop = scrollY;
+//                   const viewportBottom = scrollY + windowHeight;
+
+//                   if (elementBottom > viewportTop && elementTop < viewportBottom) {
+//                     el.style.opacity = '1';
+//                     el.style.transform = 'translateX(0)';
+//                   } else {
+//                     el.style.opacity = '0';
+//                     el.style.transform = 'translateX(100px)';
+//                   }
+//                 });
+//               }
+
+//               textElements.forEach(function(el) {
+//                 el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+//                 el.style.opacity = '0';
+//                 el.style.transform = 'translateX(-100px)';
+//               });
+
+//               imgElements.forEach(function(el) {
+//                 el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+//                 el.style.opacity = '0';
+//                 el.style.transform = 'translateX(100px)';
+//               });
+
+//               checkVisibility();
+
+//               window.addEventListener('scroll', checkVisibility);
+//               window.addEventListener('resize', checkVisibility);
+//             }
+
+//             if (document.readyState === 'loading') {
+//               document.addEventListener('DOMContentLoaded', initScrollAnimations);
+//             } else {
+//               initScrollAnimations();
+//             }
+//           })();
+//         `,
+//         }}
+//       />
+//     </div>
+//   );
+// }
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
+
+// ----------------------
+// Interfaces (Types)
+// ----------------------
+
+interface Subsection {
+  id: number;
+  title: string;
+  description: string;
+  image?: string;
+}
+
+interface PageSection {
+  id?: number;
+  title?: string;
+  shortDescription?: string;
+  description?: string;
+  image?: string;
+  subsections?: Subsection[];
+}
+
+interface PageData {
+  title?: string;
+  cover_image_url?: string;
+}
+
+interface FetchPageResponse {
+  status: boolean;
+  pagedata: PageData;
+  pageItemdataWithSubsection: PageSection[];
+}
+
+// ----------------------
+// Component
+// ----------------------
 
 export default async function ThreatModeling() {
   const uid = "a2996208-f96d-4554-9581-2b2415a11ce9";
-  const data = await fetchPageData(uid);
 
-  if (!data?.status) {
+  const data: FetchPageResponse = await fetchPageData(uid);
+
+  // Error state
+  if (!data?.status || !data.pageItemdataWithSubsection?.length) {
     return <div className="text-center py-5">Failed to load page data</div>;
   }
 
   const { pagedata, pageItemdataWithSubsection } = data;
+
   const section1 = pageItemdataWithSubsection[0];
   const section2 = pageItemdataWithSubsection[1];
-  const subsections = section1?.subsections || [];
+
+  const subsections: Subsection[] = section1?.subsections ?? [];
 
   return (
-    <div style={{overflowX:"hidden"}}>
+    <div style={{ overflowX: "hidden" }}>
+      {/* Page Title Section */}
       <section
         className="page-title about_box"
         style={{
@@ -183,17 +399,19 @@ export default async function ThreatModeling() {
         </div>
       </section>
 
+      {/* Section 1 */}
       <section className="case-study-section zero_ser soc_item threat_soc">
         <div className="auto-container">
           <div className="sec-title text-center">
             <h3>{section1?.title}</h3>
             <div className="text soc_text">
-              {parse(section1?.shortDescription || "")}
+              {section1?.shortDescription && parse(section1.shortDescription)}
             </div>
           </div>
         </div>
       </section>
 
+      {/* Subsection List / Steps */}
       <section
         className="process-section"
         style={{
@@ -208,18 +426,25 @@ export default async function ThreatModeling() {
                 <div className="inner-box active">
                   <div className="icon-box">
                     <span className="icon threat_page">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        width={400}
-                        height={400}
-                      />
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={400}
+                          height={400}
+                        />
+                      )}
                     </span>
-                    <span className="roadmap-divider threat_divider"><i className="fa-solid fa-arrow-right"></i></span>
+
+                    <span className="roadmap-divider threat_divider">
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </span>
                   </div>
+
                   <h4>{item.title}</h4>
+
                   <div className="threat_text">
-                    {parse(item.description || "")}
+                    {item.description && parse(item.description)}
                   </div>
                 </div>
               </div>
@@ -228,22 +453,26 @@ export default async function ThreatModeling() {
         </div>
       </section>
 
+      {/* Section 2 (Optional) */}
       {section2 && (
         <div className="container mt-2 mb-5">
           <div className="row mt-5 threat_item">
             <div className="col-md-8" data-aos="fade-right">
               <div className="soc_section soc_fade_text">
-                {parse(section2?.shortDescription || "")}
+                {section2.shortDescription && parse(section2.shortDescription)}
               </div>
             </div>
+
             <div className="col-md-4" data-aos="fade-left">
               <div className="soc_img soc_fade_img">
-                <Image
-                  src={section2.image}
-                  alt={section2.title}
-                  width={400}
-                  height={400}
-                />
+                {section2.image && (
+                  <Image
+                    src={section2.image}
+                    alt={section2.title || "Threat Modeling"}
+                    width={400}
+                    height={400}
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -323,7 +552,6 @@ export default async function ThreatModeling() {
         `,
         }}
       />
-
     </div>
   );
 }

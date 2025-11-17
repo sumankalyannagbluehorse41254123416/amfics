@@ -65,15 +65,33 @@
 import Image from "next/image";
 import parse from "html-react-parser";
 import ServiceContactSection from "@/component/ServiceContact";
-import { fetchPageData } from "@/app/action/page";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
-// Optional: Revalidate (ISR)
-export const revalidate = 60; // Regenerate page every 60s if data changes
+interface PageData {
+  title?: string;
+  cover_image_url?: string;
+  description?: string;
+}
+
+interface PageSection {
+  title?: string;
+  image?: string;
+  shortDescription?: string;
+}
+
+interface FetchPageResponse {
+  status: boolean;
+  pagedata: PageData;
+  pageItemdataWithSubsection?: PageSection[];
+}
+
+export const revalidate = 60;
 
 const OtIotSecurity = async () => {
   const uid = "5253a1e8-8a65-4eb6-800f-0d34c1929e52";
 
-  let data;
+  let data: FetchPageResponse | null = null;
+
   try {
     data = await fetchPageData(uid);
   } catch (error) {
@@ -111,10 +129,8 @@ const OtIotSecurity = async () => {
 
       <section className="case-study-section zero_ser soc_item ot_box">
         <div className="auto-container">
-          {/* Section Title */}
           <div className="sec-title text-center">
             <h3>{section.title}</h3>
-
 
             <div className="text soc_text cloud">
               {section.shortDescription ? parse(section.shortDescription) : ""}
@@ -134,7 +150,6 @@ const OtIotSecurity = async () => {
           </div>
         </div>
       </section>
-
 
       <ServiceContactSection />
     </>

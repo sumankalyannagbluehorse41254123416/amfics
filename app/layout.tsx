@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+
 import { Poppins } from "@next/font/google";
 // import "./globals.css";
 
@@ -16,10 +16,10 @@ import Header from "@/component/Header";
 import Footer from "@/component/Footer";
 import { ToastContainer } from "react-toastify";
 // import Home from "./page";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
 // const geistMono = Geist_Mono({
 //   variable: "--font-geist-mono",
