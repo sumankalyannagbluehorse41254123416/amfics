@@ -6984,7 +6984,7 @@ hr {
 }
 
 .blog-small-images .news-block.style-two-even .image-box .date {
-  border-radius: 7px 0 7px 0;
+  border-radius: 0px 0 7px 0;
 }
 
 .blog-small-images .news-block {
@@ -8526,6 +8526,12 @@ hr {
   padding-bottom: 5px;
 }
 
+@media (max-width:991px) {
+  .main-footer .widgets-section {
+    padding-top: 50px;
+  }
+}
+
 .main-footer .footer-column {
   position: relative;
   margin-bottom: 30px;
@@ -8556,7 +8562,12 @@ hr {
   height: 180px;
   width: 280px;
   filter: contrast(0.5);
+}
 
+@media (max-width:991px) {
+  .main-footer .logo img {
+    height: auto;
+  }
 }
 
 /*=== Cities Widget ===*/
@@ -10438,7 +10449,7 @@ hr {
 .contact-form-section .info-outer {
   position: relative;
   padding: 20px 0 10px;
-  margin-left: -100px;
+  /* margin-left: -100px; */
 }
 
 .contact-info-block {
@@ -10449,7 +10460,7 @@ hr {
 .contact-info-block .inner-box {
   position: relative;
   min-height: 80px;
-  padding-left: 100px;
+  /* padding-left: 100px; */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -10488,6 +10499,18 @@ hr {
 
 .con_item {
   text-align: center;
+}
+
+@media (max-width:767px) {
+  .con_item {
+    height: 150px !important;
+  }
+}
+
+@media (max-width:575px) {
+  .con_item {
+    height: 80px !important;
+  }
 }
 
 .con_item h3 {
@@ -10588,11 +10611,12 @@ hr {
 }
 
 .carousel-item {
-  height: 70vh;
+  height: 75vh;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
+
 
 .prev i {
   font-size: 45px;
@@ -11000,8 +11024,8 @@ hr {
   min-height: 190px;
 }
 
-.text.privacy_text.privacy_text2{
- min-height: 190px;
+.text.privacy_text.privacy_text2 {
+  min-height: 190px;
 }
 
 .privacy_text2 {
@@ -11147,8 +11171,22 @@ hr {
   top: 180px;
 }
 
+@media (max-width:991px) {
+  .zero_mail {
+    top: 155px;
+  }
+}
+
 .zero_mail i {
   padding-right: 5px;
+}
+
+.news-block.style-two-even .icon-btn-two span:after {
+  display: none;
+}
+
+.news-block.style-two-even .icon-btn-two i {
+  margin-right: 30px;
 }
 
 .footer-form form {
