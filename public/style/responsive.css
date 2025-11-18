@@ -410,6 +410,7 @@
   .main-footer .logo img {
     margin-top: -75px;
     margin-bottom: -120px;
+   
   }
 
   .method_img_2 {
@@ -584,6 +585,8 @@
   .carousel-item {
     height: 40vh;
   }
+
+
 
   .process-block h4 {
     margin: 10px 0 10px;
@@ -777,7 +780,7 @@
 
   .zero_mail {
     padding-left: 115px;
-    left: 0px;
+    /* left: 0px; */
     top: unset;
   }
 

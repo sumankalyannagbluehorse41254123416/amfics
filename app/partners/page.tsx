@@ -359,7 +359,7 @@ const PartnersPage: React.FC = () => {
               {testimonials.map((t, i) => (
                 <div
                   key={t.id}
-                  className={`carousel-item carousel_item_box ${
+                  className={`carousel_partner carousel-item carousel_item_box ${
                     i === currentIndex ? "active" : ""
                   }`}>
                   <div className="testimonial4_slide">
