@@ -349,7 +349,7 @@ export default async function SimulateRealWorldAttack() {
 
             {/* Right 3 Items */}
             <div className="col-md-3 col-sm-3">
-              {subsections.slice(3, 6).map((sub) => (
+              {subsections.slice(0, 3).map((sub) => (
                 <div className="sim_item" key={sub.id}>
                   <h5>{sub.title}</h5>
                   {parse(sub.description)}

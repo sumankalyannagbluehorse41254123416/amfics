@@ -658,7 +658,9 @@ const VaptSection: React.FC = () => {
                   transition: "opacity 0.8s ease-out, transform 0.8s ease-out",
                 }}>
                 <Image
-                  src={pagedata?.cover_image_url ?? "No"}
+                  src={
+                    pagedata?.cover_image_url || "/public/images/pen-tool.png"
+                  }
                   alt="vapt background"
                   width={400}
                   height={400}
