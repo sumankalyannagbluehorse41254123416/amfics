@@ -237,7 +237,7 @@ const Services: React.FC = () => {
     const getBannerData = async () => {
       const uid = "6ab20de5-df9c-49fb-bb61-b387d7472cea";
       const res = await fetchBannerData(uid);
-      console.log("Banner Data: ", res);
+      // console.log("Banner Data: ", res);
       if (res?.status) setBannerData(res as unknown as BannerData);
     };
     getBannerData();
@@ -247,7 +247,7 @@ const Services: React.FC = () => {
     const getData = async () => {
       const uid = "2b3e4bf2-4c22-4860-b5a4-69ef1400dec6";
       const res = await fetchPageData(uid);
-      console.log("Page Data: ", res);
+      // console.log("Page Data: ", res);
       if (res?.status) setData(res as unknown as PageData);
     };
     getData();
@@ -289,7 +289,7 @@ const Services: React.FC = () => {
           <div className="sec-title text-center">
             <span className="icon">
               <Image
-                src="../../images/services/services_icon.png"
+                src="/images/services/services_icon.png"
                 alt=""
                 height={400}
                 width={400}
