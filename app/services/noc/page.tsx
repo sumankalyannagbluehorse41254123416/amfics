@@ -202,7 +202,7 @@ export default async function NocServices() {
         </section>
       )}
 
-      <div className="container soc">
+      <div className="container soc" style={{overflowX:"hidden"}}>
         {subsections.map((sub: Subsection, index: number) => (
           <div
             key={sub.id}

@@ -246,7 +246,7 @@ const CaseStudySection: React.FC = () => {
   }
 
   return (
-    <section className="case-study-section">
+    <section className="case-study-section Home_page">
       <div className="auto-container">
         <div className="sec-title text-center sec-title2">
           <h3>{data.title}</h3>

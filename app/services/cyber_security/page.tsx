@@ -396,7 +396,7 @@ const CyberSecurityReadiness: React.FC = () => {
         </div>
       </section>
       
-      <section className="case-study-section zero_ser soc_item">
+      <section className="case-study-section zero_ser soc_item cyber_security">
         <div className="cyber_box text-info cyber_title text-center">
           <h3>{pageData.title}</h3>
           <div className="section-border"></div>
