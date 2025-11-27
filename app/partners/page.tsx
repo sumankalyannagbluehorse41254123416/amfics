@@ -359,9 +359,8 @@ const PartnersPage: React.FC = () => {
               {testimonials.map((t, i) => (
                 <div
                   key={t.id}
-                  className={`carousel_partner carousel-item carousel_item_box ${
-                    i === currentIndex ? "active" : ""
-                  }`}>
+                  className={`carousel_partner carousel-item carousel_item_box ${i === currentIndex ? "active" : ""
+                    }`}>
                   <div className="testimonial4_slide">
                     {t.image && (
                       <Image
@@ -381,26 +380,29 @@ const PartnersPage: React.FC = () => {
                   </div>
                 </div>
               ))}
+
+              <a
+                className="carousel-control-prev pre_box"
+                href="#testimonial4"
+                onClick={(e) => {
+                  e.preventDefault();
+                  prev();
+                }}>
+                <i className="fas fa-chevron-left"></i>
+              </a>
+              <a
+                className="carousel-control-next pre_box"
+                href="#testimonial4"
+                onClick={(e) => {
+                  e.preventDefault();
+                  next();
+                }}>
+                <i className="fas fa-chevron-right"></i>
+              </a>
+
             </div>
 
-            <a
-              className="carousel-control-prev pre_box"
-              href="#testimonial4"
-              onClick={(e) => {
-                e.preventDefault();
-                prev();
-              }}>
-              <i className="fas fa-chevron-left"></i>
-            </a>
-            <a
-              className="carousel-control-next pre_box"
-              href="#testimonial4"
-              onClick={(e) => {
-                e.preventDefault();
-                next();
-              }}>
-              <i className="fas fa-chevron-right"></i>
-            </a>
+
 
             <div className="testimonial4_indicators">
               {testimonials.map((_, i) => (

@@ -797,6 +797,7 @@
     position: absolute;
     left: 0%;
     top: -113px;
+    margin-top: 120px;
   }
 
   .layer-image img {
@@ -1226,5 +1227,11 @@
 
   .pre_box i {
     top: 19%;
+  }
+}
+
+@media (max-width:400px){
+  .carousel_item_box{
+    height: 80vh;
   }
 }

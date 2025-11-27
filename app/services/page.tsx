@@ -495,12 +495,12 @@ const Services = async () => {
             <div className="text">{parse(page.description || "")}</div>
           </div>
 
-          <div className="row">
+          <div className="row" style={{alignItems:"stretch"}}>
             {sections.map((section, index) => (
               <div
-                className="case-block col-lg-4 col-md-6 col-sm-12"
+                className="case-block col-lg-4 col-md-6 col-sm-12 d-flex"
                 key={section.id || index}>
-                <div className="inner-box about_inner">
+                <div className="inner-box about_inner d-flex flex-column h-100">
                   <div className="image-box">
                     <figure className="image">
                       <Link href="#">
@@ -534,7 +534,7 @@ const Services = async () => {
                     )}
                   </div>
 
-                  <div className="lower-content">
+                  <div className="lower-content d-flex flex-column flex-grow-1">
                     <h4>
                       <Link href="#">{section.title}</Link>
                     </h4>
@@ -543,7 +543,7 @@ const Services = async () => {
                       {parse(section.shortDescription || "")}
                     </div>
 
-                    <div className="btn-box mt-3">
+                    <div className="btn-box mt-auto">
                       <Link href="#" className="theme-btn icon-btn-one">
                         <span>
                           View Services
