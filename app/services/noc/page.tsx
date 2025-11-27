@@ -134,6 +134,7 @@ import ServiceContactSection from "@/component/ServiceContact";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { fetchPageData } from "@/app/action/fetchPageData";
+import ScrollAnimation from "@/component/animation/ScrollAnimation";
 
 interface Subsection {
   id: number;
@@ -256,7 +257,9 @@ export default async function NocServices() {
         ))}
       </div>
       <ServiceContactSection />
-      <script
+      <ScrollAnimation />
+      {/*  */}
+      {/* <script
         dangerouslySetInnerHTML={{
           __html: `
           (function() {
@@ -327,7 +330,7 @@ export default async function NocServices() {
           })();
         `,
         }}
-      />
+      /> */}
     </>
   );
 }

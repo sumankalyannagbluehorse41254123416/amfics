@@ -573,12 +573,6 @@ const Header: React.FC = () => {
                           display: "flex",
                           alignItems: "center",
                           gap: "0px",
-                        }}
-                        onClick={(e) => {
-                          // Prevent default only if dropdown is open to allow navigation when closed
-                          if (isServicesDropdownOpen) {
-                            e.preventDefault();
-                          }
                         }}>
                         <span>Services</span>
                         <i
@@ -772,6 +766,7 @@ const Header: React.FC = () => {
                       <span className="flaticon-arrow-right"></span>
                     </div>
                   </li>
+
                   <li>
                     <Link href="/blog">Blog</Link>
                   </li>

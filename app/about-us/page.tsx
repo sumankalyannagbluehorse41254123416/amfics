@@ -167,7 +167,8 @@ const About: React.FC = async () => {
   const subsections = Array.isArray(firstItem.subsections)
     ? firstItem.subsections
     : [];
-
+console.log("subsections+++++", subsections);
+console.log("firstItem+++++++", firstItem);
   return (
     <>
       {/* Hero Section */}
