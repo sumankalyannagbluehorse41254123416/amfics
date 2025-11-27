@@ -110,68 +110,251 @@
 
 // export default CyberSecurityReadiness;
 
-"use client";
+// "use client";
 
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+// import Image from "next/image";
+// import parse from "html-react-parser";
+// import ServiceContactSection from "@/component/ServiceContact";
+// import { fetchPageData } from "@/app/action/fetchPageData";
+
+// interface Subsection {
+//   id: number;
+//   title: string;
+//   description: string;
+//   image?: string;
+//   [key: string]: unknown;
+// }
+
+// interface PageItem {
+//   id: number;
+//   title: string;
+//   shortDescription: string;
+//   image?: string;
+//   subsections?: Subsection[];
+//   [key: string]: unknown;
+// }
+
+// interface PageData {
+//   id: number;
+//   title: string;
+//   cover_image_url: string;
+//   description: string;
+//   [key: string]: unknown;
+// }
+
+// const CyberSecurityReadiness: React.FC = () => {
+//   const [pageData, setPageData] = useState<PageData | null>(null);
+//   const [pageItems, setPageItems] = useState<PageItem[]>([]);
+
+//   const uid = "bee8f955-321b-45d3-8b17-a4de9a1d2a80";
+
+//   useEffect(() => {
+//     const loadData = async () => {
+//       try {
+//         const res = await fetchPageData(uid);
+
+//         if (res?.status && res?.pagedata) {
+//           setPageData(res.pagedata as PageData);
+//           setPageItems(res.pageItemdataWithSubsection || []);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching Cyber Security Readiness data:", error);
+//       }
+//     };
+
+//     loadData();
+//   }, []);
+
+//   if (!pageData) {
+//     return <div className="text-center py-10">Loading...</div>;
+//   }
+
+//   return (
+//     <>
+//       <section
+//         className="page-title about_box"
+//         style={{
+//           backgroundImage: `url(${pageData.cover_image_url})`,
+//         }}>
+//         <div className="auto-container about_title">
+//           <h1>{pageData.title}</h1>
+//           <span className="title_divider"></span>
+//         </div>
+//       </section>
+//       <section className="case-study-section zero_ser soc_item">
+//         <div className="cyber_box text-info cyber_title text-center">
+//           <h3>{pageData.title}</h3>
+//           <div className="section-border"></div>
+//         </div>
+
+//         <div className="container soc">
+//           {pageItems.map((item, index) => (
+//             <div className={`row ${index > 0 ? "mt-5" : ""}`} key={item.id}>
+//               {index % 2 === 0 ? (
+//                 <>
+//                   <div className="col-md-8" data-aos="fade-right">
+//                     <div className="soc_section">
+//                       {parse(item.shortDescription || "")}
+//                     </div>
+//                   </div>
+//                   <div className="col-md-4" data-aos="fade-left">
+//                     <div className="soc_img">
+//                       <Image
+//                         src={item.image || "/images/default.jpg"}
+//                         alt={item.title}
+//                         width={500}
+//                         height={300}
+//                       />
+//                     </div>
+//                   </div>
+//                 </>
+//               ) : (
+//                 <>
+//                   <div className="col-md-4" data-aos="fade-left">
+//                     <div className="soc_img">
+//                       <Image
+//                         src={item.image || "/images/default.jpg"}
+//                         alt={item.title}
+//                         width={500}
+//                         height={300}
+//                       />
+//                     </div>
+//                   </div>
+//                   <div className="col-md-8" data-aos="fade-right">
+//                     <div className="soc_section">
+//                       {parse(item.shortDescription || "")}
+//                     </div>
+//                   </div>
+//                 </>
+//               )}
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+
+//       <ServiceContactSection />
+//     </>
+//   );
+// };
+
+// export default CyberSecurityReadiness;
+// import Image from "next/image";
+// import parse from "html-react-parser";
+// import ServiceContactSection from "@/component/ServiceContact";
+// import { fetchPageData } from "@/app/action/fetchPageData";
+// import ScrollAnimation from "@/component/animation/ScrollAnimation";
+// // import AOSInit from "@/components/AOSInit";
+
+// export default async function CyberSecurityReadiness() {
+//   const uid = "bee8f955-321b-45d3-8b17-a4de9a1d2a80";
+
+//   const res = await fetchPageData(uid);
+
+//   if (!res?.status) {
+//     return <div className="text-center py-10">Failed to load data...</div>;
+//   }
+
+//   const pageData = res.pagedata;
+//   const pageItems = res.pageItemdataWithSubsection || [];
+
+//   return (
+//     <>
+//       {/* AOS INIT
+//       <AOSInit /> */}
+
+//       {/* BANNER */}
+//       <section
+//         className="page-title about_box"
+//         style={{
+//           backgroundImage: `url(${pageData.cover_image_url})`,
+//         }}>
+//         <div className="auto-container about_title">
+//           <h1>{pageData.title}</h1>
+//           <span className="title_divider"></span>
+//         </div>
+//       </section>
+
+//       {/* CONTENT */}
+//       <section className="case-study-section zero_ser soc_item">
+//         <div className="cyber_box text-info cyber_title text-center">
+//           <h3>{pageData.title}</h3>
+//           <div className="section-border"></div>
+//         </div>
+
+//         <div className="container soc">
+//           {pageItems.map((item: any, index: number) => (
+//             <div className={`row ${index > 0 ? "mt-5" : ""}`} key={item.id}>
+//               {index % 2 === 0 ? (
+//                 <>
+//                   <div className="col-md-8" data-aos="fade-right">
+//                     <div className="soc_section soc_fade_text">
+//                       {parse(item.shortDescription || "")}
+//                     </div>
+//                   </div>
+//                   <div className="col-md-4" data-aos="fade-left">
+//                     <div className="soc_img soc_fade_img">
+//                       <Image
+//                         src={item.image || "/images/default.jpg"}
+//                         alt={item.title}
+//                         width={500}
+//                         height={300}
+//                       />
+//                     </div>
+//                   </div>
+//                 </>
+//               ) : (
+//                 <>
+//                   <div className="col-md-4" data-aos="fade-left">
+//                     <div className="soc_img soc_fade_img">
+//                       <Image
+//                         src={item.image || "/images/default.jpg"}
+//                         alt={item.title}
+//                         width={500}
+//                         height={300}
+//                       />
+//                     </div>
+//                   </div>
+//                   <div className="col-md-8" data-aos="fade-right">
+//                     <div className="soc_section soc_fade_text">
+//                       {parse(item.shortDescription || "")}
+//                     </div>
+//                   </div>
+//                 </>
+//               )}
+//             </div>
+//           ))}
+//         </div>
+//       </section>
+
+//       <ServiceContactSection />
+//       <ScrollAnimation />
+//     </>
+//   );
+// }
+// app/(pages)/cyber-security-readiness/page.tsx
+
 import Image from "next/image";
 import parse from "html-react-parser";
-import ServiceContactSection from "@/component/ServiceContact";
+import ServiceContactSection from "@/component/ServiceContact"; // (client or server allowed)
+import ScrollAnimation from "@/component/animation/ScrollAnimation"; // (client or server allowed)
 import { fetchPageData } from "@/app/action/fetchPageData";
 
-interface Subsection {
-  id: number;
-  title: string;
-  description: string;
-  image?: string;
-  [key: string]: unknown;
-}
-
-interface PageItem {
-  id: number;
-  title: string;
-  shortDescription: string;
-  image?: string;
-  subsections?: Subsection[];
-  [key: string]: unknown;
-}
-
-interface PageData {
-  id: number;
-  title: string;
-  cover_image_url: string;
-  description: string;
-  [key: string]: unknown;
-}
-
-const CyberSecurityReadiness: React.FC = () => {
-  const [pageData, setPageData] = useState<PageData | null>(null);
-  const [pageItems, setPageItems] = useState<PageItem[]>([]);
-
+export default async function CyberSecurityReadiness() {
   const uid = "bee8f955-321b-45d3-8b17-a4de9a1d2a80";
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const res = await fetchPageData(uid);
+  const res = await fetchPageData(uid);
 
-        if (res?.status && res?.pagedata) {
-          setPageData(res.pagedata as PageData);
-          setPageItems(res.pageItemdataWithSubsection || []);
-        }
-      } catch (error) {
-        console.error("Error fetching Cyber Security Readiness data:", error);
-      }
-    };
-
-    loadData();
-  }, []);
-
-  if (!pageData) {
-    return <div className="text-center py-10">Loading...</div>;
+  if (!res?.status) {
+    return <div className="text-center py-10">Failed to load data...</div>;
   }
+
+  const pageData = res.pagedata;
+  const pageItems = res.pageItemdataWithSubsection || [];
 
   return (
     <>
+      {/* BANNER */}
       <section
         className="page-title about_box"
         style={{
@@ -182,6 +365,8 @@ const CyberSecurityReadiness: React.FC = () => {
           <span className="title_divider"></span>
         </div>
       </section>
+
+      {/* CONTENT */}
       <section className="case-study-section zero_ser soc_item">
         <div className="cyber_box text-info cyber_title text-center">
           <h3>{pageData.title}</h3>
@@ -189,17 +374,20 @@ const CyberSecurityReadiness: React.FC = () => {
         </div>
 
         <div className="container soc">
-          {pageItems.map((item, index) => (
+          {pageItems.map((item: any, index: number) => (
             <div className={`row ${index > 0 ? "mt-5" : ""}`} key={item.id}>
               {index % 2 === 0 ? (
                 <>
-                  <div className="col-md-8" data-aos="fade-right">
-                    <div className="soc_section">
+                  {/* LEFT TEXT */}
+                  <div className="col-md-8">
+                    <div className="soc_section soc_fade_text">
                       {parse(item.shortDescription || "")}
                     </div>
                   </div>
-                  <div className="col-md-4" data-aos="fade-left">
-                    <div className="soc_img">
+
+                  {/* RIGHT IMAGE */}
+                  <div className="col-md-4">
+                    <div className="soc_img soc_fade_img">
                       <Image
                         src={item.image || "/images/default.jpg"}
                         alt={item.title}
@@ -211,8 +399,9 @@ const CyberSecurityReadiness: React.FC = () => {
                 </>
               ) : (
                 <>
-                  <div className="col-md-4" data-aos="fade-left">
-                    <div className="soc_img">
+                  {/* LEFT IMAGE */}
+                  <div className="col-md-4">
+                    <div className="soc_img soc_fade_img">
                       <Image
                         src={item.image || "/images/default.jpg"}
                         alt={item.title}
@@ -221,8 +410,10 @@ const CyberSecurityReadiness: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-md-8" data-aos="fade-right">
-                    <div className="soc_section">
+
+                  {/* RIGHT TEXT */}
+                  <div className="col-md-8">
+                    <div className="soc_section soc_fade_text">
                       {parse(item.shortDescription || "")}
                     </div>
                   </div>
@@ -233,9 +424,9 @@ const CyberSecurityReadiness: React.FC = () => {
         </div>
       </section>
 
+      {/* CONTACT + ANIMATION */}
       <ServiceContactSection />
+      <ScrollAnimation />
     </>
   );
-};
-
-export default CyberSecurityReadiness;
+}

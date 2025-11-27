@@ -387,7 +387,6 @@ export default async function ThreatModeling() {
 
   return (
     <div style={{ overflowX: "hidden" }}>
-      {/* Page Title Section */}
       <section
         className="page-title about_box"
         style={{
@@ -411,7 +410,6 @@ export default async function ThreatModeling() {
         </div>
       </section>
 
-      {/* Subsection List / Steps */}
       <section
         className="process-section"
         style={{
@@ -453,7 +451,6 @@ export default async function ThreatModeling() {
         </div>
       </section>
 
-      {/* Section 2 (Optional) */}
       {section2 && (
         <div className="container mt-2 mb-5">
           <div className="row mt-5 threat_item">

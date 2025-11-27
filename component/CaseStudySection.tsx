@@ -182,9 +182,7 @@
 // };
 
 // export default CaseStudySectionClient;
-"use client";
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import parse from "html-react-parser";
 import { fetchPageData } from "@/lib/page";
 
@@ -202,39 +200,23 @@ interface PageItem {
   subsections: Subsection[];
 }
 
-const CaseStudySection: React.FC = () => {
-  const [data, setData] = useState<PageItem | null>(null);
-  const [loading, setLoading] = useState(true);
+const CaseStudySection = async () => {
+  // UID you want to fetch
+  const uid = "194f52e6-ffd8-4371-bea5-3c6fd72dbad5";
 
-  useEffect(() => {
-    const uid = "194f52e6-ffd8-4371-bea5-3c6fd72dbad5";
+  let data: PageItem | null = null;
 
-    const loadData = async () => {
-      try {
-        const res = await fetchPageData({ uid });
+  try {
+    const res = await fetchPageData({ uid });
 
-        if (
-          Array.isArray(res?.pageItemdataWithSubsection) &&
-          res.pageItemdataWithSubsection.length > 0
-        ) {
-          setData(res.pageItemdataWithSubsection[0] as PageItem);
-        }
-      } catch (error) {
-        console.error("Error loading Case Study data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
-
-  if (loading) {
-    return (
-      <section className="case-study-section text-center">
-        <p>Loading...</p>
-      </section>
-    );
+    if (
+      Array.isArray(res?.pageItemdataWithSubsection) &&
+      res.pageItemdataWithSubsection.length > 0
+    ) {
+      data = res.pageItemdataWithSubsection[0] as PageItem;
+    }
+  } catch (error) {
+    console.error("Error loading Case Study data:", error);
   }
 
   if (!data) {
