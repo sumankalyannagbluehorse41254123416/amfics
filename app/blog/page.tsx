@@ -292,7 +292,7 @@ const BlogPage: React.FC = () => {
                         href={`/blog/blog-details/${blog.slug}`}
                         className="date"
                         target="_blank">
-                        <i className="far fa-calendar"></i> {blog.tag}
+                        <i className="fas fa-calendar-alt"></i>{blog.tag}
                       </Link>
                     </div>
 

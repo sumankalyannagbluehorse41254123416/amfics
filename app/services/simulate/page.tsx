@@ -326,7 +326,7 @@ export default async function SimulateRealWorldAttack() {
 
           <div className="row mb-5 align-items-center">
             {/* Left 3 Items */}
-            <div className="col-md-3 col-sm-3">
+            <div className="col-md-3 col-sm-12">
               {subsections.slice(0, 3).map((sub) => (
                 <div className="sim_item" key={sub.id}>
                   <h5>{sub.title}</h5>
@@ -336,7 +336,7 @@ export default async function SimulateRealWorldAttack() {
             </div>
 
             {/* Center Image */}
-            <div className="col-md-6 col-sm-6 text-center">
+            <div className="col-md-6 col-sm-12 text-center">
               {item?.image && (
                 <Image
                   src={item.image}
@@ -348,7 +348,7 @@ export default async function SimulateRealWorldAttack() {
             </div>
 
             {/* Right 3 Items */}
-            <div className="col-md-3 col-sm-3">
+            <div className="col-md-3 col-sm-12">
               {subsections.slice(0, 3).map((sub) => (
                 <div className="sim_item" key={sub.id}>
                   <h5>{sub.title}</h5>
