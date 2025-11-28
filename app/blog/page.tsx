@@ -160,14 +160,225 @@
 // };
 
 // export default BlogPage;
-"use client";
+// "use client";
 
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import parse from "html-react-parser";
+// import { fetchBlogData } from "@/app/action/blog";
+// import { fetchPageData } from "../action/fetchPageData";
+
+// interface BlogPost {
+//   title: string;
+//   slug: string;
+//   uuid: string;
+//   excerpt: string;
+//   featured_image_url: string;
+//   author_image_url: string;
+//   cta: string;
+//   status: string;
+//   author_name: string;
+//   tag: string;
+// }
+
+// interface PageData {
+//   title: string;
+//   description: string;
+//   cover_image_url: string;
+// }
+
+// const BlogPage: React.FC = () => {
+//   const [blogs, setBlogs] = useState<BlogPost[]>([]);
+//   const [page, setPage] = useState<PageData | null>(null);
+//   const [loading, setLoading] = useState(true);
+//   const [pageLoading, setPageLoading] = useState(true);
+//   useEffect(() => {
+//     const loadPageData = async () => {
+//       try {
+//         const uid = "a731283e-c8e3-4ea0-aeb4-95a101eb6d29";
+//         const data = await fetchPageData(uid);
+//         if (data && data.status) {
+//           setPage(data.pagedata);
+//         } else {
+//           setPage(null);
+//         }
+//         // console.log("Page Data&&&&&&&&&&&&&&&&&&&&&&: ", data);
+//       } catch (err) {
+//         console.error("Error loading page data:", err);
+//         setPage(null);
+//       } finally {
+//         setPageLoading(false);
+//       }
+//     };
+
+//     loadPageData();
+//   }, []);
+//   useEffect(() => {
+//     const loadBlogs = async () => {
+//       try {
+//         const res = await fetchBlogData();
+//         const activeBlogs = res.userPostdata.filter(
+//           (b: BlogPost) => b.status === "active"
+//         );
+//         setBlogs(activeBlogs);
+//         // console.log("res&&&&&&&&&&&&&&&&&&&&&&&&&: ", res);
+//       } catch (err) {
+//         console.error("Error loading blogs:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     loadBlogs();
+//   }, []);
+
+//   if (pageLoading) {
+//     return (
+//       <div className="auto-container text-center py-10">
+//         <p>Loading page...</p>
+//       </div>
+//     );
+//   }
+//   if (!page) {
+//     return (
+//       <div className="auto-container text-center py-10">
+//         <p>Blog Page not found.</p>
+//       </div>
+//     );
+//   }
+//   if (loading) {
+//     return (
+//       <div className="auto-container text-center py-10">
+//         <p>Loading blogs...</p>
+//       </div>
+//     );
+//   }
+//   return (
+//     <>
+//       <section
+//         className="page-title about_box"
+//         style={{
+//           backgroundImage: `url(${page.cover_image_url || ""})`,
+//         }}>
+//         <div className="auto-container about_title">
+//           <h1>{page.title}</h1>
+//           <span className="title_divider"></span>
+//         </div>
+//       </section>
+
+//       {/* Blog Section */}
+//       <section className="news-section blog-small-images">
+//         <div className="auto-container">
+//           <div className="row">
+//             {blogs.length > 0 ? (
+//               blogs.map((blog, index) => (
+//                 <div key={index} className="news-block style-two-even">
+//                   <div className="inner-box">
+//                     <div className="image-box">
+//                       <figure className="image">
+//                         <Link
+//                           href={`/blog/blog-details/${blog.slug}`}
+//                           target="_blank">
+//                           <Image
+//                             src={blog.featured_image_url}
+//                             alt={blog.title}
+//                             width={400}
+//                             height={250}
+//                           />
+//                         </Link>
+//                       </figure>
+//                       <Link
+//                         href={`/blog/blog-details/${blog.slug}`}
+//                         className="date"
+//                         target="_blank">
+//                         <i className="fas fa-calendar-alt"></i>
+//                         {blog.tag}
+//                       </Link>
+//                     </div>
+
+//                     <div className="lower-content">
+//                       <h4>
+//                         <Link
+//                           href={`/blog/blog-details/${blog.slug}`}
+//                           target="_blank">
+//                           {blog.title}
+//                         </Link>
+//                       </h4>
+//                       <div className="text">{parse(blog.excerpt || "")}</div>
+//                       {/* <Link
+//                         href={`/${blog.cta}`}
+//                         className="theme-btn icon-btn-two read-more-btn"
+//                         target="_blank">
+//                         <span>Read More</span>
+//                       </Link> */}
+//                       <div className="btn-box">
+//                         <Link
+//                           href={`/blog/blog-details/${blog.slug}`}
+//                           className="theme-btn icon-btn-two read-more-btn">
+//                           <span>Read More</span>
+//                           <i className="fa-solid fa-arrow-right"></i>
+//                         </Link>
+//                       </div>
+
+//                       <div className="post-info">
+//                         <div className="post-author">
+//                           <Image
+//                             src={blog.author_image_url}
+//                             alt={blog.author_name}
+//                             width={40}
+//                             height={40}
+//                           />{" "}
+//                           {blog.author_name}
+//                         </div>
+
+//                         <div className="post-option">
+//                           <ul className="social-share">
+//                             <li>
+//                               <Link
+//                                 href={`https://www.facebook.com/sharer.php?u=https://amfics.io/${blog.slug}`}
+//                                 target="_blank">
+//                                 <i className="fab fa-facebook-f"></i>
+//                               </Link>
+//                             </li>
+//                             <li>
+//                               <Link
+//                                 href={`https://www.linkedin.com/shareArticle?url=https://amfics.io/${blog.slug}`}
+//                                 target="_blank">
+//                                 <i className="fab fa-linkedin-in"></i>
+//                               </Link>
+//                             </li>
+//                             <li>
+//                               <Link
+//                                 href={`https://twitter.com/share?url=https://amfics.io/${blog.slug}`}
+//                                 target="_blank">
+//                                 <i className="fab fa-twitter"></i>
+//                               </Link>
+//                             </li>
+//                           </ul>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               ))
+//             ) : (
+//               <p className="text-center w-full py-10">No blogs available.</p>
+//             )}
+//           </div>
+//         </div>
+//       </section>
+//     </>
+//   );
+// };
+
+// export default BlogPage;
+// !server component
 import Image from "next/image";
 import Link from "next/link";
 import parse from "html-react-parser";
 import { fetchBlogData } from "@/app/action/blog";
-import { fetchPageData } from "../action/fetchPageData";
+import { fetchPageData } from "@/app/action/fetchPageData";
 
 interface BlogPost {
   title: string;
@@ -188,58 +399,29 @@ interface PageData {
   cover_image_url: string;
 }
 
-const BlogPage: React.FC = () => {
-  const [blogs, setBlogs] = useState<BlogPost[]>([]);
-  const [page, setPage] = useState<PageData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [pageLoading, setPageLoading] = useState(true);
-  useEffect(() => {
-    const loadPageData = async () => {
-      try {
-        const uid = "a731283e-c8e3-4ea0-aeb4-95a101eb6d29";
-        const data = await fetchPageData(uid);
-        if (data && data.status) {
-          setPage(data.pagedata);
-        } else {
-          setPage(null);
-        }
-        // console.log("Page Data&&&&&&&&&&&&&&&&&&&&&&: ", data);
-      } catch (err) {
-        console.error("Error loading page data:", err);
-        setPage(null);
-      } finally {
-        setPageLoading(false);
-      }
-    };
+export default async function BlogPage() {
+  // ------- Fetch Page Data -------
+  const uid = "a731283e-c8e3-4ea0-aeb4-95a101eb6d29";
+  let page: PageData | null = null;
 
-    loadPageData();
-  }, []);
-  useEffect(() => {
-    const loadBlogs = async () => {
-      try {
-        const res = await fetchBlogData();
-        const activeBlogs = res.userPostdata.filter(
-          (b: BlogPost) => b.status === "active"
-        );
-        setBlogs(activeBlogs);
-        // console.log("res&&&&&&&&&&&&&&&&&&&&&&&&&: ", res);
-      } catch (err) {
-        console.error("Error loading blogs:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadBlogs();
-  }, []);
-
-  if (pageLoading) {
-    return (
-      <div className="auto-container text-center py-10">
-        <p>Loading page...</p>
-      </div>
-    );
+  try {
+    const pageRes = await fetchPageData(uid);
+    page = pageRes?.status ? pageRes.pagedata : null;
+  } catch (error) {
+    console.error("Page fetch error:", error);
   }
+
+  // ------- Fetch Blogs -------
+  let blogs: BlogPost[] = [];
+
+  try {
+    const blogRes = await fetchBlogData();
+    blogs = blogRes.userPostdata.filter((b: BlogPost) => b.status === "active");
+  } catch (error) {
+    console.error("Blog fetch error:", error);
+  }
+
+  // ------- UI -------
   if (!page) {
     return (
       <div className="auto-container text-center py-10">
@@ -247,15 +429,10 @@ const BlogPage: React.FC = () => {
       </div>
     );
   }
-  if (loading) {
-    return (
-      <div className="auto-container text-center py-10">
-        <p>Loading blogs...</p>
-      </div>
-    );
-  }
+
   return (
     <>
+      {/* -------- Banner -------- */}
       <section
         className="page-title about_box"
         style={{
@@ -267,7 +444,7 @@ const BlogPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Blog Section */}
+      {/* -------- Blog Section -------- */}
       <section className="news-section blog-small-images">
         <div className="auto-container">
           <div className="row">
@@ -288,11 +465,13 @@ const BlogPage: React.FC = () => {
                           />
                         </Link>
                       </figure>
+
                       <Link
                         href={`/blog/blog-details/${blog.slug}`}
                         className="date"
                         target="_blank">
-                        <i className="fas fa-calendar-alt"></i>{blog.tag}
+                        <i className="fas fa-calendar-alt"></i>
+                        {blog.tag}
                       </Link>
                     </div>
 
@@ -304,13 +483,9 @@ const BlogPage: React.FC = () => {
                           {blog.title}
                         </Link>
                       </h4>
+
                       <div className="text">{parse(blog.excerpt || "")}</div>
-                      {/* <Link
-                        href={`/${blog.cta}`}
-                        className="theme-btn icon-btn-two read-more-btn"
-                        target="_blank">
-                        <span>Read More</span>
-                      </Link> */}
+
                       <div className="btn-box">
                         <Link
                           href={`/blog/blog-details/${blog.slug}`}
@@ -369,6 +544,4 @@ const BlogPage: React.FC = () => {
       </section>
     </>
   );
-};
-
-export default BlogPage;
+}

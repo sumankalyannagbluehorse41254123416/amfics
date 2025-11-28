@@ -476,27 +476,27 @@ interface BannerData {
   desktopImage: string;
 }
 
-interface Subsection {
-  id: string;
-  title: string;
-  image: string;
-}
+// interface Subsection {
+//   id: string;
+//   title: string;
+//   image: string;
+// }
 
-interface SectionItem {
-  id: string;
-  title: string;
-  image: string;
-  shortDescription: string;
-  subsections?: Subsection[];
-}
+// interface SectionItem {
+//   id: string;
+//   title: string;
+//   image: string;
+//   shortDescription: string;
+//   subsections?: Subsection[];
+// }
 
-interface PageData {
-  id: string | number;
-  title: string;
-  description: string;
-  cover_image_url: string;
-  image: string;
-}
+// interface PageData {
+//   id: string | number;
+//   title: string;
+//   description: string;
+//   cover_image_url: string;
+//   image: string;
+// }
 
 const VaptSection: React.FC = () => {
   const [banner, setBanner] = useState<BannerData | null>(null);
