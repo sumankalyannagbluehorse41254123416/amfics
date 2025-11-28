@@ -268,14 +268,14 @@ const PartnersPage: React.FC = () => {
     loadPageData();
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) =>
-        testimonials.length ? (prev + 1) % testimonials.length : 0
-      );
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [testimonials]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCurrentIndex((prev) =>
+  //       testimonials.length ? (prev + 1) % testimonials.length : 0
+  //     );
+  //   }, 3000);
+  //   return () => clearInterval(interval);
+  // }, [testimonials]);
 
   const goToSlide = (i: number) => setCurrentIndex(i);
   const next = () =>

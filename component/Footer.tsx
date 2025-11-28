@@ -301,6 +301,7 @@
 
 import { submitFormData } from "@/lib/contact";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -455,20 +456,29 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className="social-link">
-                      <a href="#" target="_blank" rel="noreferrer">
+                      <Link
+                        href="https://www.facebook.com/amfics/#"
+                        target="_blank"
+                        rel="noreferrer">
                         <i className="fab fa-facebook-f"></i>
-                      </a>
-                      <a href="#" target="_blank" rel="noreferrer">
+                      </Link>
+                      <Link
+                        href="https://twitter.com/amfics/#"
+                        target="_blank"
+                        rel="noreferrer">
                         <i className="fab fa-twitter"></i>
-                      </a>
-                      <a href="#" target="_blank" rel="noreferrer">
+                      </Link>
+                      <Link
+                        href="https://www.linkedin.com/amfics/#"
+                        target="_blank"
+                        rel="noreferrer">
                         <i className="fab fa-linkedin-in"></i>
-                      </a>
+                      </Link>
                     </div>
 
-                    <a className="zero_mail" href="mailto:info@amfics.io">
+                    <Link className="zero_mail" href="mailto:info@amfics.io">
                       <i className="fas fa-envelope"></i> info@amfics.io
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

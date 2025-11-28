@@ -78,7 +78,7 @@ export default async function BusinessContinuityPlan() {
   if (!data?.status) {
     return (
       <section className="py-20 text-center">
-        <h2>Business Continuity Plan data not found.</h2>
+        <h2>Data not found.</h2>
       </section>
     );
   }

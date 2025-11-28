@@ -313,9 +313,9 @@ const ContactFormSection: React.FC = () => {
       setIsSubmitting(false);
     }
   };
-  setTimeout(() => {
-    setErrors({ firstname: "", lastname: "", email: "", message: "" });
-  }, 4000);
+  // setTimeout(() => {
+  //   setErrors({ firstname: "", lastname: "", email: "", message: "" });
+  // }, 4000);
 
   return (
     <div className="row form-outer">

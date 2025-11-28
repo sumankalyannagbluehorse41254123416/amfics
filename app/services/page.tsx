@@ -388,38 +388,38 @@ import { fetchBannerData } from "../action/banner";
 import Image from "next/image";
 import Link from "next/link";
 
-interface BannerData {
-  status: string;
-  id: string;
-  title: string;
-  description: string;
-  desktopImage: string;
-}
+// interface BannerData {
+//   status: string;
+//   id: string;
+//   title: string;
+//   description: string;
+//   desktopImage: string;
+// }
 
-interface Subsection {
-  id: string;
-  title: string;
-  image?: string;
-}
+// interface Subsection {
+//   id: string;
+//   title: string;
+//   image?: string;
+// }
 
-interface Section {
-  id: string;
-  title: string;
-  image?: string;
-  shortDescription?: string;
-  subsections?: Subsection[];
-}
+// interface Section {
+//   id: string;
+//   title: string;
+//   image?: string;
+//   shortDescription?: string;
+//   subsections?: Subsection[];
+// }
 
-interface PageData {
-  status: string;
-  pagedata: {
-    id: string;
-    title: string;
-    description?: string;
-    cover_image_url?: string;
-  };
-  pageItemdataWithSubsection: Section[];
-}
+// interface PageData {
+//   status: string;
+//   pagedata: {
+//     id: string;
+//     title: string;
+//     description?: string;
+//     cover_image_url?: string;
+//   };
+//   pageItemdataWithSubsection: Section[];
+// }
 
 const Services = async () => {
   const bannerUid = "6ab20de5-df9c-49fb-bb61-b387d7472cea";
