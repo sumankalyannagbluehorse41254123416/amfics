@@ -373,7 +373,7 @@ export default async function CyberSecurityReadiness() {
           <div className="section-border"></div>
         </div>
 
-        <div className="container soc">
+        <div className="container soc" style={{overflowX: "hidden"}}>
           {pageItems.map((item: any, index: number) => (
             <div className={`row ${index > 0 ? "mt-5" : ""}`} key={item.id}>
               {index % 2 === 0 ? (
