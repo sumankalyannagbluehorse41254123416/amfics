@@ -540,7 +540,7 @@ const Header: React.FC = () => {
               <Link
                 href="/"
                 className="main-logo"
-                target="_blank"
+                // target="_blank"
                 rel="noopener noreferrer">
                 <Image
                   src="/images/logo/Amfics Logo.png"
@@ -675,7 +675,7 @@ const Header: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer">
                 <Image
-                  src="https://amfics.io/images/Amfics Fav Icon.png"
+                  src="/images/logo/Amfics Logo.png"
                   alt="Amfics Fav Icon"
                   title="Amfics Fav Icon"
                   height={400}
