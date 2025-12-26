@@ -410,7 +410,6 @@ const BlogDetails: React.FC<BlogDetailsProps> = ({ params }) => {
       <div className="sidebar-page-container right-sidebar">
         <div className="auto-container">
           <div className="row clearfix">
-            {/* Content Side */}
             <div className="content-side col-lg-8 col-md-12 col-sm-12">
               <div className="blog-post hover-stop">
                 <div className="news-block">
