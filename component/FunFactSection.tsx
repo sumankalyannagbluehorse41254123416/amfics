@@ -255,6 +255,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import parse from "html-react-parser";
 import { fetchPageData } from "@/app/action/fetchPageData";
+import CountUp from "./CountUpProps";
 
 interface SubSection {
   title: string;
@@ -334,7 +335,8 @@ const FunFactSection: React.FC = () => {
                     />
                   </span>
                   <div className="count-box counted">
-                    <span className="count-text">{item.title}</span>
+                    {/* <span className="count-text">{item.title}</span> */}
+                     <CountUp value={item.title} />
                     <span>{item.subsections?.[0]?.title || ""}</span>
                   </div>
                   <div className="text">
