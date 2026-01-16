@@ -15,6 +15,8 @@ import "@/public/style/animate.css";
 import Header from "@/component/Header";
 import Footer from "@/component/Footer";
 import { ToastContainer } from "react-toastify";
+import ScrollTop from "@/component/ScrollTop";
+
 // import Home from "./page";
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -63,6 +65,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ScrollTop />
       </body>
     </html>
   );
